@@ -1562,5 +1562,206 @@
       }
     },
     "query": "SELECT * FROM exams WHERE course_id IN (SELECT course_id FROM courses WHERE department_id != (SELECT department_id FROM departments WHERE department_name = 'Computer Science'));"
+  },  {
+    "prompt": "List all exam results for the course 'Physics 101.'",
+    "context": {
+      "exam_results": {
+        "columns": [
+          "result_id",
+          "exam_id",
+          "student_id",
+          "marks_obtained"
+        ]
+      },
+      "exams": {
+        "columns": [
+          "exam_id",
+          "course_id",
+          "exam_date",
+          "location",
+          "total_marks"
+        ]
+      },
+      "courses": {
+        "columns": [
+          "course_id",
+          "course_name",
+          "department_id",
+          "credits",
+          "faculty_id"
+        ]
+      }
+    },
+    "query": "SELECT exam_results.* FROM exam_results JOIN exams ON exam_results.exam_id = exams.exam_id JOIN courses ON exams.course_id = courses.course_id WHERE courses.course_name = 'Physics 101';"
+  },
+  {
+    "prompt": "Retrieve the marks obtained by 'Alice Johnson' in the exam with ID 502.",
+    "context": {
+      "exam_results": {
+        "columns": [
+          "result_id",
+          "exam_id",
+          "student_id",
+          "marks_obtained"
+        ]
+      },
+      "students": {
+        "columns": [
+          "student_id",
+          "first_name",
+          "last_name",
+          "dob",
+          "email",
+          "phone",
+          "address",
+          "enrollment_date",
+          "program_id"
+        ]
+      }
+    },
+    "query": "SELECT marks_obtained FROM exam_results WHERE exam_id = 502 AND student_id = (SELECT student_id FROM students WHERE first_name = 'Alice' AND last_name = 'Johnson');"
+  },
+  {
+    "prompt": "Show all exam results where marks obtained are greater than 90.",
+    "context": {
+      "exam_results": {
+        "columns": [
+          "result_id",
+          "exam_id",
+          "student_id",
+          "marks_obtained"
+        ]
+      }
+    },
+    "query": "SELECT * FROM exam_results WHERE marks_obtained > 90;"
+  },
+  {
+    "prompt": "Which students scored less than 50 in the 'Mathematics' exam?",
+    "context": {
+      "exam_results": {
+        "columns": [
+          "result_id",
+          "exam_id",
+          "student_id",
+          "marks_obtained"
+        ]
+      },
+      "exams": {
+        "columns": [
+          "exam_id",
+          "course_id",
+          "exam_date",
+          "location",
+          "total_marks"
+        ]
+      },
+      "courses": {
+        "columns": [
+          "course_id",
+          "course_name",
+          "department_id",
+          "credits",
+          "faculty_id"
+        ]
+      },
+      "students": {
+        "columns": [
+          "student_id",
+          "first_name",
+          "last_name"
+        ]
+      }
+    },
+    "query": "SELECT students.first_name, students.last_name FROM students JOIN exam_results ON students.student_id = exam_results.student_id JOIN exams ON exam_results.exam_id = exams.exam_id JOIN courses ON exams.course_id = courses.course_id WHERE courses.course_name = 'Mathematics' AND exam_results.marks_obtained < 50;"
+  },
+  {
+    "prompt": "Retrieve the names and marks of students with the highest score in 'Biology.'",
+    "context": {
+      "exam_results": {
+        "columns": [
+          "result_id",
+          "exam_id",
+          "student_id",
+          "marks_obtained"
+        ]
+      },
+      "exams": {
+        "columns": [
+          "exam_id",
+          "course_id",
+          "exam_date",
+          "location",
+          "total_marks"
+        ]
+      },
+      "courses": {
+        "columns": [
+          "course_id",
+          "course_name",
+          "department_id",
+          "credits",
+          "faculty_id"
+        ]
+      },
+      "students": {
+        "columns": [
+          "student_id",
+          "first_name",
+          "last_name"
+        ]
+      }
+    },
+    "query": "SELECT students.first_name, students.last_name, exam_results.marks_obtained FROM students JOIN exam_results ON students.student_id = exam_results.student_id JOIN exams ON exam_results.exam_id = exams.exam_id JOIN courses ON exams.course_id = courses.course_id WHERE courses.course_name = 'Biology' AND exam_results.marks_obtained = (SELECT MAX(marks_obtained) FROM exam_results JOIN exams ON exam_results.exam_id = exams.exam_id JOIN courses ON exams.course_id = courses.course_id WHERE courses.course_name = 'Biology');"
+  },
+  {
+    "prompt": "How many students appeared for the exam with ID 601?",
+    "context": {
+      "exam_results": {
+        "columns": [
+          "result_id",
+          "exam_id",
+          "student_id",
+          "marks_obtained"
+        ]
+      }
+    },
+    "query": "SELECT COUNT(*) AS total_students FROM exam_results WHERE exam_id = 601;"
+  },
+  {
+    "prompt": "List all exam results where the marks are exactly 100.",
+    "context": {
+      "exam_results": {
+        "columns": [
+          "result_id",
+          "exam_id",
+          "student_id",
+          "marks_obtained"
+        ]
+      }
+    },
+    "query": "SELECT * FROM exam_results WHERE marks_obtained = 100;"
+  },
+  {
+    "prompt": "Show all results for exams held before 2023.",
+    "context": {
+      "exam_results": {
+        "columns": [
+          "result_id",
+          "exam_id",
+          "student_id",
+          "marks_obtained"
+        ]
+      },
+      "exams": {
+        "columns": [
+          "exam_id",
+          "course_id",
+          "exam_date",
+          "location",
+          "total_marks"
+        ]
+      }
+    },
+    "query": "SELECT exam_results.* FROM exam_results JOIN exams ON exam_results.exam_id = exams.exam_id WHERE exams.exam_date < TO_DATE('2023-01-01', 'YYYY-MM-DD');"
   }
 ]

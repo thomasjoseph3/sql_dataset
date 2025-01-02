@@ -1,0 +1,1060 @@
+[
+    {
+        "prompt": "List all active members and their contact details.",
+        "context": {
+            "members": {
+                "columns": [
+                    "member_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "address",
+                    "join_date",
+                    "membership_status"
+                ]
+            }
+        },
+        "query": "SELECT first_name, last_name, email, phone, address FROM members WHERE membership_status = 'Active';"
+    },
+    {
+        "prompt": "Retrieve members who joined in the last 6 months.",
+        "context": {
+            "members": {
+                "columns": [
+                    "member_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "address",
+                    "join_date",
+                    "membership_status"
+                ]
+            }
+        },
+        "query": "SELECT first_name, last_name, email FROM members WHERE join_date >= ADD_MONTHS(SYSDATE, -6);"
+    },
+    {
+        "prompt": "Show all members with overdue borrowed books.",
+        "context": {
+            "members": {
+                "columns": [
+                    "member_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "address",
+                    "join_date",
+                    "membership_status"
+                ]
+            },
+            "borrowed_books": {
+                "columns": [
+                    "borrow_id",
+                    "book_id",
+                    "member_id",
+                    "borrow_date",
+                    "due_date",
+                    "return_date"
+                ]
+            }
+        },
+        "query": "SELECT first_name, last_name FROM members WHERE member_id IN (SELECT member_id FROM borrowed_books WHERE return_date IS NULL AND due_date < SYSDATE);"
+    },
+    {
+        "prompt": "Which members have borrowed more than 5 books?",
+        "context": {
+            "members": {
+                "columns": [
+                    "member_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "address",
+                    "join_date",
+                    "membership_status"
+                ]
+            },
+            "borrowed_books": {
+                "columns": [
+                    "borrow_id",
+                    "book_id",
+                    "member_id",
+                    "borrow_date",
+                    "due_date",
+                    "return_date"
+                ]
+            }
+        },
+        "query": "SELECT first_name, last_name FROM members WHERE member_id IN (SELECT member_id FROM borrowed_books GROUP BY member_id HAVING COUNT(*) > 5);"
+    },
+    {
+        "prompt": "Retrieve the membership status of the member with email 'john.doe@example.com.'",
+        "context": {
+            "members": {
+                "columns": [
+                    "member_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "address",
+                    "join_date",
+                    "membership_status"
+                ]
+            }
+        },
+        "query": "SELECT membership_status FROM members WHERE email = 'john.doe@example.com';"
+    },
+    {
+        "prompt": "List all members who have made a reservation but haven’t borrowed a book.",
+        "context": {
+            "members": {
+                "columns": [
+                    "member_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "address",
+                    "join_date",
+                    "membership_status"
+                ]
+            },
+            "reservations": {
+                "columns": [
+                    "reservation_id",
+                    "book_id",
+                    "member_id",
+                    "reservation_date",
+                    "status"
+                ]
+            },
+            "borrowed_books": {
+                "columns": [
+                    "borrow_id",
+                    "book_id",
+                    "member_id",
+                    "borrow_date",
+                    "due_date",
+                    "return_date"
+                ]
+            }
+        },
+        "query": "SELECT first_name, last_name FROM members WHERE member_id IN (SELECT member_id FROM reservations) AND member_id NOT IN (SELECT member_id FROM borrowed_books);"
+    },
+    {
+        "prompt": "How many members are currently inactive?",
+        "context": {
+            "members": {
+                "columns": [
+                    "member_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "address",
+                    "join_date",
+                    "membership_status"
+                ]
+            }
+        },
+        "query": "SELECT COUNT(*) AS inactive_members FROM members WHERE membership_status = 'Inactive';"
+    },
+    {
+        "prompt": "Show the total number of members in the library.",
+        "context": {
+            "members": {
+                "columns": [
+                    "member_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "address",
+                    "join_date",
+                    "membership_status"
+                ]
+            }
+        },
+        "query": "SELECT COUNT(*) AS total_members FROM members;"
+    },
+    {
+        "prompt": "List all books and their availability.",
+        "context": {
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT title, available_copies FROM books;"
+    },
+    {
+        "prompt": "Retrieve the details of books written by 'Agatha Christie.'",
+        "context": {
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT * FROM books WHERE author = 'Agatha Christie';"
+    },
+    {
+        "prompt": "Show books published before 2000.",
+        "context": {
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT title, publication_year FROM books WHERE publication_year < 2000;"
+    },
+    {
+        "prompt": "Which books belong to the genre 'Science Fiction'?",
+        "context": {
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT title FROM books WHERE genre = 'Science Fiction';"
+    },
+    {
+        "prompt": "Retrieve the ISBN and publisher of the book with ID 102.",
+        "context": {
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT isbn, publisher FROM books WHERE book_id = 102;"
+    },
+    {
+        "prompt": "How many copies of the book 'The Great Gatsby' are available?",
+        "context": {
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT available_copies FROM books WHERE title = 'The Great Gatsby';"
+    },
+    {
+        "prompt": "List all books with less than 5 copies available.",
+        "context": {
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT title, available_copies FROM books WHERE available_copies < 5;"
+    },
+    {
+        "prompt": "Show the total number of books in each genre.",
+        "context": {
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT genre, COUNT(*) AS total_books FROM books GROUP BY genre;"
+    },
+    {
+        "prompt": "List all borrowed books and their due dates.",
+        "context": {
+            "borrowed_books": {
+                "columns": [
+                    "borrow_id",
+                    "member_id",
+                    "book_id",
+                    "borrow_date",
+                    "due_date",
+                    "return_date",
+                    "fine_amount"
+                ]
+            },
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT b.title, bb.due_date FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id;"
+    },
+    {
+        "prompt": "Retrieve the details of books borrowed by the member 'Alice Johnson.'",
+        "context": {
+            "borrowed_books": {
+                "columns": [
+                    "borrow_id",
+                    "member_id",
+                    "book_id",
+                    "borrow_date",
+                    "due_date",
+                    "return_date",
+                    "fine_amount"
+                ]
+            },
+            "members": {
+                "columns": [
+                    "member_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "address",
+                    "join_date",
+                    "membership_status"
+                ]
+            },
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT b.title, b.author, bb.borrow_date, bb.due_date FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id JOIN members m ON bb.member_id = m.member_id WHERE m.first_name = 'Alice' AND m.last_name = 'Johnson';"
+    },
+    {
+        "prompt": "Show all borrowed books that are overdue.",
+        "context": {
+            "borrowed_books": {
+                "columns": [
+                    "borrow_id",
+                    "member_id",
+                    "book_id",
+                    "borrow_date",
+                    "due_date",
+                    "return_date",
+                    "fine_amount"
+                ]
+            },
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT b.title, bb.due_date FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id WHERE bb.due_date < SYSDATE AND bb.return_date IS NULL;"
+    },
+    {
+        "prompt": "Which members have borrowed books in the last month?",
+        "context": {
+            "borrowed_books": {
+                "columns": [
+                    "borrow_id",
+                    "member_id",
+                    "book_id",
+                    "borrow_date",
+                    "due_date",
+                    "return_date",
+                    "fine_amount"
+                ]
+            },
+            "members": {
+                "columns": [
+                    "member_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "address",
+                    "join_date",
+                    "membership_status"
+                ]
+            }
+        },
+        "query": "SELECT DISTINCT m.first_name, m.last_name FROM borrowed_books bb JOIN members m ON bb.member_id = m.member_id WHERE bb.borrow_date >= ADD_MONTHS(SYSDATE, -1);"
+    },
+    {
+        "prompt": "Retrieve the fine amount for the borrow with ID 301.",
+        "context": {
+            "borrowed_books": {
+                "columns": [
+                    "borrow_id",
+                    "member_id",
+                    "book_id",
+                    "borrow_date",
+                    "due_date",
+                    "return_date",
+                    "fine_amount"
+                ]
+            }
+        },
+        "query": "SELECT fine_amount FROM borrowed_books WHERE borrow_id = 301;"
+    },
+    {
+        "prompt": "How many books were borrowed in the 'Summer 2023' semester?",
+        "context": {
+            "borrowed_books": {
+                "columns": [
+                    "borrow_id",
+                    "member_id",
+                    "book_id",
+                    "borrow_date",
+                    "due_date",
+                    "return_date",
+                    "fine_amount"
+                ]
+            }
+        },
+        "query": "SELECT COUNT(*) AS total_borrowed FROM borrowed_books WHERE TO_CHAR(borrow_date, 'YYYY') = '2023' AND TO_CHAR(borrow_date, 'MON') IN ('JUN', 'JUL', 'AUG');"
+    },
+    {
+        "prompt": "List all borrowed books with a fine greater than $10.",
+        "context": {
+            "borrowed_books": {
+                "columns": [
+                    "borrow_id",
+                    "member_id",
+                    "book_id",
+                    "borrow_date",
+                    "due_date",
+                    "return_date",
+                    "fine_amount"
+                ]
+            },
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT b.title, bb.fine_amount FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id WHERE bb.fine_amount > 10;"
+    },
+    {
+        "prompt": "Show all borrowed books that have been returned.",
+        "context": {
+            "borrowed_books": {
+                "columns": [
+                    "borrow_id",
+                    "member_id",
+                    "book_id",
+                    "borrow_date",
+                    "due_date",
+                    "return_date",
+                    "fine_amount"
+                ]
+            },
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT b.title, bb.return_date FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id WHERE bb.return_date IS NOT NULL;"
+    },
+    {
+        "prompt": "List all staff members and their roles.",
+        "context": {
+            "staff": {
+                "columns": [
+                    "staff_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "hire_date",
+                    "role"
+                ]
+            }
+        },
+        "query": "SELECT staff_id, first_name, last_name, role FROM staff;"
+    },
+    {
+        "prompt": "Retrieve the details of staff hired in the last year.",
+        "context": {
+            "staff": {
+                "columns": [
+                    "staff_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "hire_date",
+                    "role"
+                ]
+            }
+        },
+        "query": "SELECT * FROM staff WHERE hire_date >= ADD_MONTHS(SYSDATE, -12);"
+    },
+    {
+        "prompt": "Show staff members with the role 'Librarian.'",
+        "context": {
+            "staff": {
+                "columns": [
+                    "staff_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "hire_date",
+                    "role"
+                ]
+            }
+        },
+        "query": "SELECT * FROM staff WHERE role = 'Librarian';"
+    },
+    {
+        "prompt": "Which staff members have processed more than 50 borrow transactions?",
+        "context": {
+            "staff": {
+                "columns": [
+                    "staff_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "hire_date",
+                    "role"
+                ]
+            },
+            "borrowed_books": {
+                "columns": [
+                    "borrow_id",
+                    "member_id",
+                    "book_id",
+                    "borrow_date",
+                    "due_date",
+                    "return_date",
+                    "fine_amount"
+                ]
+            }
+        },
+        "query": "SELECT s.first_name, s.last_name, COUNT(bb.borrow_id) AS total_borrowed FROM staff s JOIN borrowed_books bb ON s.staff_id = bb.staff_id GROUP BY s.staff_id, s.first_name, s.last_name HAVING COUNT(bb.borrow_id) > 50;"
+    },
+    {
+        "prompt": "Retrieve the hire date of the staff member with email 'jane.smith@example.com.'",
+        "context": {
+            "staff": {
+                "columns": [
+                    "staff_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "hire_date",
+                    "role"
+                ]
+            }
+        },
+        "query": "SELECT hire_date FROM staff WHERE email = 'jane.smith@example.com';"
+    },
+    {
+        "prompt": "How many staff members are currently working in the library?",
+        "context": {
+            "staff": {
+                "columns": [
+                    "staff_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "hire_date",
+                    "role"
+                ]
+            }
+        },
+        "query": "SELECT COUNT(*) AS total_staff FROM staff;"
+    },
+    {
+        "prompt": "List all staff with the role 'Administrator.'",
+        "context": {
+            "staff": {
+                "columns": [
+                    "staff_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "hire_date",
+                    "role"
+                ]
+            }
+        },
+        "query": "SELECT * FROM staff WHERE role = 'Administrator';"
+    },
+    {
+        "prompt": "Show the contact details of all staff hired before 2015.",
+        "context": {
+            "staff": {
+                "columns": [
+                    "staff_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "hire_date",
+                    "role"
+                ]
+            }
+        },
+        "query": "SELECT first_name, last_name, email, phone FROM staff WHERE hire_date < TO_DATE('2015-01-01', 'YYYY-MM-DD');"
+    },   {
+        "prompt": "List all publishers and their contact details.",
+        "context": {
+            "publishers": {
+                "columns": [
+                    "publisher_id",
+                    "publisher_name",
+                    "contact_email",
+                    "contact_phone",
+                    "address"
+                ]
+            }
+        },
+        "query": "SELECT publisher_id, publisher_name, contact_email, contact_phone, address FROM publishers;"
+    },
+    {
+        "prompt": "Retrieve the names of books published by 'Penguin Random House.'",
+        "context": {
+            "publishers": {
+                "columns": [
+                    "publisher_id",
+                    "publisher_name",
+                    "contact_email",
+                    "contact_phone",
+                    "address"
+                ]
+            },
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT title FROM books WHERE publisher = 'Penguin Random House';"
+    },
+    {
+        "prompt": "Show publishers with more than 10 books in the library.",
+        "context": {
+            "publishers": {
+                "columns": [
+                    "publisher_id",
+                    "publisher_name",
+                    "contact_email",
+                    "contact_phone",
+                    "address"
+                ]
+            },
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT publisher, COUNT(*) AS book_count FROM books GROUP BY publisher HAVING COUNT(*) > 10;"
+    },
+    {
+        "prompt": "Which publishers have books borrowed more than 50 times?",
+        "context": {
+            "publishers": {
+                "columns": [
+                    "publisher_id",
+                    "publisher_name",
+                    "contact_email",
+                    "contact_phone",
+                    "address"
+                ]
+            },
+            "borrowed_books": {
+                "columns": [
+                    "borrow_id",
+                    "member_id",
+                    "book_id",
+                    "borrow_date",
+                    "due_date",
+                    "return_date",
+                    "fine_amount"
+                ]
+            },
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT b.publisher, COUNT(bb.borrow_id) AS borrow_count FROM books b JOIN borrowed_books bb ON b.book_id = bb.book_id GROUP BY b.publisher HAVING COUNT(bb.borrow_id) > 50;"
+    },
+    {
+        "prompt": "Retrieve the contact email of the publisher with ID 501.",
+        "context": {
+            "publishers": {
+                "columns": [
+                    "publisher_id",
+                    "publisher_name",
+                    "contact_email",
+                    "contact_phone",
+                    "address"
+                ]
+            }
+        },
+        "query": "SELECT contact_email FROM publishers WHERE publisher_id = 501;"
+    },
+    {
+        "prompt": "How many publishers are associated with the library?",
+        "context": {
+            "publishers": {
+                "columns": [
+                    "publisher_id",
+                    "publisher_name",
+                    "contact_email",
+                    "contact_phone",
+                    "address"
+                ]
+            }
+        },
+        "query": "SELECT COUNT(*) AS total_publishers FROM publishers;"
+    },
+    {
+        "prompt": "List all publishers who have published books in the 'History' genre.",
+        "context": {
+            "publishers": {
+                "columns": [
+                    "publisher_id",
+                    "publisher_name",
+                    "contact_email",
+                    "contact_phone",
+                    "address"
+                ]
+            },
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT DISTINCT publisher FROM books WHERE genre = 'History';"
+    },
+    {
+        "prompt": "Show the total number of books published by each publisher.",
+        "context": {
+            "publishers": {
+                "columns": [
+                    "publisher_id",
+                    "publisher_name",
+                    "contact_email",
+                    "contact_phone",
+                    "address"
+                ]
+            },
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT publisher, COUNT(*) AS total_books FROM books GROUP BY publisher;"
+    },    {
+        "prompt": "List all book reservations and their status.",
+        "context": {
+            "reservations": {
+                "columns": [
+                    "reservation_id",
+                    "member_id",
+                    "book_id",
+                    "reservation_date",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT reservation_id, book_id, member_id, status FROM reservations;"
+    },
+    {
+        "prompt": "Retrieve the details of reservations made by 'David Brown.'",
+        "context": {
+            "reservations": {
+                "columns": [
+                    "reservation_id",
+                    "member_id",
+                    "book_id",
+                    "reservation_date",
+                    "status"
+                ]
+            },
+            "members": {
+                "columns": [
+                    "member_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "address",
+                    "join_date",
+                    "membership_status"
+                ]
+            }
+        },
+        "query": "SELECT * FROM reservations WHERE member_id = (SELECT member_id FROM members WHERE first_name = 'David' AND last_name = 'Brown');"
+    },
+    {
+        "prompt": "Show all reservations for the book '1984.'",
+        "context": {
+            "reservations": {
+                "columns": [
+                    "reservation_id",
+                    "member_id",
+                    "book_id",
+                    "reservation_date",
+                    "status"
+                ]
+            },
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT * FROM reservations WHERE book_id = (SELECT book_id FROM books WHERE title = '1984');"
+    },
+    {
+        "prompt": "Which reservations are still pending?",
+        "context": {
+            "reservations": {
+                "columns": [
+                    "reservation_id",
+                    "member_id",
+                    "book_id",
+                    "reservation_date",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT * FROM reservations WHERE status = 'Pending';"
+    },
+    {
+        "prompt": "Retrieve the reservation date for the reservation with ID 402.",
+        "context": {
+            "reservations": {
+                "columns": [
+                    "reservation_id",
+                    "member_id",
+                    "book_id",
+                    "reservation_date",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT reservation_date FROM reservations WHERE reservation_id = 402;"
+    },
+    {
+        "prompt": "How many reservations were made in the last 30 days?",
+        "context": {
+            "reservations": {
+                "columns": [
+                    "reservation_id",
+                    "member_id",
+                    "book_id",
+                    "reservation_date",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT COUNT(*) AS recent_reservations FROM reservations WHERE reservation_date >= ADD_MONTHS(SYSDATE, -1);"
+    },
+    {
+        "prompt": "List all reservations where the status is 'Cancelled.'",
+        "context": {
+            "reservations": {
+                "columns": [
+                    "reservation_id",
+                    "member_id",
+                    "book_id",
+                    "reservation_date",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT * FROM reservations WHERE status = 'Cancelled';"
+    },
+    {
+        "prompt": "Show all reservations made by inactive members.",
+        "context": {
+            "reservations": {
+                "columns": [
+                    "reservation_id",
+                    "member_id",
+                    "book_id",
+                    "reservation_date",
+                    "status"
+                ]
+            },
+            "members": {
+                "columns": [
+                    "member_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "address",
+                    "join_date",
+                    "membership_status"
+                ]
+            }
+        },
+        "query": "SELECT * FROM reservations WHERE member_id IN (SELECT member_id FROM members WHERE membership_status = 'Inactive');"
+    }
+]

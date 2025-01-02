@@ -1,0 +1,83 @@
+
+
+### **Dataset**
+
+#### **Category 1: Members**
+
+1. List all active members and their contact details.
+2. Retrieve members who joined in the last 6 months.
+3. Show all members with overdue borrowed books.
+4. Which members have borrowed more than 5 books?
+5. Retrieve the membership status of the member with email 'john.doe@example.com.'
+6. List all members who have made a reservation but haven’t borrowed a book.
+7. How many members are currently inactive?
+8. Show the total number of members in the library.
+
+#### **Category 2: Books**
+
+1. List all books and their availability.
+2. Retrieve the details of books written by 'Agatha Christie.'
+3. Show books published before 2000.
+4. Which books belong to the genre 'Science Fiction'?
+5. Retrieve the ISBN and publisher of the book with ID 102.
+6. How many copies of the book 'The Great Gatsby' are available?
+7. List all books with less than 5 copies available.
+8. Show the total number of books in each genre.
+
+#### **Category 3: Borrowed Books**
+
+1. List all borrowed books and their due dates.
+2. Retrieve the details of books borrowed by the member 'Alice Johnson.'
+3. Show all borrowed books that are overdue.
+4. Which members have borrowed books in the last month?
+5. Retrieve the fine amount for the borrow with ID 301.
+6. How many books were borrowed in the 'Summer 2023' semester?
+7. List all borrowed books with a fine greater than $10.
+8. Show all borrowed books that have been returned.
+
+#### **Category 4: Genres**
+
+1. List all genres in the library.
+2. Retrieve the names of books in the 'Romance' genre.
+3. Show all genres with more than 50 books.
+4. Which genres have books borrowed more than 100 times?
+5. Retrieve the total number of genres in the library.
+6. Show the details of the genre with ID 201.
+7. Which genres have books currently reserved?
+8. Show the total number of books for each genre.
+
+#### **Category 5: Staff**
+
+1. List all staff members and their roles.
+2. Retrieve the details of staff hired in the last year.
+3. Show staff members with the role 'Librarian.'
+4. Which staff members have processed more than 50 borrow transactions?
+5. Retrieve the hire date of the staff member with email 'jane.smith@example.com.'
+6. How many staff members are currently working in the library?
+7. List all staff with the role 'Administrator.'
+8. Show the contact details of all staff hired before 2015.
+
+#### **Category 6: Reservations**
+
+1. List all book reservations and their status.
+2. Retrieve the details of reservations made by 'David Brown.'
+3. Show all reservations for the book '1984.'
+4. Which reservations are still pending?
+5. Retrieve the reservation date for the reservation with ID 402.
+6. How many reservations were made in the last 30 days?
+7. List all reservations where the status is 'Cancelled.'
+8. Show all reservations made by inactive members.
+
+#### **Category 7: Publishers**
+
+1. List all publishers and their contact details.
+2. Retrieve the names of books published by 'Penguin Random House.'
+3. Show publishers with more than 10 books in the library.
+4. Which publishers have books borrowed more than 50 times?
+5. Retrieve the contact email of the publisher with ID 501.
+6. How many publishers are associated with the library?
+7. List all publishers who have published books in the 'History' genre.
+8. Show the total number of books published by each publisher.
+
+---
+
