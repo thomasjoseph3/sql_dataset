@@ -1,0 +1,1817 @@
+[
+    {
+        "prompt": "List all vehicles and their current status.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT name, status FROM vehicles;"
+    },
+    {
+        "prompt": "Which vehicles have maintenance in progress?",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            }
+        },
+        "query": "SELECT v.name FROM vehicles v JOIN maintenance_records mr ON v.vehicle_id = mr.vehicle_id WHERE mr.status = 'In Progress';"
+    },
+    {
+        "prompt": "Find the total cost of maintenance for each vehicle.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            }
+        },
+        "query": "SELECT v.name, SUM(mr.cost) AS total_cost FROM vehicles v JOIN maintenance_records mr ON v.vehicle_id = mr.vehicle_id GROUP BY v.name;"
+    },
+    {
+        "prompt": "List all maintenance tasks for the vehicle named 'Heavy Loader 2000'.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            },
+            "maintenance_tasks": {
+                "columns": [
+                    "task_id",
+                    "maintenance_id",
+                    "task_name",
+                    "description",
+                    "estimated_cost",
+                    "actual_cost"
+                ],
+                "foreign_keys": {
+                    "maintenance_id": "maintenance_records"
+                }
+            }
+        },
+        "query": "SELECT mt.task_name, mt.description FROM maintenance_tasks mt JOIN maintenance_records mr ON mt.maintenance_id = mr.maintenance_id JOIN vehicles v ON mr.vehicle_id = v.vehicle_id WHERE v.name = 'Heavy Loader 2000';"
+    },
+    {
+        "prompt": "Which workers are part of the 'Construction Team A'?",
+        "context": {
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ],
+                "foreign_keys": {
+                    "team_id": "teams"
+                }
+            },
+            "teams": {
+                "columns": [
+                    "team_id",
+                    "team_name",
+                    "manager_id"
+                ],
+                "foreign_keys": {
+                    "manager_id": "workers"
+                }
+            }
+        },
+        "query": "SELECT w.first_name, w.last_name FROM workers w JOIN teams t ON w.team_id = t.team_id WHERE t.team_name = 'Construction Team A';"
+    },
+    {
+        "prompt": "How many spare parts are available for use?",
+        "context": {
+            "spare_parts": {
+                "columns": [
+                    "part_id",
+                    "name",
+                    "type",
+                    "quantity",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT SUM(quantity) AS total_available_parts FROM spare_parts WHERE status = 'Available';"
+    },
+    {
+        "prompt": "List all equipment that has not been serviced in the last 6 months.",
+        "context": {
+            "equipment": {
+                "columns": [
+                    "equipment_id",
+                    "name",
+                    "type",
+                    "status",
+                    "last_serviced_date"
+                ]
+            }
+        },
+        "query": "SELECT name FROM equipment WHERE last_serviced_date < ADD_MONTHS(SYSDATE, -6);"
+    },
+    {
+        "prompt": "Which workers used the equipment named 'Bulldozer 9000' in the past month?",
+        "context": {
+            "equipment": {
+                "columns": [
+                    "equipment_id",
+                    "name",
+                    "type",
+                    "status",
+                    "last_serviced_date"
+                ]
+            },
+            "equipment_usage": {
+                "columns": [
+                    "usage_id",
+                    "equipment_id",
+                    "worker_id",
+                    "start_time",
+                    "end_time",
+                    "purpose"
+                ],
+                "foreign_keys": {
+                    "equipment_id": "equipment",
+                    "worker_id": "workers"
+                }
+            },
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            }
+        },
+        "query": "SELECT w.first_name, w.last_name FROM workers w JOIN equipment_usage eu ON w.worker_id = eu.worker_id JOIN equipment e ON eu.equipment_id = e.equipment_id WHERE e.name = 'Bulldozer 9000' AND eu.start_time > ADD_MONTHS(SYSDATE, -1);"
+    },
+    {
+        "prompt": "Find the names of projects that are currently in progress.",
+        "context": {
+            "projects": {
+                "columns": [
+                    "project_id",
+                    "name",
+                    "start_date",
+                    "end_date",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT name FROM projects WHERE status = 'In Progress';"
+    },
+    {
+        "prompt": "How many workers are assigned to each project?",
+        "context": {
+            "project_assignments": {
+                "columns": [
+                    "assignment_id",
+                    "project_id",
+                    "worker_id",
+                    "assigned_date",
+                    "completion_date",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "project_id": "projects",
+                    "worker_id": "workers"
+                }
+            },
+            "projects": {
+                "columns": [
+                    "project_id",
+                    "name",
+                    "start_date",
+                    "end_date",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT p.name, COUNT(pa.worker_id) AS worker_count FROM projects p JOIN project_assignments pa ON p.project_id = pa.project_id GROUP BY p.name;"
+    },
+    {
+        "prompt": "Which equipment parts have been used in the last maintenance?",
+        "context": {
+            "equipment_parts": {
+                "columns": [
+                    "id",
+                    "equipment_id",
+                    "part_id",
+                    "quantity_used"
+                ],
+                "foreign_keys": {
+                    "equipment_id": "equipment",
+                    "part_id": "spare_parts"
+                }
+            },
+            "equipment": {
+                "columns": [
+                    "equipment_id",
+                    "name",
+                    "type",
+                    "status",
+                    "last_serviced_date"
+                ]
+            },
+            "spare_parts": {
+                "columns": [
+                    "part_id",
+                    "name",
+                    "type",
+                    "quantity",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT sp.name, ep.quantity_used FROM equipment_parts ep JOIN spare_parts sp ON ep.part_id = sp.part_id WHERE ep.equipment_id IN (SELECT equipment_id FROM equipment WHERE last_serviced_date = (SELECT MAX(last_serviced_date) FROM equipment));"
+    },
+    {
+        "prompt": "What is the total cost of completed maintenance tasks?",
+        "context": {
+            "maintenance_tasks": {
+                "columns": [
+                    "task_id",
+                    "maintenance_id",
+                    "task_name",
+                    "description",
+                    "estimated_cost",
+                    "actual_cost"
+                ],
+                "foreign_keys": {
+                    "maintenance_id": "maintenance_records"
+                }
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            }
+        },
+        "query": "SELECT SUM(mt.actual_cost) AS total_cost FROM maintenance_tasks mt JOIN maintenance_records mr ON mt.maintenance_id = mr.maintenance_id WHERE mr.status = 'Completed';"
+    },
+    {
+        "prompt": "List all vehicles that have passed safety audits in 2023.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "safety_audits": {
+                "columns": [
+                    "audit_id",
+                    "vehicle_id",
+                    "audit_date",
+                    "auditor_id",
+                    "remarks"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles",
+                    "auditor_id": "workers"
+                }
+            }
+        },
+        "query": "SELECT v.name FROM vehicles v JOIN safety_audits sa ON v.vehicle_id = sa.vehicle_id WHERE EXTRACT(YEAR FROM sa.audit_date) = 2023 AND sa.remarks LIKE '%passed%';"
+    },
+    {
+        "prompt": "Which vehicles have not undergone maintenance in the last year?",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            }
+        },
+        "query": "SELECT v.name FROM vehicles v LEFT JOIN maintenance_records mr ON v.vehicle_id = mr.vehicle_id WHERE mr.end_date < ADD_MONTHS(SYSDATE, -12) OR mr.end_date IS NULL;"
+    },
+    {
+        "prompt": "List all workers assigned to projects with 'Construction' in their name.",
+        "context": {
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            },
+            "project_assignments": {
+                "columns": [
+                    "assignment_id",
+                    "project_id",
+                    "worker_id",
+                    "assigned_date",
+                    "completion_date",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "project_id": "projects",
+                    "worker_id": "workers"
+                }
+            },
+            "projects": {
+                "columns": [
+                    "project_id",
+                    "name",
+                    "start_date",
+                    "end_date",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT w.first_name, w.last_name FROM workers w JOIN project_assignments pa ON w.worker_id = pa.worker_id JOIN projects p ON pa.project_id = p.project_id WHERE p.name LIKE '%Construction%';"
+    },
+    {
+        "prompt": "What is the average servicing cost for each equipment type?",
+        "context": {
+            "equipment": {
+                "columns": [
+                    "equipment_id",
+                    "name",
+                    "type",
+                    "status",
+                    "last_serviced_date"
+                ]
+            },
+            "equipment_parts": {
+                "columns": [
+                    "id",
+                    "equipment_id",
+                    "part_id",
+                    "quantity_used"
+                ],
+                "foreign_keys": {
+                    "equipment_id": "equipment"
+                }
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            }
+        },
+        "query": "SELECT e.type, AVG(mr.cost) AS avg_cost FROM equipment e JOIN equipment_parts ep ON e.equipment_id = ep.equipment_id JOIN maintenance_records mr ON ep.equipment_id = mr.vehicle_id GROUP BY e.type;"
+    },
+    {
+        "prompt": "Find all spare parts used more than 5 times in maintenance.",
+        "context": {
+            "spare_parts": {
+                "columns": [
+                    "part_id",
+                    "name",
+                    "type",
+                    "quantity",
+                    "status"
+                ]
+            },
+            "equipment_parts": {
+                "columns": [
+                    "id",
+                    "equipment_id",
+                    "part_id",
+                    "quantity_used"
+                ],
+                "foreign_keys": {
+                    "part_id": "spare_parts"
+                }
+            }
+        },
+        "query": "SELECT sp.name, SUM(ep.quantity_used) AS usage_count FROM spare_parts sp JOIN equipment_parts ep ON sp.part_id = ep.part_id GROUP BY sp.name HAVING SUM(ep.quantity_used) > 5;"
+    },
+    {
+        "prompt": "Which workers are available for assignment today?",
+        "context": {
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            }
+        },
+        "query": "SELECT first_name, last_name FROM workers WHERE availability_status = 'Available';"
+    },
+    {
+        "prompt": "List all projects with their start and end dates.",
+        "context": {
+            "projects": {
+                "columns": [
+                    "project_id",
+                    "name",
+                    "start_date",
+                    "end_date",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT name, start_date, end_date FROM projects;"
+    },
+    {
+        "prompt": "Which workers have used the 'Excavator X100' for more than 10 hours?",
+        "context": {
+            "equipment": {
+                "columns": [
+                    "equipment_id",
+                    "name",
+                    "type",
+                    "status",
+                    "last_serviced_date"
+                ]
+            },
+            "equipment_usage": {
+                "columns": [
+                    "usage_id",
+                    "equipment_id",
+                    "worker_id",
+                    "start_time",
+                    "end_time",
+                    "purpose"
+                ],
+                "foreign_keys": {
+                    "equipment_id": "equipment",
+                    "worker_id": "workers"
+                }
+            },
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            }
+        },
+        "query": "SELECT w.first_name, w.last_name FROM workers w JOIN equipment_usage eu ON w.worker_id = eu.worker_id JOIN equipment e ON eu.equipment_id = e.equipment_id WHERE e.name = 'Excavator X100' AND (eu.end_time - eu.start_time) > 10;"
+    },
+    {
+        "prompt": "How many projects have been completed this year?",
+        "context": {
+            "projects": {
+                "columns": [
+                    "project_id",
+                    "name",
+                    "start_date",
+                    "end_date",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT COUNT(*) FROM projects WHERE status = 'Completed' AND EXTRACT(YEAR FROM end_date) = EXTRACT(YEAR FROM SYSDATE);"
+    },
+    {
+        "prompt": "Find the total cost of maintenance for vehicles inspected by 'Mark Lee'.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            },
+            "safety_audits": {
+                "columns": [
+                    "audit_id",
+                    "vehicle_id",
+                    "audit_date",
+                    "auditor_id",
+                    "remarks"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles",
+                    "auditor_id": "workers"
+                }
+            },
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            }
+        },
+        "query": "SELECT SUM(mr.cost) AS total_maintenance_cost FROM maintenance_records mr JOIN safety_audits sa ON mr.vehicle_id = sa.vehicle_id JOIN workers w ON sa.auditor_id = w.worker_id WHERE w.first_name = 'Mark' AND w.last_name = 'Lee';"
+    },
+    {
+        "prompt": "Which equipment has not been used in the last year?",
+        "context": {
+            "equipment": {
+                "columns": [
+                    "equipment_id",
+                    "name",
+                    "type",
+                    "status",
+                    "last_serviced_date"
+                ]
+            },
+            "equipment_usage": {
+                "columns": [
+                    "usage_id",
+                    "equipment_id",
+                    "worker_id",
+                    "start_time",
+                    "end_time",
+                    "purpose"
+                ],
+                "foreign_keys": {
+                    "equipment_id": "equipment"
+                }
+            }
+        },
+        "query": "SELECT e.name FROM equipment e LEFT JOIN equipment_usage eu ON e.equipment_id = eu.equipment_id WHERE eu.start_time IS NULL OR eu.start_time < ADD_MONTHS(SYSDATE, -12);"
+    },
+    {
+        "prompt": "List all tasks for maintenance records with a cost greater than $5000.",
+        "context": {
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            },
+            "maintenance_tasks": {
+                "columns": [
+                    "task_id",
+                    "maintenance_id",
+                    "task_name",
+                    "description",
+                    "estimated_cost",
+                    "actual_cost"
+                ],
+                "foreign_keys": {
+                    "maintenance_id": "maintenance_records"
+                }
+            }
+        },
+        "query": "SELECT mt.task_name, mt.description FROM maintenance_tasks mt JOIN maintenance_records mr ON mt.maintenance_id = mr.maintenance_id WHERE mr.cost > 5000;"
+    },
+    {
+        "prompt": "Find all safety audits conducted before January 1, 2023.",
+        "context": {
+            "safety_audits": {
+                "columns": [
+                    "audit_id",
+                    "vehicle_id",
+                    "audit_date",
+                    "auditor_id",
+                    "remarks"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles",
+                    "auditor_id": "workers"
+                }
+            }
+        },
+        "query": "SELECT audit_id, audit_date FROM safety_audits WHERE audit_date < TO_DATE('2023-01-01', 'YYYY-MM-DD');"
+    },
+    {
+        "prompt": "Find all vehicles inspected by workers from 'Team Alpha'.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "safety_audits": {
+                "columns": [
+                    "audit_id",
+                    "vehicle_id",
+                    "audit_date",
+                    "auditor_id",
+                    "remarks"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles",
+                    "auditor_id": "workers"
+                }
+            },
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ],
+                "foreign_keys": {
+                    "team_id": "teams"
+                }
+            },
+            "teams": {
+                "columns": [
+                    "team_id",
+                    "team_name",
+                    "manager_id"
+                ]
+            }
+        },
+        "query": "SELECT v.name FROM vehicles v JOIN safety_audits sa ON v.vehicle_id = sa.vehicle_id JOIN workers w ON sa.auditor_id = w.worker_id JOIN teams t ON w.team_id = t.team_id WHERE t.team_name = 'Team Alpha';"
+    },
+    {
+        "prompt": "Which equipment has been used for 'Excavation' purposes?",
+        "context": {
+            "equipment": {
+                "columns": [
+                    "equipment_id",
+                    "name",
+                    "type",
+                    "status",
+                    "last_serviced_date"
+                ]
+            },
+            "equipment_usage": {
+                "columns": [
+                    "usage_id",
+                    "equipment_id",
+                    "worker_id",
+                    "start_time",
+                    "end_time",
+                    "purpose"
+                ],
+                "foreign_keys": {
+                    "equipment_id": "equipment"
+                }
+            }
+        },
+        "query": "SELECT e.name FROM equipment e JOIN equipment_usage eu ON e.equipment_id = eu.equipment_id WHERE eu.purpose = 'Excavation';"
+    },
+    {
+        "prompt": "List all spare parts currently in stock with quantities greater than 10.",
+        "context": {
+            "spare_parts": {
+                "columns": [
+                    "part_id",
+                    "name",
+                    "type",
+                    "quantity",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT name, quantity FROM spare_parts WHERE quantity > 10 AND status = 'Available';"
+    },
+    {
+        "prompt": "Which workers are assigned to projects scheduled to end in the next 30 days?",
+        "context": {
+            "projects": {
+                "columns": [
+                    "project_id",
+                    "name",
+                    "start_date",
+                    "end_date",
+                    "status"
+                ]
+            },
+            "project_assignments": {
+                "columns": [
+                    "assignment_id",
+                    "project_id",
+                    "worker_id",
+                    "assigned_date",
+                    "completion_date",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "project_id": "projects",
+                    "worker_id": "workers"
+                }
+            },
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            }
+        },
+        "query": "SELECT w.first_name, w.last_name FROM workers w JOIN project_assignments pa ON w.worker_id = pa.worker_id JOIN projects p ON pa.project_id = p.project_id WHERE p.end_date <= SYSDATE + 30;"
+    },
+    {
+        "prompt": "Find the average maintenance cost for vehicles inspected after January 1, 2023.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "safety_audits": {
+                "columns": [
+                    "audit_id",
+                    "vehicle_id",
+                    "audit_date",
+                    "auditor_id",
+                    "remarks"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            }
+        },
+        "query": "SELECT AVG(mr.cost) AS avg_cost FROM maintenance_records mr JOIN safety_audits sa ON mr.vehicle_id = sa.vehicle_id WHERE sa.audit_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');"
+    },
+    {
+        "prompt": "Which workers have used more than 3 different pieces of equipment?",
+        "context": {
+            "equipment_usage": {
+                "columns": [
+                    "usage_id",
+                    "equipment_id",
+                    "worker_id",
+                    "start_time",
+                    "end_time",
+                    "purpose"
+                ],
+                "foreign_keys": {
+                    "equipment_id": "equipment",
+                    "worker_id": "workers"
+                }
+            },
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            }
+        },
+        "query": "SELECT w.first_name, w.last_name FROM workers w JOIN equipment_usage eu ON w.worker_id = eu.worker_id GROUP BY w.first_name, w.last_name HAVING COUNT(DISTINCT eu.equipment_id) > 3;"
+    },
+    {
+        "prompt": "What is the total number of completed maintenance tasks for vehicles owned by 'Global Transport Ltd.'?",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            },
+            "maintenance_tasks": {
+                "columns": [
+                    "task_id",
+                    "maintenance_id",
+                    "task_name",
+                    "description",
+                    "estimated_cost",
+                    "actual_cost"
+                ],
+                "foreign_keys": {
+                    "maintenance_id": "maintenance_records"
+                }
+            }
+        },
+        "query": "SELECT COUNT(mt.task_id) AS total_tasks FROM maintenance_tasks mt JOIN maintenance_records mr ON mt.maintenance_id = mr.maintenance_id JOIN vehicles v ON mr.vehicle_id = v.vehicle_id WHERE mr.status = 'Completed' AND v.owner = 'Global Transport Ltd.';"
+    },
+    {
+        "prompt": "List all vehicles with safety audits that have remarks containing 'urgent'.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "safety_audits": {
+                "columns": [
+                    "audit_id",
+                    "vehicle_id",
+                    "audit_date",
+                    "auditor_id",
+                    "remarks"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            }
+        },
+        "query": "SELECT v.name FROM vehicles v JOIN safety_audits sa ON v.vehicle_id = sa.vehicle_id WHERE LOWER(sa.remarks) LIKE '%urgent%';"
+    },
+    {
+        "prompt": "Which teams have more than 5 workers?",
+        "context": {
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ],
+                "foreign_keys": {
+                    "team_id": "teams"
+                }
+            },
+            "teams": {
+                "columns": [
+                    "team_id",
+                    "team_name",
+                    "manager_id"
+                ]
+            }
+        },
+        "query": "SELECT t.team_name, COUNT(w.worker_id) AS worker_count FROM teams t JOIN workers w ON t.team_id = w.team_id GROUP BY t.team_name HAVING COUNT(w.worker_id) > 5;"
+    },
+    {
+        "prompt": "Find the most expensive maintenance task completed for each vehicle.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            },
+            "maintenance_tasks": {
+                "columns": [
+                    "task_id",
+                    "maintenance_id",
+                    "task_name",
+                    "description",
+                    "estimated_cost",
+                    "actual_cost"
+                ],
+                "foreign_keys": {
+                    "maintenance_id": "maintenance_records"
+                }
+            }
+        },
+        "query": "SELECT v.name, MAX(mt.actual_cost) AS max_cost FROM vehicles v JOIN maintenance_records mr ON v.vehicle_id = mr.vehicle_id JOIN maintenance_tasks mt ON mr.maintenance_id = mt.maintenance_id WHERE mr.status = 'Completed' GROUP BY v.name;"
+    },
+    {
+        "prompt": "List all spare parts associated with equipment used for 'Drilling'.",
+        "context": {
+            "equipment": {
+                "columns": [
+                    "equipment_id",
+                    "name",
+                    "type",
+                    "status",
+                    "last_serviced_date"
+                ]
+            },
+            "equipment_usage": {
+                "columns": [
+                    "usage_id",
+                    "equipment_id",
+                    "worker_id",
+                    "start_time",
+                    "end_time",
+                    "purpose"
+                ],
+                "foreign_keys": {
+                    "equipment_id": "equipment"
+                }
+            },
+            "spare_parts": {
+                "columns": [
+                    "part_id",
+                    "name",
+                    "type",
+                    "quantity",
+                    "status"
+                ]
+            },
+            "equipment_parts": {
+                "columns": [
+                    "id",
+                    "equipment_id",
+                    "part_id",
+                    "quantity_used"
+                ],
+                "foreign_keys": {
+                    "equipment_id": "equipment",
+                    "part_id": "spare_parts"
+                }
+            }
+        },
+        "query": "SELECT sp.name, sp.quantity FROM spare_parts sp JOIN equipment_parts ep ON sp.part_id = ep.part_id JOIN equipment e ON ep.equipment_id = e.equipment_id JOIN equipment_usage eu ON e.equipment_id = eu.equipment_id WHERE eu.purpose = 'Drilling';"
+    },
+    {
+        "prompt": "Find all vehicles, their owners, types, and current status.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT name, owner, type, status FROM vehicles;"
+    },
+    {
+        "prompt": "List all maintenance records with vehicle name, start date, end date, and cost.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            }
+        },
+        "query": "SELECT v.name, mr.start_date, mr.end_date, mr.cost FROM vehicles v JOIN maintenance_records mr ON v.vehicle_id = mr.vehicle_id;"
+    },
+    {
+        "prompt": "List the projects, their start and end dates, statuses, and the number of workers assigned to each.",
+        "context": {
+            "projects": {
+                "columns": [
+                    "project_id",
+                    "name",
+                    "start_date",
+                    "end_date",
+                    "status"
+                ]
+            },
+            "project_assignments": {
+                "columns": [
+                    "assignment_id",
+                    "project_id",
+                    "worker_id",
+                    "assigned_date",
+                    "completion_date",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "project_id": "projects"
+                }
+            }
+        },
+        "query": "SELECT p.name, p.start_date, p.end_date, p.status, COUNT(pa.worker_id) AS worker_count FROM projects p LEFT JOIN project_assignments pa ON p.project_id = pa.project_id GROUP BY p.project_id, p.name, p.start_date, p.end_date, p.status;"
+    },
+    {
+        "prompt": "Find all workers, their teams, salaries, and availability status.",
+        "context": {
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ],
+                "foreign_keys": {
+                    "team_id": "teams"
+                }
+            },
+            "teams": {
+                "columns": [
+                    "team_id",
+                    "team_name",
+                    "manager_id"
+                ]
+            }
+        },
+        "query": "SELECT w.first_name, w.last_name, t.team_name, w.salary, w.availability_status FROM workers w JOIN teams t ON w.team_id = t.team_id;"
+    },
+    {
+        "prompt": "List all safety audits with vehicle name, audit date, auditor name, and remarks.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "safety_audits": {
+                "columns": [
+                    "audit_id",
+                    "vehicle_id",
+                    "audit_date",
+                    "auditor_id",
+                    "remarks"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles",
+                    "auditor_id": "workers"
+                }
+            },
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            }
+        },
+        "query": "SELECT v.name, sa.audit_date, CONCAT(w.first_name, ' ', w.last_name) AS auditor_name, sa.remarks FROM safety_audits sa JOIN vehicles v ON sa.vehicle_id = v.vehicle_id JOIN workers w ON sa.auditor_id = w.worker_id;"
+    },
+    {
+        "prompt": "Find all equipment, their type, last serviced date, status, and the number of times they were used.",
+        "context": {
+            "equipment": {
+                "columns": [
+                    "equipment_id",
+                    "name",
+                    "type",
+                    "status",
+                    "last_serviced_date"
+                ]
+            },
+            "equipment_usage": {
+                "columns": [
+                    "usage_id",
+                    "equipment_id",
+                    "worker_id",
+                    "start_time",
+                    "end_time",
+                    "purpose"
+                ],
+                "foreign_keys": {
+                    "equipment_id": "equipment"
+                }
+            }
+        },
+        "query": "SELECT e.name, e.type, e.last_serviced_date, e.status, COUNT(eu.usage_id) AS usage_count FROM equipment e LEFT JOIN equipment_usage eu ON e.equipment_id = eu.equipment_id GROUP BY e.equipment_id, e.name, e.type, e.last_serviced_date, e.status;"
+    },
+    {
+        "prompt": "List all spare parts, their type, quantity, and the number of times they were used in equipment.",
+        "context": {
+            "spare_parts": {
+                "columns": [
+                    "part_id",
+                    "name",
+                    "type",
+                    "quantity",
+                    "status"
+                ]
+            },
+            "equipment_parts": {
+                "columns": [
+                    "id",
+                    "equipment_id",
+                    "part_id",
+                    "quantity_used"
+                ],
+                "foreign_keys": {
+                    "part_id": "spare_parts"
+                }
+            }
+        },
+        "query": "SELECT sp.name, sp.type, sp.quantity, SUM(ep.quantity_used) AS total_usage FROM spare_parts sp JOIN equipment_parts ep ON sp.part_id = ep.part_id GROUP BY sp.part_id, sp.name, sp.type, sp.quantity;"
+    },
+    {
+        "prompt": "List all maintenance tasks with task name, description, estimated cost, actual cost, and the associated vehicle name.",
+        "context": {
+            "maintenance_tasks": {
+                "columns": [
+                    "task_id",
+                    "maintenance_id",
+                    "task_name",
+                    "description",
+                    "estimated_cost",
+                    "actual_cost"
+                ],
+                "foreign_keys": {
+                    "maintenance_id": "maintenance_records"
+                }
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            },
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT mt.task_name, mt.description, mt.estimated_cost, mt.actual_cost, v.name AS vehicle_name FROM maintenance_tasks mt JOIN maintenance_records mr ON mt.maintenance_id = mr.maintenance_id JOIN vehicles v ON mr.vehicle_id = v.vehicle_id;"
+    },
+    {
+        "prompt": "Find all project assignments with worker names, assigned dates, completion dates, and project names.",
+        "context": {
+            "project_assignments": {
+                "columns": [
+                    "assignment_id",
+                    "project_id",
+                    "worker_id",
+                    "assigned_date",
+                    "completion_date",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "project_id": "projects",
+                    "worker_id": "workers"
+                }
+            },
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            },
+            "projects": {
+                "columns": [
+                    "project_id",
+                    "name",
+                    "start_date",
+                    "end_date",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT CONCAT(w.first_name, ' ', w.last_name) AS worker_name, pa.assigned_date, pa.completion_date, p.name AS project_name FROM project_assignments pa JOIN workers w ON pa.worker_id = w.worker_id JOIN projects p ON pa.project_id = p.project_id;"
+    },
+    {
+        "prompt": "List all vehicles with their owners, types, statuses, and the total cost of maintenance.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            }
+        },
+        "query": "SELECT v.name, v.owner, v.type, v.status, SUM(mr.cost) AS total_maintenance_cost FROM vehicles v LEFT JOIN maintenance_records mr ON v.vehicle_id = mr.vehicle_id GROUP BY v.vehicle_id, v.name, v.owner, v.type, v.status;"
+    },
+    {
+        "prompt": "Find all workers who have been assigned to more than 2 projects with project names and statuses.",
+        "context": {
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            },
+            "project_assignments": {
+                "columns": [
+                    "assignment_id",
+                    "project_id",
+                    "worker_id",
+                    "assigned_date",
+                    "completion_date",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "project_id": "projects",
+                    "worker_id": "workers"
+                }
+            },
+            "projects": {
+                "columns": [
+                    "project_id",
+                    "name",
+                    "start_date",
+                    "end_date",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT CONCAT(w.first_name, ' ', w.last_name) AS worker_name, p.name AS project_name, p.status FROM workers w JOIN project_assignments pa ON w.worker_id = pa.worker_id JOIN projects p ON pa.project_id = p.project_id GROUP BY w.worker_id, CONCAT(w.first_name, ' ', w.last_name), p.name, p.status HAVING COUNT(pa.project_id) > 2;"
+    },
+    {
+        "prompt": "Find all workers, their assigned projects, and the project start and end dates.",
+        "context": {
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            },
+            "project_assignments": {
+                "columns": [
+                    "assignment_id",
+                    "project_id",
+                    "worker_id",
+                    "assigned_date",
+                    "completion_date",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "project_id": "projects",
+                    "worker_id": "workers"
+                }
+            },
+            "projects": {
+                "columns": [
+                    "project_id",
+                    "name",
+                    "start_date",
+                    "end_date",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT CONCAT(w.first_name, ' ', w.last_name) AS worker_name, p.name AS project_name, p.start_date, p.end_date FROM workers w JOIN project_assignments pa ON w.worker_id = pa.worker_id JOIN projects p ON pa.project_id = p.project_id;"
+    },
+    {
+        "prompt": "List all vehicles with their maintenance costs and the names of workers who audited them.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            },
+            "safety_audits": {
+                "columns": [
+                    "audit_id",
+                    "vehicle_id",
+                    "audit_date",
+                    "auditor_id",
+                    "remarks"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles",
+                    "auditor_id": "workers"
+                }
+            },
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            }
+        },
+        "query": "SELECT v.name AS vehicle_name, SUM(mr.cost) AS total_maintenance_cost, CONCAT(w.first_name, ' ', w.last_name) AS auditor_name FROM vehicles v JOIN maintenance_records mr ON v.vehicle_id = mr.vehicle_id JOIN safety_audits sa ON v.vehicle_id = sa.vehicle_id JOIN workers w ON sa.auditor_id = w.worker_id GROUP BY v.name, CONCAT(w.first_name, ' ', w.last_name);"
+    },
+    {
+        "prompt": "Find all workers who have used equipment for 'Drilling' and their assigned projects.",
+        "context": {
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            },
+            "equipment_usage": {
+                "columns": [
+                    "usage_id",
+                    "equipment_id",
+                    "worker_id",
+                    "start_time",
+                    "end_time",
+                    "purpose"
+                ],
+                "foreign_keys": {
+                    "equipment_id": "equipment",
+                    "worker_id": "workers"
+                }
+            },
+            "equipment": {
+                "columns": [
+                    "equipment_id",
+                    "name",
+                    "type",
+                    "status",
+                    "last_serviced_date"
+                ]
+            },
+            "project_assignments": {
+                "columns": [
+                    "assignment_id",
+                    "project_id",
+                    "worker_id",
+                    "assigned_date",
+                    "completion_date",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "project_id": "projects",
+                    "worker_id": "workers"
+                }
+            },
+            "projects": {
+                "columns": [
+                    "project_id",
+                    "name",
+                    "start_date",
+                    "end_date",
+                    "status"
+                ]
+            }
+        },
+        "query": "SELECT CONCAT(w.first_name, ' ', w.last_name) AS worker_name, e.name AS equipment_name, p.name AS project_name FROM workers w JOIN equipment_usage eu ON w.worker_id = eu.worker_id JOIN equipment e ON eu.equipment_id = e.equipment_id JOIN project_assignments pa ON w.worker_id = pa.worker_id JOIN projects p ON pa.project_id = p.project_id WHERE eu.purpose = 'Drilling';"
+    },
+    {
+        "prompt": "List all vehicles, their maintenance records, and the spare parts used during maintenance.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            },
+            "equipment_parts": {
+                "columns": [
+                    "id",
+                    "equipment_id",
+                    "part_id",
+                    "quantity_used"
+                ],
+                "foreign_keys": {
+                    "equipment_id": "equipment",
+                    "part_id": "spare_parts"
+                }
+            },
+            "spare_parts": {
+                "columns": [
+                    "part_id",
+                    "name",
+                    "type",
+                    "quantity",
+                    "status"
+                ]
+            },
+            "equipment": {
+                "columns": [
+                    "equipment_id",
+                    "name",
+                    "type",
+                    "status",
+                    "last_serviced_date"
+                ]
+            }
+        },
+        "query": "SELECT v.name AS vehicle_name, mr.start_date, mr.end_date, sp.name AS spare_part_name, ep.quantity_used FROM vehicles v JOIN maintenance_records mr ON v.vehicle_id = mr.vehicle_id JOIN equipment_parts ep ON mr.vehicle_id = ep.equipment_id JOIN spare_parts sp ON ep.part_id = sp.part_id;"
+    },
+    {
+        "prompt": "Find all projects, the workers assigned to them, and the equipment used during those projects.",
+        "context": {
+            "projects": {
+                "columns": [
+                    "project_id",
+                    "name",
+                    "start_date",
+                    "end_date",
+                    "status"
+                ]
+            },
+            "project_assignments": {
+                "columns": [
+                    "assignment_id",
+                    "project_id",
+                    "worker_id",
+                    "assigned_date",
+                    "completion_date",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "project_id": "projects",
+                    "worker_id": "workers"
+                }
+            },
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            },
+            "equipment_usage": {
+                "columns": [
+                    "usage_id",
+                    "equipment_id",
+                    "worker_id",
+                    "start_time",
+                    "end_time",
+                    "purpose"
+                ],
+                "foreign_keys": {
+                    "equipment_id": "equipment",
+                    "worker_id": "workers"
+                }
+            },
+            "equipment": {
+                "columns": [
+                    "equipment_id",
+                    "name",
+                    "type",
+                    "status",
+                    "last_serviced_date"
+                ]
+            }
+        },
+        "query": "SELECT p.name AS project_name, CONCAT(w.first_name, ' ', w.last_name) AS worker_name, e.name AS equipment_name FROM projects p JOIN project_assignments pa ON p.project_id = pa.project_id JOIN workers w ON pa.worker_id = w.worker_id JOIN equipment_usage eu ON w.worker_id = eu.worker_id JOIN equipment e ON eu.equipment_id = e.equipment_id;"
+    },
+    {
+        "prompt": "List all safety audits with vehicle name, auditor name, and associated maintenance cost.",
+        "context": {
+            "vehicles": {
+                "columns": [
+                    "vehicle_id",
+                    "name",
+                    "type",
+                    "owner",
+                    "status"
+                ]
+            },
+            "safety_audits": {
+                "columns": [
+                    "audit_id",
+                    "vehicle_id",
+                    "audit_date",
+                    "auditor_id",
+                    "remarks"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles",
+                    "auditor_id": "workers"
+                }
+            },
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            }
+        },
+        "query": "SELECT v.name AS vehicle_name, CONCAT(w.first_name, ' ', w.last_name) AS auditor_name, SUM(mr.cost) AS total_maintenance_cost FROM vehicles v JOIN safety_audits sa ON v.vehicle_id = sa.vehicle_id JOIN workers w ON sa.auditor_id = w.worker_id JOIN maintenance_records mr ON v.vehicle_id = mr.vehicle_id GROUP BY v.name, CONCAT(w.first_name, ' ', w.last_name);"
+    },
+    {
+        "prompt": "Which workers have been involved in maintenance, project assignments, and equipment usage?",
+        "context": {
+            "workers": {
+                "columns": [
+                    "worker_id",
+                    "first_name",
+                    "last_name",
+                    "team_id",
+                    "salary",
+                    "availability_status",
+                    "join_date"
+                ]
+            },
+            "project_assignments": {
+                "columns": [
+                    "assignment_id",
+                    "project_id",
+                    "worker_id",
+                    "assigned_date",
+                    "completion_date",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "worker_id": "workers"
+                }
+            },
+            "maintenance_records": {
+                "columns": [
+                    "maintenance_id",
+                    "vehicle_id",
+                    "start_date",
+                    "end_date",
+                    "cost",
+                    "status"
+                ],
+                "foreign_keys": {
+                    "vehicle_id": "vehicles"
+                }
+            },
+            "equipment_usage": {
+                "columns": [
+                    "usage_id",
+                    "equipment_id",
+                    "worker_id",
+                    "start_time",
+                    "end_time",
+                    "purpose"
+                ],
+                "foreign_keys": {
+                    "worker_id": "workers"
+                }
+            }
+        },
+        "query": "SELECT CONCAT(w.first_name, ' ', w.last_name) AS worker_name FROM workers w WHERE EXISTS (SELECT 1 FROM project_assignments pa WHERE pa.worker_id = w.worker_id) AND EXISTS (SELECT 1 FROM maintenance_records mr JOIN vehicles v ON mr.vehicle_id = v.vehicle_id WHERE v.owner = w.worker_id) AND EXISTS (SELECT 1 FROM equipment_usage eu WHERE eu.worker_id = w.worker_id);"
+    }
+]

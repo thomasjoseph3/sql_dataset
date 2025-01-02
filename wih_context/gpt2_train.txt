@@ -1,0 +1,1044 @@
+Prompt: List all employees and their salaries.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name, salary FROM employees;
+<|endoftext|>
+Prompt: List all employees.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT * FROM employees;
+<|endoftext|>
+Prompt: What is the total salary of all employees?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT SUM(salary) FROM employees;
+<|endoftext|>
+Prompt: Retrieve the salary of all employees in ascending order.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT salary FROM employees ORDER BY salary ASC;
+<|endoftext|>
+Prompt: Retrieve the salary of all employees in descending order.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT salary FROM employees ORDER BY salary DESC;
+<|endoftext|>
+Prompt: Select all employees who are earning more than the average salary.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name, salary FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);
+<|endoftext|>
+Prompt: Select all employees who are earning below the average salary.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name, salary FROM employees WHERE salary < (SELECT AVG(salary) FROM employees);
+<|endoftext|>
+Prompt: Retrieve the salary of all employees in ascending order.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT salary FROM employees ORDER BY salary ASC;
+<|endoftext|>
+Prompt: Retrieve the salary of all employees in descending order.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT salary FROM employees ORDER BY salary DESC;
+<|endoftext|>
+Prompt: Select all employees who are earning more than the average salary.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name, salary FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);
+<|endoftext|>
+Prompt: Select all employees who are earning below the average salary.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name, salary FROM employees WHERE salary < (SELECT AVG(salary) FROM employees);
+<|endoftext|>
+Prompt: Retrieve all employees and their joining dates.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name, hire_date FROM employees;
+<|endoftext|>
+Prompt: Retrieve all employees who joined in a specific year.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name, hire_date FROM employees WHERE EXTRACT(YEAR FROM hire_date) = :year;
+<|endoftext|>
+Prompt: Retrieve all employees along with their years of experience.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name, FLOOR(MONTHS_BETWEEN(SYSDATE, hire_date) / 12) AS years_of_experience FROM employees;
+<|endoftext|>
+Prompt: Retrieve all employees who have more than 5 years of experience.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name, FLOOR(MONTHS_BETWEEN(SYSDATE, hire_date) / 12) AS years_of_experience FROM employees WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, hire_date) / 12) > 5;
+<|endoftext|>
+Prompt: List all employees working in the Operations department.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT e.first_name, e.last_name FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Operations';
+<|endoftext|>
+Prompt: List all ships currently under maintenance.
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT name FROM ships WHERE status = 'Under Maintenance';
+<|endoftext|>
+Prompt: List all repair tasks for ships owned by 'Oceanic Co.'.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT rt.task_name, rt.description FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id WHERE s.owner = 'Oceanic Co.';
+<|endoftext|>
+Prompt: Which employees are assigned to repair tasks?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id;
+<|endoftext|>
+Prompt: List all trolleys and their status.
+Context: trolleys table has columns trolley_id, status.
+Query: SELECT trolley_id, status FROM trolleys;
+<|endoftext|>
+Prompt: What is the condition of all wheels attached to trolleys?
+Context: wheels table has columns wheel_id, trolley_id, condition. trolleys table has columns trolley_id, status.
+Query: SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id;
+<|endoftext|>
+Prompt: Which lifts are operational?
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type, capacity FROM lifts WHERE status = 'Operational';
+<|endoftext|>
+Prompt: List the names and types of all ships built after 2010.
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT name, type FROM ships WHERE build_year > 2010;
+<|endoftext|>
+Prompt: How many cradles are currently in use?
+Context: cradles table has columns cradle_id, ship_id, status.
+Query: SELECT COUNT(*) FROM cradles WHERE status = 'In Use';
+<|endoftext|>
+Prompt: List all employees hired after 2020.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name FROM employees WHERE hire_date > TO_DATE('2020-12-31', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: Which employees are unavailable for tasks?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name FROM employees WHERE availability_status = 'Unavailable';
+<|endoftext|>
+Prompt: What is the total amount of all unpaid invoices?
+Context: invoices table has columns invoice_id, repair_id, amount, issued_date, status.
+Query: SELECT SUM(amount) FROM invoices WHERE status = 'Unpaid';
+<|endoftext|>
+Prompt: List all repairs and their associated ships.
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT r.repair_id, s.name FROM repairs r JOIN ships s ON r.ship_id = s.ship_id;
+<|endoftext|>
+Prompt: Which ships have inspections scheduled after January 1, 2024?
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT s.name FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE ir.inspection_date > TO_DATE('2024-01-01', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: List the names of ships and their types.
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT name, type FROM ships;
+<|endoftext|>
+Prompt: What is the total number of repair tasks?
+Context: repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT COUNT(*) FROM repair_tasks;
+<|endoftext|>
+Prompt: List all employees and their assigned tasks.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT e.first_name, e.last_name, rt.task_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id JOIN repair_tasks rt ON et.task_id = rt.task_id;
+<|endoftext|>
+Prompt: Which ships have a status of 'Operational'?
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT name FROM ships WHERE status = 'Operational';
+<|endoftext|>
+Prompt: List all departments and their employee counts.
+Context: departments table has columns department_id, department_name. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT d.department_name, COUNT(e.employee_id) AS employee_count FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;
+<|endoftext|>
+Prompt: What is the maximum salary of employees in each department?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT d.department_name, MAX(e.salary) AS max_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;
+<|endoftext|>
+Prompt: List all ships with associated repairs that are in progress.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT s.name, r.status FROM ships s JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';
+<|endoftext|>
+Prompt: List the inspection records for the ship named 'Titan'.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks.
+Query: SELECT ir.inspection_date, ir.remarks FROM inspection_records ir JOIN ships s ON ir.ship_id = s.ship_id WHERE s.name = 'Titan';
+<|endoftext|>
+Prompt: What is the average time required for all repair tasks?
+Context: repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT AVG(estimated_time) FROM repair_tasks;
+<|endoftext|>
+Prompt: List all invoices issued after January 1, 2023, and their amounts.
+Context: invoices table has columns invoice_id, repair_id, amount, issued_date, status.
+Query: SELECT invoice_id, amount FROM invoices WHERE issued_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: List all trolleys and their statuses.
+Context: trolleys table has columns trolley_id, status.
+Query: SELECT trolley_id, status FROM trolleys;
+<|endoftext|>
+Prompt: Which trolleys are operational?
+Context: trolleys table has columns trolley_id, status.
+Query: SELECT trolley_id FROM trolleys WHERE status = 'Operational';
+<|endoftext|>
+Prompt: List the condition of all wheels and their associated trolleys.
+Context: wheels table has columns wheel_id, trolley_id, condition. trolleys table has columns trolley_id, status.
+Query: SELECT w.wheel_id, w.condition, t.status FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id;
+<|endoftext|>
+Prompt: How many wheels need replacement?
+Context: wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT COUNT(*) FROM wheels WHERE condition = 'Needs Replacement';
+<|endoftext|>
+Prompt: List all cradles currently in use.
+Context: cradles table has columns cradle_id, ship_id, status.
+Query: SELECT cradle_id FROM cradles WHERE status = 'In Use';
+<|endoftext|>
+Prompt: List the names of ships in cradles currently in use.
+Context: cradles table has columns cradle_id, ship_id, status. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT s.name FROM ships s JOIN cradles c ON s.ship_id = c.ship_id WHERE c.status = 'In Use';
+<|endoftext|>
+Prompt: List all lifts and their capacities.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type, capacity FROM lifts;
+<|endoftext|>
+Prompt: Which lifts are operational and have a capacity greater than 10 tons?
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type, capacity FROM lifts WHERE status = 'Operational' AND capacity > 10;
+<|endoftext|>
+Prompt: List all lifts that are under maintenance.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type FROM lifts WHERE status = 'Under Maintenance';
+<|endoftext|>
+Prompt: How many trolleys are currently under maintenance?
+Context: trolleys table has columns trolley_id, status.
+Query: SELECT COUNT(*) FROM trolleys WHERE status = 'Under Maintenance';
+<|endoftext|>
+Prompt: What is the condition of wheels for trolleys under maintenance?
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';
+<|endoftext|>
+Prompt: List the IDs and types of all operational lifts.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type FROM lifts WHERE status = 'Operational';
+<|endoftext|>
+Prompt: Which lifts can lift more than 15 tons?
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type, capacity FROM lifts WHERE capacity > 15;
+<|endoftext|>
+Prompt: List all cradles associated with ships under repair.
+Context: cradles table has columns cradle_id, ship_id, status. ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT c.cradle_id, s.name FROM cradles c JOIN ships s ON c.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';
+<|endoftext|>
+Prompt: How many operational trolleys have all their wheels in good condition?
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT COUNT(DISTINCT t.trolley_id) FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id WHERE t.status = 'Operational' AND w.condition = 'Good' GROUP BY t.trolley_id HAVING COUNT(w.wheel_id) = (SELECT COUNT(*) FROM wheels w2 WHERE w2.trolley_id = t.trolley_id);
+<|endoftext|>
+Prompt: List all trolleys and their statuses.
+Context: trolleys table has columns trolley_id, status.
+Query: SELECT trolley_id, status FROM trolleys;
+<|endoftext|>
+Prompt: Which trolleys are operational?
+Context: trolleys table has columns trolley_id, status.
+Query: SELECT trolley_id FROM trolleys WHERE status = 'Operational';
+<|endoftext|>
+Prompt: List the condition of all wheels and their associated trolleys.
+Context: wheels table has columns wheel_id, trolley_id, condition. trolleys table has columns trolley_id, status.
+Query: SELECT w.wheel_id, w.condition, t.status FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id;
+<|endoftext|>
+Prompt: How many wheels need replacement?
+Context: wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT COUNT(*) FROM wheels WHERE condition = 'Needs Replacement';
+<|endoftext|>
+Prompt: List all cradles currently in use.
+Context: cradles table has columns cradle_id, ship_id, status.
+Query: SELECT cradle_id FROM cradles WHERE status = 'In Use';
+<|endoftext|>
+Prompt: List the names of ships in cradles currently in use.
+Context: cradles table has columns cradle_id, ship_id, status. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT s.name FROM ships s JOIN cradles c ON s.ship_id = c.ship_id WHERE c.status = 'In Use';
+<|endoftext|>
+Prompt: List all lifts and their capacities.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type, capacity FROM lifts;
+<|endoftext|>
+Prompt: Which lifts are operational and have a capacity greater than 10 tons?
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type, capacity FROM lifts WHERE status = 'Operational' AND capacity > 10;
+<|endoftext|>
+Prompt: List all lifts that are under maintenance.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type FROM lifts WHERE status = 'Under Maintenance';
+<|endoftext|>
+Prompt: How many trolleys are currently under maintenance?
+Context: trolleys table has columns trolley_id, status.
+Query: SELECT COUNT(*) FROM trolleys WHERE status = 'Under Maintenance';
+<|endoftext|>
+Prompt: What is the condition of wheels for trolleys under maintenance?
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';
+<|endoftext|>
+Prompt: List the IDs and types of all operational lifts.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type FROM lifts WHERE status = 'Operational';
+<|endoftext|>
+Prompt: Which lifts can lift more than 15 tons?
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type, capacity FROM lifts WHERE capacity > 15;
+<|endoftext|>
+Prompt: List all cradles associated with ships under repair.
+Context: cradles table has columns cradle_id, ship_id, status. ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT c.cradle_id, s.name FROM cradles c JOIN ships s ON c.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';
+<|endoftext|>
+Prompt: How many operational trolleys have all their wheels in good condition?
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT COUNT(DISTINCT t.trolley_id) FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id WHERE t.status = 'Operational' AND w.condition = 'Good' GROUP BY t.trolley_id HAVING COUNT(w.wheel_id) = (SELECT COUNT(*) FROM wheels w2 WHERE w2.trolley_id = t.trolley_id);
+<|endoftext|>
+Prompt: List all trolleys and their statuses.
+Context: trolleys table has columns trolley_id, status.
+Query: SELECT trolley_id, status FROM trolleys;
+<|endoftext|>
+Prompt: Which trolleys are operational?
+Context: trolleys table has columns trolley_id, status.
+Query: SELECT trolley_id FROM trolleys WHERE status = 'Operational';
+<|endoftext|>
+Prompt: List the condition of all wheels and their associated trolleys.
+Context: wheels table has columns wheel_id, trolley_id, condition. trolleys table has columns trolley_id, status.
+Query: SELECT w.wheel_id, w.condition, t.status FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id;
+<|endoftext|>
+Prompt: How many wheels need replacement?
+Context: wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT COUNT(*) FROM wheels WHERE condition = 'Needs Replacement';
+<|endoftext|>
+Prompt: List all cradles currently in use.
+Context: cradles table has columns cradle_id, ship_id, status.
+Query: SELECT cradle_id FROM cradles WHERE status = 'In Use';
+<|endoftext|>
+Prompt: List the names of ships in cradles currently in use.
+Context: cradles table has columns cradle_id, ship_id, status. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT s.name FROM ships s JOIN cradles c ON s.ship_id = c.ship_id WHERE c.status = 'In Use';
+<|endoftext|>
+Prompt: List all lifts and their capacities.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type, capacity FROM lifts;
+<|endoftext|>
+Prompt: Which lifts are operational and have a capacity greater than 10 tons?
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type, capacity FROM lifts WHERE status = 'Operational' AND capacity > 10;
+<|endoftext|>
+Prompt: List all lifts that are under maintenance.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type FROM lifts WHERE status = 'Under Maintenance';
+<|endoftext|>
+Prompt: How many trolleys are currently under maintenance?
+Context: trolleys table has columns trolley_id, status.
+Query: SELECT COUNT(*) FROM trolleys WHERE status = 'Under Maintenance';
+<|endoftext|>
+Prompt: What is the condition of wheels for trolleys under maintenance?
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';
+<|endoftext|>
+Prompt: List the IDs and types of all operational lifts.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type FROM lifts WHERE status = 'Operational';
+<|endoftext|>
+Prompt: Which lifts can lift more than 15 tons?
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type, capacity FROM lifts WHERE capacity > 15;
+<|endoftext|>
+Prompt: List all cradles associated with ships under repair.
+Context: cradles table has columns cradle_id, ship_id, status. ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT c.cradle_id, s.name FROM cradles c JOIN ships s ON c.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';
+<|endoftext|>
+Prompt: How many operational trolleys have all their wheels in good condition?
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT COUNT(DISTINCT t.trolley_id) FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id WHERE t.status = 'Operational' AND w.condition = 'Good' GROUP BY t.trolley_id HAVING COUNT(w.wheel_id) = (SELECT COUNT(*) FROM wheels w2 WHERE w2.trolley_id = t.trolley_id);
+<|endoftext|>
+Prompt: Show the IDs of all cradles that are not currently in use.
+Context: cradles table has columns cradle_id, ship_id, status.
+Query: SELECT cradle_id FROM cradles WHERE status != 'In Use';
+<|endoftext|>
+Prompt: List the cradles not in use.
+Context: cradles table has columns cradle_id, ship_id, status.
+Query: SELECT cradle_id FROM cradles WHERE status != 'In Use';
+<|endoftext|>
+Prompt: Which ships are held in cradles that are under maintenance?
+Context: cradles table has columns cradle_id, ship_id, status. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT s.name FROM ships s JOIN cradles c ON s.ship_id = c.ship_id WHERE c.status = 'Under Maintenance';
+<|endoftext|>
+Prompt: Find the names of ships whose cradles are under maintenance.
+Context: cradles table has columns cradle_id, ship_id, status. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT s.name FROM ships s JOIN cradles c ON s.ship_id = c.ship_id WHERE c.status = 'Under Maintenance';
+<|endoftext|>
+Prompt: How many lifts are not operational?
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT COUNT(*) FROM lifts WHERE status != 'Operational';
+<|endoftext|>
+Prompt: Count the lifts that are currently not operational.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT COUNT(*) FROM lifts WHERE status != 'Operational';
+<|endoftext|>
+Prompt: List all wheels that are attached to trolleys under maintenance.
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';
+<|endoftext|>
+Prompt: Find the IDs and conditions of wheels belonging to trolleys that are being repaired.
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';
+<|endoftext|>
+Prompt: Which ships have repairs in progress?
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT s.name FROM ships s JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';
+<|endoftext|>
+Prompt: List the names of ships currently undergoing repairs.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT s.name FROM ships s JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';
+<|endoftext|>
+Prompt: List the repair tasks with their estimated and actual times.
+Context: repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT task_name, estimated_time, actual_time FROM repair_tasks;
+<|endoftext|>
+Prompt: Find all repair tasks and their estimated vs actual times.
+Context: repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT task_name, estimated_time, actual_time FROM repair_tasks;
+<|endoftext|>
+Prompt: How many trolleys have all their wheels in good condition?
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT COUNT(DISTINCT t.trolley_id) FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id WHERE w.condition = 'Good' GROUP BY t.trolley_id HAVING COUNT(w.wheel_id) = (SELECT COUNT(*) FROM wheels w2 WHERE w2.trolley_id = t.trolley_id);
+<|endoftext|>
+Prompt: Count the trolleys where all wheels are in good condition.
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT COUNT(DISTINCT t.trolley_id) FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id WHERE w.condition = 'Good' GROUP BY t.trolley_id HAVING COUNT(w.wheel_id) = (SELECT COUNT(*) FROM wheels w2 WHERE w2.trolley_id = t.trolley_id);
+<|endoftext|>
+Prompt: List all employees assigned to repair tasks.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id;
+<|endoftext|>
+Prompt: Show the names of employees who are assigned to tasks.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id;
+<|endoftext|>
+Prompt: Find all employees with their assigned repair tasks.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT e.first_name, e.last_name, rt.task_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id JOIN repair_tasks rt ON et.task_id = rt.task_id;
+<|endoftext|>
+Prompt: Which employees are assigned to specific repair tasks?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT e.first_name, e.last_name, rt.task_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id JOIN repair_tasks rt ON et.task_id = rt.task_id;
+<|endoftext|>
+Prompt: Get the assigned tasks for each employee.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT e.first_name, e.last_name, rt.task_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id JOIN repair_tasks rt ON et.task_id = rt.task_id;
+<|endoftext|>
+Prompt: How many employees are assigned to repair tasks?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date.
+Query: SELECT COUNT(DISTINCT et.employee_id) FROM employee_tasks et;
+<|endoftext|>
+Prompt: Count the employees currently assigned to tasks.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date.
+Query: SELECT COUNT(DISTINCT et.employee_id) FROM employee_tasks et;
+<|endoftext|>
+Prompt: List employees working on a task assigned after January 1, 2023.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date.
+Query: SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.assigned_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: Find employees assigned to tasks after January 2023.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date.
+Query: SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.assigned_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: Which employees are assigned to tasks after January 2023?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date.
+Query: SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.assigned_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: List employees assigned to tasks after January 2023.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date.
+Query: SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.assigned_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: List all ships and their owners.
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT name, owner FROM ships;
+<|endoftext|>
+Prompt: Show the names and statuses of all ships.
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT name, status FROM ships;
+<|endoftext|>
+Prompt: Find all ships built before 2000.
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT name FROM ships WHERE build_year < 2000;
+<|endoftext|>
+Prompt: List the names of ships that are under maintenance.
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT name FROM ships WHERE status = 'Under Maintenance';
+<|endoftext|>
+Prompt: Find the repair tasks with their estimated and actual times.
+Context: repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT task_name, estimated_time, actual_time FROM repair_tasks;
+<|endoftext|>
+Prompt: Which employees are inspectors for inspections conducted after January 1, 2024?
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT e.first_name, e.last_name FROM employees e JOIN inspection_records ir ON e.employee_id = ir.inspector_id WHERE ir.inspection_date > TO_DATE('2024-01-01', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: List all inspections for ships owned by 'Oceanic Co.'
+Context: ships table has columns ship_id, name, owner, type, build_year, status. inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks.
+Query: SELECT ir.inspection_date, ir.remarks FROM inspection_records ir JOIN ships s ON ir.ship_id = s.ship_id WHERE s.owner = 'Oceanic Co.';
+<|endoftext|>
+Prompt: What is the total salary of all employees?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT SUM(salary) FROM employees;
+<|endoftext|>
+Prompt: List all employees hired after 2020.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name FROM employees WHERE hire_date > TO_DATE('2020-12-31', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: Show the departments and the number of employees in each.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT d.department_name, COUNT(e.employee_id) AS employee_count FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;
+<|endoftext|>
+Prompt: List all repairs and their associated ships.
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT r.repair_id, s.name FROM repairs r JOIN ships s ON r.ship_id = s.ship_id;
+<|endoftext|>
+Prompt: Find all invoices issued after January 1, 2023.
+Context: invoices table has columns invoice_id, repair_id, amount, issued_date, status.
+Query: SELECT invoice_id, amount FROM invoices WHERE issued_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: List all trolleys currently under maintenance.
+Context: trolleys table has columns trolley_id, status.
+Query: SELECT trolley_id FROM trolleys WHERE status = 'Under Maintenance';
+<|endoftext|>
+Prompt: How many wheels need replacement?
+Context: wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT COUNT(*) FROM wheels WHERE condition = 'Needs Replacement';
+<|endoftext|>
+Prompt: Which lifts have a capacity greater than 10 tons?
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type FROM lifts WHERE capacity > 10;
+<|endoftext|>
+Prompt: List all cradles currently in use.
+Context: cradles table has columns cradle_id, ship_id, status.
+Query: SELECT cradle_id FROM cradles WHERE status = 'In Use';
+<|endoftext|>
+Prompt: Which employees are assigned to repair tasks?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id;
+<|endoftext|>
+Prompt: List all ships and their current status.
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT name, status FROM ships;
+<|endoftext|>
+Prompt: Which ships are under maintenance?
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT name FROM ships WHERE status = 'Under Maintenance';
+<|endoftext|>
+Prompt: Find the repair tasks for ships built after 2015.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT rt.task_name, rt.description FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id WHERE s.build_year > 2015;
+<|endoftext|>
+Prompt: List the employees working on tasks related to repairs.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id;
+<|endoftext|>
+Prompt: Which cradles are currently not in use?
+Context: cradles table has columns cradle_id, ship_id, status.
+Query: SELECT cradle_id FROM cradles WHERE status != 'In Use';
+<|endoftext|>
+Prompt: Find the total number of lifts and their operational status.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT COUNT(lift_id) AS total_lifts, status FROM lifts GROUP BY status;
+<|endoftext|>
+Prompt: List all ships and the number of repairs performed on each ship.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT s.name, COUNT(r.repair_id) AS repair_count FROM ships s LEFT JOIN repairs r ON s.ship_id = r.ship_id GROUP BY s.name;
+<|endoftext|>
+Prompt: How many invoices are still unpaid?
+Context: invoices table has columns invoice_id, repair_id, amount, issued_date, status.
+Query: SELECT COUNT(*) FROM invoices WHERE status = 'Unpaid';
+<|endoftext|>
+Prompt: Get the inspection records for ships inspected after January 1, 2023.
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT s.name, ir.inspection_date, ir.remarks FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE ir.inspection_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: List all departments and the number of employees in each.
+Context: departments table has columns department_id, department_name. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT d.department_name, COUNT(e.employee_id) AS employee_count FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;
+<|endoftext|>
+Prompt: What is the average salary of employees in each department?
+Context: departments table has columns department_id, department_name. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;
+<|endoftext|>
+Prompt: List all repairs completed between January and June 2023.
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT repair_id, start_date, end_date FROM repairs WHERE status = 'Completed' AND start_date >= TO_DATE('2023-01-01', 'YYYY-MM-DD') AND end_date <= TO_DATE('2023-06-30', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: Which employees have not been assigned any tasks?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date.
+Query: SELECT e.first_name, e.last_name FROM employees e LEFT JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.employee_id IS NULL;
+<|endoftext|>
+Prompt: List the repair tasks and their completion time for each repair.
+Context: repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT task_name, estimated_time, actual_time FROM repair_tasks;
+<|endoftext|>
+Prompt: List all inspection records with their remarks.
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks.
+Query: SELECT inspection_id, inspection_date, remarks FROM inspection_records;
+<|endoftext|>
+Prompt: Find all inspections conducted after January 1, 2023.
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks.
+Query: SELECT inspection_id, inspection_date FROM inspection_records WHERE inspection_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: Which ships have inspections scheduled after June 30, 2023?
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT s.name FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE ir.inspection_date > TO_DATE('2023-06-30', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: Get the details of inspections performed by employees named 'John Doe'.
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT ir.inspection_id, ir.inspection_date, ir.remarks FROM inspection_records ir JOIN employees e ON ir.inspector_id = e.employee_id WHERE e.first_name = 'John' AND e.last_name = 'Doe';
+<|endoftext|>
+Prompt: List the ships and inspection remarks for all inspections conducted in 2022.
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT s.name, ir.remarks FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE EXTRACT(YEAR FROM ir.inspection_date) = 2022;
+<|endoftext|>
+Prompt: Count the number of inspections conducted for each ship.
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT s.name, COUNT(ir.inspection_id) AS inspection_count FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id GROUP BY s.name;
+<|endoftext|>
+Prompt: Find the names of employees who inspected ships in January 2023.
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT DISTINCT e.first_name, e.last_name FROM employees e JOIN inspection_records ir ON e.employee_id = ir.inspector_id WHERE ir.inspection_date BETWEEN TO_DATE('2023-01-01', 'YYYY-MM-DD') AND TO_DATE('2023-01-31', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: Which employees have conducted more than 5 inspections?
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT e.first_name, e.last_name, COUNT(ir.inspection_id) AS inspection_count FROM employees e JOIN inspection_records ir ON e.employee_id = ir.inspector_id GROUP BY e.first_name, e.last_name HAVING COUNT(ir.inspection_id) > 5;
+<|endoftext|>
+Prompt: List all inspections along with the names of the ships inspected.
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT ir.inspection_id, s.name, ir.inspection_date FROM inspection_records ir JOIN ships s ON ir.ship_id = s.ship_id;
+<|endoftext|>
+Prompt: Find inspections performed by employees from the Maintenance department.
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT ir.inspection_id, ir.inspection_date FROM inspection_records ir JOIN employees e ON ir.inspector_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Maintenance';
+<|endoftext|>
+Prompt: List all ships and their owners.
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT name, owner FROM ships;
+<|endoftext|>
+Prompt: Find ships built before 2010 and their current status.
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT name, status FROM ships WHERE build_year < 2010;
+<|endoftext|>
+Prompt: How many ships are currently under maintenance?
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT COUNT(*) FROM ships WHERE status = 'Under Maintenance';
+<|endoftext|>
+Prompt: List all employees in the Maintenance department with their salaries.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT e.first_name, e.last_name, e.salary FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Maintenance';
+<|endoftext|>
+Prompt: What is the average salary of employees in each department?
+Context: departments table has columns department_id, department_name. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;
+<|endoftext|>
+Prompt: List all repair tasks that took longer than the estimated time.
+Context: repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT task_name, estimated_time, actual_time FROM repair_tasks WHERE actual_time > estimated_time;
+<|endoftext|>
+Prompt: Which cradles are currently in use?
+Context: cradles table has columns cradle_id, ship_id, status.
+Query: SELECT cradle_id FROM cradles WHERE status = 'In Use';
+<|endoftext|>
+Prompt: Find all wheels that need replacement and their associated trolleys.
+Context: wheels table has columns wheel_id, trolley_id, condition. trolleys table has columns trolley_id, status.
+Query: SELECT w.wheel_id, t.trolley_id FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE w.condition = 'Needs Replacement';
+<|endoftext|>
+Prompt: List all lifts and their capacity.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT lift_id, type, capacity FROM lifts;
+<|endoftext|>
+Prompt: Which employees have not been assigned any tasks?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date.
+Query: SELECT e.first_name, e.last_name FROM employees e LEFT JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.employee_id IS NULL;
+<|endoftext|>
+Prompt: Find the details of the most recent inspection for each ship.
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT s.name, MAX(ir.inspection_date) AS recent_inspection, ir.remarks FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id GROUP BY s.name, ir.remarks;
+<|endoftext|>
+Prompt: List all invoices that have not been paid.
+Context: invoices table has columns invoice_id, repair_id, amount, issued_date, status.
+Query: SELECT invoice_id, amount FROM invoices WHERE status = 'Unpaid';
+<|endoftext|>
+Prompt: Which ships have inspections scheduled after June 2023?
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT s.name FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE ir.inspection_date > TO_DATE('2023-06-30', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: Find the total number of repairs completed in 2022.
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT COUNT(*) FROM repairs WHERE status = 'Completed' AND EXTRACT(YEAR FROM end_date) = 2022;
+<|endoftext|>
+Prompt: List the tasks for repairs that are still in progress.
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT rt.task_name, rt.description FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id WHERE r.status = 'In Progress';
+<|endoftext|>
+Prompt: Find all employees who joined after 2020.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name FROM employees WHERE hire_date > TO_DATE('2020-12-31', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: Which ships have never had any repairs?
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT s.name FROM ships s LEFT JOIN repairs r ON s.ship_id = r.ship_id WHERE r.repair_id IS NULL;
+<|endoftext|>
+Prompt: List the types of ships and their counts.
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT type, COUNT(*) AS count FROM ships GROUP BY type;
+<|endoftext|>
+Prompt: Find the employees with the highest salaries.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);
+<|endoftext|>
+Prompt: How many employees are currently unavailable for tasks?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT COUNT(*) FROM employees WHERE availability_status = 'Unavailable';
+<|endoftext|>
+Prompt: List all repair tasks and their associated ships.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT rt.task_name, rt.description, s.name FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id;
+<|endoftext|>
+Prompt: Find the total cost of all repairs.
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status. invoices table has columns invoice_id, repair_id, amount, issued_date, status.
+Query: SELECT SUM(amount) AS total_repair_cost FROM invoices;
+<|endoftext|>
+Prompt: What is the average repair duration for completed repairs?
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT AVG(end_date - start_date) AS avg_repair_duration FROM repairs WHERE status = 'Completed';
+<|endoftext|>
+Prompt: Which trolleys are operational and have wheels in good condition?
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT t.trolley_id FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id WHERE t.status = 'Operational' AND w.condition = 'Good';
+<|endoftext|>
+Prompt: How many inspections were conducted by each employee?
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT e.first_name, e.last_name, COUNT(ir.inspection_id) AS inspection_count FROM employees e JOIN inspection_records ir ON e.employee_id = ir.inspector_id GROUP BY e.first_name, e.last_name;
+<|endoftext|>
+Prompt: List all inspections with their remarks for ships owned by 'Blue Ocean Co.'.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks.
+Query: SELECT ir.inspection_date, ir.remarks FROM inspection_records ir JOIN ships s ON ir.ship_id = s.ship_id WHERE s.owner = 'Blue Ocean Co.';
+<|endoftext|>
+Prompt: Which repairs are overdue as of today?
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT repair_id, ship_id FROM repairs WHERE end_date < SYSDATE AND status != 'Completed';
+<|endoftext|>
+Prompt: List all employees who have joined after 2015 and their salaries.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT first_name, last_name, salary FROM employees WHERE hire_date > TO_DATE('2015-12-31', 'YYYY-MM-DD');
+<|endoftext|>
+Prompt: How many ships are owned by 'Atlantic Shipping Corp.'?
+Context: ships table has columns ship_id, name, owner, type, build_year, status.
+Query: SELECT COUNT(*) FROM ships WHERE owner = 'Atlantic Shipping Corp.';
+<|endoftext|>
+Prompt: What is the maximum capacity of operational lifts?
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT MAX(capacity) FROM lifts WHERE status = 'Operational';
+<|endoftext|>
+Prompt: List the invoices issued in 2023 with their amounts.
+Context: invoices table has columns invoice_id, repair_id, amount, issued_date, status.
+Query: SELECT invoice_id, amount FROM invoices WHERE EXTRACT(YEAR FROM issued_date) = 2023;
+<|endoftext|>
+Prompt: Find the names of ships inspected by 'Jane Smith'.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT s.name FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id JOIN employees e ON ir.inspector_id = e.employee_id WHERE e.first_name = 'Jane' AND e.last_name = 'Smith';
+<|endoftext|>
+Prompt: List all repair tasks with the ship name, repair status, and employee assigned.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT rt.task_name, s.name AS ship_name, r.status AS repair_status, CONCAT(e.first_name, ' ', e.last_name) AS employee_name FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id LEFT JOIN employee_tasks et ON rt.task_id = et.task_id LEFT JOIN employees e ON et.employee_id = e.employee_id;
+<|endoftext|>
+Prompt: Find all employees who inspected ships and the repairs associated with those ships.
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT CONCAT(e.first_name, ' ', e.last_name) AS inspector_name, s.name AS ship_name, r.status AS repair_status FROM inspection_records ir JOIN employees e ON ir.inspector_id = e.employee_id JOIN ships s ON ir.ship_id = s.ship_id LEFT JOIN repairs r ON s.ship_id = r.ship_id;
+<|endoftext|>
+Prompt: List all invoices with ship name, repair status, and assigned employees.
+Context: invoices table has columns invoice_id, repair_id, amount, issued_date, status. repairs table has columns repair_id, ship_id, start_date, end_date, status. ships table has columns ship_id, name, owner, type, build_year, status. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT i.invoice_id, i.amount, s.name AS ship_name, r.status AS repair_status, CONCAT(e.first_name, ' ', e.last_name) AS employee_name FROM invoices i JOIN repairs r ON i.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id LEFT JOIN repair_tasks rt ON r.repair_id = rt.repair_id LEFT JOIN employee_tasks et ON rt.task_id = et.task_id LEFT JOIN employees e ON et.employee_id = e.employee_id;
+<|endoftext|>
+Prompt: Which cradles are assigned to ships undergoing repairs?
+Context: cradles table has columns cradle_id, ship_id, status. ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT c.cradle_id, c.status AS cradle_status, s.name AS ship_name FROM cradles c JOIN ships s ON c.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';
+<|endoftext|>
+Prompt: List all lifts and their capacities with ships assigned to them for repairs.
+Context: lifts table has columns lift_id, type, status, capacity. ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT l.lift_id, l.type, l.capacity, s.name AS ship_name FROM lifts l JOIN repairs r ON l.lift_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id WHERE r.status = 'In Progress';
+<|endoftext|>
+Prompt: Which trolleys and wheels are associated with ships under maintenance?
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition. ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT t.trolley_id, t.status AS trolley_status, w.wheel_id, w.condition AS wheel_condition, s.name AS ship_name FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id JOIN repairs r ON t.trolley_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id WHERE r.status = 'In Progress';
+<|endoftext|>
+Prompt: List all employees, their departments, and the tasks they are currently assigned to.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT CONCAT(e.first_name, ' ', e.last_name) AS employee_name, d.department_name, rt.task_name FROM employees e JOIN departments d ON e.department_id = d.department_id LEFT JOIN employee_tasks et ON e.employee_id = et.employee_id LEFT JOIN repair_tasks rt ON et.task_id = rt.task_id;
+<|endoftext|>
+Prompt: Find the invoices for repairs that include tasks assigned to multiple employees.
+Context: invoices table has columns invoice_id, repair_id, amount, issued_date, status. repairs table has columns repair_id, ship_id, start_date, end_date, status. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date.
+Query: SELECT i.invoice_id, i.amount FROM invoices i JOIN repairs r ON i.repair_id = r.repair_id JOIN repair_tasks rt ON r.repair_id = rt.repair_id JOIN employee_tasks et ON rt.task_id = et.task_id GROUP BY i.invoice_id, i.amount HAVING COUNT(et.employee_id) > 1;
+<|endoftext|>
+Prompt: Find all repair tasks, the ship names they belong to, the employees assigned, and the departments of those employees.
+Context: repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time. repairs table has columns repair_id, ship_id, start_date, end_date, status. ships table has columns ship_id, name, owner, type, build_year, status. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT rt.task_name, s.name AS ship_name, CONCAT(e.first_name, ' ', e.last_name) AS employee_name, d.department_name FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id;
+<|endoftext|>
+Prompt: List all invoices with their repair tasks, the ships involved, and the employees assigned to those tasks.
+Context: invoices table has columns invoice_id, repair_id, amount, issued_date, status. repairs table has columns repair_id, ship_id, start_date, end_date, status. ships table has columns ship_id, name, owner, type, build_year, status. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT i.invoice_id, i.amount, rt.task_name, s.name AS ship_name, CONCAT(e.first_name, ' ', e.last_name) AS employee_name FROM invoices i JOIN repairs r ON i.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id JOIN repair_tasks rt ON r.repair_id = rt.repair_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id;
+<|endoftext|>
+Prompt: Find all inspection records, the ships inspected, the employees who conducted the inspections, and the repairs related to those ships.
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. ships table has columns ship_id, name, owner, type, build_year, status. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT ir.inspection_date, ir.remarks, s.name AS ship_name, CONCAT(e.first_name, ' ', e.last_name) AS inspector_name, r.status AS repair_status FROM inspection_records ir JOIN ships s ON ir.ship_id = s.ship_id JOIN employees e ON ir.inspector_id = e.employee_id LEFT JOIN repairs r ON s.ship_id = r.ship_id;
+<|endoftext|>
+Prompt: List all cradles, the ships assigned to them, the repair tasks associated with those ships, and the employees assigned.
+Context: cradles table has columns cradle_id, ship_id, status. ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT c.cradle_id, c.status AS cradle_status, s.name AS ship_name, rt.task_name, CONCAT(e.first_name, ' ', e.last_name) AS employee_name FROM cradles c JOIN ships s ON c.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id JOIN repair_tasks rt ON r.repair_id = rt.repair_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id;
+<|endoftext|>
+Prompt: Which trolleys and wheels are used for ships under maintenance, and which employees are responsible for those tasks?
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition. ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT t.trolley_id, t.status AS trolley_status, w.wheel_id, w.condition AS wheel_condition, s.name AS ship_name, CONCAT(e.first_name, ' ', e.last_name) AS employee_name FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id JOIN repairs r ON t.trolley_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id JOIN repair_tasks rt ON r.repair_id = rt.repair_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id WHERE r.status = 'In Progress';
+<|endoftext|>
+Prompt: List all repair tasks, their ships, invoices, and the employees who handled both the repair and the inspection.
+Context: repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time. repairs table has columns repair_id, ship_id, start_date, end_date, status. invoices table has columns invoice_id, repair_id, amount, issued_date, status. ships table has columns ship_id, name, owner, type, build_year, status. inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT rt.task_name, s.name AS ship_name, i.amount AS invoice_amount, CONCAT(e1.first_name, ' ', e1.last_name) AS repair_employee, CONCAT(e2.first_name, ' ', e2.last_name) AS inspector_employee FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id JOIN invoices i ON r.repair_id = i.repair_id LEFT JOIN employee_tasks et ON rt.task_id = et.task_id LEFT JOIN employees e1 ON et.employee_id = e1.employee_id LEFT JOIN inspection_records ir ON s.ship_id = ir.ship_id LEFT JOIN employees e2 ON ir.inspector_id = e2.employee_id;
+<|endoftext|>
+Prompt: List all repair tasks with the ship name, repair status, and employee assigned.
+Context: repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time. repairs table has columns repair_id, ship_id, start_date, end_date, status. ships table has columns ship_id, name, owner, type, build_year, status. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. employees table has columns employee_id, first_name, last_name.
+Query: SELECT rt.task_name, s.name AS ship_name, r.status AS repair_status, CONCAT(e.first_name, ' ', e.last_name) AS employee_name FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id;
+<|endoftext|>
+Prompt: Which employees inspected ships and also participated in repairs for those ships?
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id. repairs table has columns repair_id, ship_id, status. employee_tasks table has columns employee_task_id, employee_id, task_id. employees table has columns employee_id, first_name, last_name.
+Query: SELECT CONCAT(e.first_name, ' ', e.last_name) AS employee_name FROM inspection_records ir JOIN employees e ON ir.inspector_id = e.employee_id JOIN repairs r ON ir.ship_id = r.ship_id JOIN employee_tasks et ON e.employee_id = et.employee_id;
+<|endoftext|>
+Prompt: List all cradles and trolleys associated with ships under maintenance.
+Context: cradles table has columns cradle_id, ship_id, status. trolleys table has columns trolley_id, status. ships table has columns ship_id, name, status. repairs table has columns repair_id, ship_id, status.
+Query: SELECT c.cradle_id, c.status AS cradle_status, t.trolley_id, t.status AS trolley_status, s.name AS ship_name FROM cradles c JOIN ships s ON c.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id JOIN trolleys t ON t.trolley_id = r.repair_id WHERE r.status = 'In Progress';
+<|endoftext|>
+Prompt: Which repair tasks involved multiple employees and resulted in invoices over $5000?
+Context: repair_tasks table has columns task_id, repair_id, task_name. employee_tasks table has columns employee_task_id, employee_id, task_id. invoices table has columns invoice_id, repair_id, amount.
+Query: SELECT rt.task_name FROM repair_tasks rt JOIN employee_tasks et ON rt.task_id = et.task_id JOIN invoices i ON rt.repair_id = i.repair_id GROUP BY rt.task_name HAVING COUNT(et.employee_id) > 1 AND MAX(i.amount) > 5000;
+<|endoftext|>
+Prompt: Find all inspections, their associated repairs, and the employees involved in both.
+Context: inspection_records table has columns inspection_id, ship_id, inspector_id. repairs table has columns repair_id, ship_id, status. employee_tasks table has columns employee_task_id, employee_id, task_id. employees table has columns employee_id, first_name, last_name.
+Query: SELECT ir.inspection_id, r.status AS repair_status, CONCAT(e.first_name, ' ', e.last_name) AS employee_name FROM inspection_records ir JOIN repairs r ON ir.ship_id = r.ship_id JOIN employee_tasks et ON ir.inspector_id = et.employee_id JOIN employees e ON et.employee_id = e.employee_id;
+<|endoftext|>
+Prompt: List all ships, their repairs, the employees assigned, and the invoices generated.
+Context: ships table has columns ship_id, name, status. repairs table has columns repair_id, ship_id, status. employee_tasks table has columns employee_task_id, employee_id, task_id. invoices table has columns invoice_id, repair_id, amount. employees table has columns employee_id, first_name, last_name.
+Query: SELECT s.name AS ship_name, r.status AS repair_status, CONCAT(e.first_name, ' ', e.last_name) AS employee_name, i.amount AS invoice_amount FROM ships s JOIN repairs r ON s.ship_id = r.ship_id JOIN employee_tasks et ON r.repair_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id JOIN invoices i ON r.repair_id = i.repair_id;
+<|endoftext|>
+Prompt: Find all ships, their repair tasks, the employees assigned to each task, and the associated invoices.
+Context: ships table has columns ship_id, name, status. repairs table has columns repair_id, ship_id, status. repair_tasks table has columns task_id, repair_id, task_name, description. employee_tasks table has columns employee_task_id, employee_id, task_id. employees table has columns employee_id, first_name, last_name. invoices table has columns invoice_id, repair_id, amount.
+Query: SELECT s.name AS ship_name, rt.task_name, CONCAT(e.first_name, ' ', e.last_name) AS employee_name, i.amount AS invoice_amount FROM ships s JOIN repairs r ON s.ship_id = r.ship_id JOIN repair_tasks rt ON r.repair_id = rt.repair_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id LEFT JOIN invoices i ON r.repair_id = i.repair_id;
+<|endoftext|>
+Prompt: List all inspection records, the ships inspected, the employees who inspected them, and their assigned repair tasks.
+Context: inspection_records table has columns inspection_id, ship_id, inspector_id, remarks. ships table has columns ship_id, name, status. employees table has columns employee_id, first_name, last_name. repair_tasks table has columns task_id, repair_id, task_name. repairs table has columns repair_id, ship_id, status.
+Query: SELECT ir.inspection_id, s.name AS ship_name, CONCAT(e.first_name, ' ', e.last_name) AS inspector_name, rt.task_name FROM inspection_records ir JOIN ships s ON ir.ship_id = s.ship_id JOIN employees e ON ir.inspector_id = e.employee_id LEFT JOIN repairs r ON s.ship_id = r.ship_id LEFT JOIN repair_tasks rt ON r.repair_id = rt.repair_id;
+<|endoftext|>
+Prompt: Which employees are assigned to repair tasks on ships inspected in 2023?
+Context: inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id. repairs table has columns repair_id, ship_id, status. repair_tasks table has columns task_id, repair_id, task_name. employee_tasks table has columns employee_task_id, employee_id, task_id. employees table has columns employee_id, first_name, last_name.
+Query: SELECT CONCAT(e.first_name, ' ', e.last_name) AS employee_name, rt.task_name, s.name AS ship_name FROM inspection_records ir JOIN ships s ON ir.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id JOIN repair_tasks rt ON r.repair_id = rt.repair_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id WHERE EXTRACT(YEAR FROM ir.inspection_date) = 2023;
+<|endoftext|>
+Prompt: List all cradles, their associated ships, the repair tasks performed, and the employees involved.
+Context: cradles table has columns cradle_id, ship_id, status. ships table has columns ship_id, name, status. repairs table has columns repair_id, ship_id, status. repair_tasks table has columns task_id, repair_id, task_name. employee_tasks table has columns employee_task_id, employee_id, task_id. employees table has columns employee_id, first_name, last_name.
+Query: SELECT c.cradle_id, s.name AS ship_name, rt.task_name, CONCAT(e.first_name, ' ', e.last_name) AS employee_name FROM cradles c JOIN ships s ON c.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id JOIN repair_tasks rt ON r.repair_id = rt.repair_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id;
+<|endoftext|>
+Prompt: Which trolleys and wheels are used for ships under maintenance?
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition. ships table has columns ship_id, name, status. repairs table has columns repair_id, ship_id, status.
+Query: SELECT t.trolley_id, t.status AS trolley_status, w.wheel_id, w.condition AS wheel_condition, s.name AS ship_name FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id JOIN repairs r ON t.trolley_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id WHERE r.status = 'In Progress';
+<|endoftext|>
+Prompt: Find all repair tasks that exceeded their estimated time by more than 20%.
+Context: repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT task_name FROM repair_tasks WHERE actual_time > estimated_time * 1.2;
+<|endoftext|>
+Prompt: Which ships have the highest repair costs in the last five years?
+Context: ships table has columns ship_id, name. repairs table has columns repair_id, ship_id, start_date, end_date. invoices table has columns invoice_id, repair_id, amount.
+Query: SELECT s.name AS ship_name, SUM(i.amount) AS total_repair_cost FROM ships s JOIN repairs r ON s.ship_id = r.ship_id JOIN invoices i ON r.repair_id = i.repair_id WHERE r.end_date >= ADD_MONTHS(SYSDATE, -60) GROUP BY s.name ORDER BY total_repair_cost DESC;
+<|endoftext|>
+Prompt: List the total number of employees grouped by availability status.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;
+<|endoftext|>
+Prompt: Find the average salary of employees in each department.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;
+<|endoftext|>
+Prompt: List all repairs that have exceeded their expected end date.
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT repair_id, ship_id FROM repairs WHERE end_date < SYSDATE AND status != 'Completed';
+<|endoftext|>
+Prompt: Find all ships that have not been inspected in the last two years.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks.
+Query: SELECT s.name FROM ships s LEFT JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE ir.inspection_date < ADD_MONTHS(SYSDATE, -24) OR ir.inspection_date IS NULL;
+<|endoftext|>
+Prompt: List the total repair costs for each ship.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status. invoices table has columns invoice_id, repair_id, amount, issued_date, status.
+Query: SELECT s.name, SUM(i.amount) AS total_repair_cost FROM ships s JOIN repairs r ON s.ship_id = r.ship_id JOIN invoices i ON r.repair_id = i.repair_id GROUP BY s.name;
+<|endoftext|>
+Prompt: Find all employees who have been assigned tasks but are currently unavailable.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date.
+Query: SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE e.availability_status = 'Unavailable';
+<|endoftext|>
+Prompt: List the names and capacities of all operational lifts.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT type, capacity FROM lifts WHERE status = 'Operational';
+<|endoftext|>
+Prompt: Find the condition of wheels for each trolley under maintenance.
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';
+<|endoftext|>
+Prompt: List all employees who were hired in the last five years and their departments.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT e.first_name, e.last_name, d.department_name FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE e.hire_date > ADD_MONTHS(SYSDATE, -60);
+<|endoftext|>
+Prompt: Find the total number of repairs performed for ships owned by 'Oceanic Co.'.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT COUNT(r.repair_id) AS total_repairs FROM repairs r JOIN ships s ON r.ship_id = s.ship_id WHERE s.owner = 'Oceanic Co.';
+<|endoftext|>
+Prompt: List the total number of employees grouped by availability status.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;
+<|endoftext|>
+Prompt: Find the average salary of employees in each department.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;
+<|endoftext|>
+Prompt: List all repairs that have exceeded their expected end date.
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT repair_id, ship_id FROM repairs WHERE end_date < SYSDATE AND status != 'Completed';
+<|endoftext|>
+Prompt: Find all ships that have not been inspected in the last two years.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks.
+Query: SELECT s.name FROM ships s LEFT JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE ir.inspection_date < ADD_MONTHS(SYSDATE, -24) OR ir.inspection_date IS NULL;
+<|endoftext|>
+Prompt: List the total repair costs for each ship.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status. invoices table has columns invoice_id, repair_id, amount, issued_date, status.
+Query: SELECT s.name, SUM(i.amount) AS total_repair_cost FROM ships s JOIN repairs r ON s.ship_id = r.ship_id JOIN invoices i ON r.repair_id = i.repair_id GROUP BY s.name;
+<|endoftext|>
+Prompt: Find all employees who have been assigned tasks but are currently unavailable.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date.
+Query: SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE e.availability_status = 'Unavailable';
+<|endoftext|>
+Prompt: List the names and capacities of all operational lifts.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT type, capacity FROM lifts WHERE status = 'Operational';
+<|endoftext|>
+Prompt: Find the condition of wheels for each trolley under maintenance.
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';
+<|endoftext|>
+Prompt: List all employees who were hired in the last five years and their departments.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT e.first_name, e.last_name, d.department_name FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE e.hire_date > ADD_MONTHS(SYSDATE, -60);
+<|endoftext|>
+Prompt: Find the total number of repairs performed for ships owned by 'Oceanic Co.'.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT COUNT(r.repair_id) AS total_repairs FROM repairs r JOIN ships s ON r.ship_id = s.ship_id WHERE s.owner = 'Oceanic Co.';
+<|endoftext|>
+Prompt: Which ships have repairs overdue by more than 30 days?
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT s.name, r.repair_id FROM ships s JOIN repairs r ON s.ship_id = r.ship_id WHERE r.end_date < SYSDATE - 30 AND r.status != 'Completed';
+<|endoftext|>
+Prompt: List the repairs currently in progress and their expected completion dates.
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT repair_id, ship_id, end_date FROM repairs WHERE status = 'In Progress';
+<|endoftext|>
+Prompt: Find the total downtime for all ships due to maintenance in the last year.
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT ship_id, SUM(end_date - start_date) AS total_downtime FROM repairs WHERE start_date > ADD_MONTHS(SYSDATE, -12) AND status = 'Completed' GROUP BY ship_id;
+<|endoftext|>
+Prompt: List the most frequently repaired ships and the number of repairs for each.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT s.name, COUNT(r.repair_id) AS repair_count FROM ships s JOIN repairs r ON s.ship_id = r.ship_id GROUP BY s.name ORDER BY repair_count DESC;
+<|endoftext|>
+Prompt: List the total number of employees grouped by availability status.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;
+<|endoftext|>
+Prompt: Find the average salary of employees in each department.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;
+<|endoftext|>
+Prompt: List all repairs that have exceeded their expected end date.
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT repair_id, ship_id FROM repairs WHERE end_date < SYSDATE AND status != 'Completed';
+<|endoftext|>
+Prompt: Find all ships that have not been inspected in the last two years.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. inspection_records table has columns inspection_id, ship_id, inspection_date, inspector_id, remarks.
+Query: SELECT s.name FROM ships s LEFT JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE ir.inspection_date < ADD_MONTHS(SYSDATE, -24) OR ir.inspection_date IS NULL;
+<|endoftext|>
+Prompt: List the total repair costs for each ship.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status. invoices table has columns invoice_id, repair_id, amount, issued_date, status.
+Query: SELECT s.name, SUM(i.amount) AS total_repair_cost FROM ships s JOIN repairs r ON s.ship_id = r.ship_id JOIN invoices i ON r.repair_id = i.repair_id GROUP BY s.name;
+<|endoftext|>
+Prompt: Find all employees who have been assigned tasks but are currently unavailable.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date.
+Query: SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE e.availability_status = 'Unavailable';
+<|endoftext|>
+Prompt: List the names and capacities of all operational lifts.
+Context: lifts table has columns lift_id, type, status, capacity.
+Query: SELECT type, capacity FROM lifts WHERE status = 'Operational';
+<|endoftext|>
+Prompt: Find the condition of wheels for each trolley under maintenance.
+Context: trolleys table has columns trolley_id, status. wheels table has columns wheel_id, trolley_id, condition.
+Query: SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';
+<|endoftext|>
+Prompt: List all employees who were hired in the last five years and their departments.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT e.first_name, e.last_name, d.department_name FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE e.hire_date > ADD_MONTHS(SYSDATE, -60);
+<|endoftext|>
+Prompt: Find the total number of repairs performed for ships owned by 'Oceanic Co.'.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT COUNT(r.repair_id) AS total_repairs FROM repairs r JOIN ships s ON r.ship_id = s.ship_id WHERE s.owner = 'Oceanic Co.';
+<|endoftext|>
+Prompt: Which ships have repairs overdue by more than 30 days?
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT s.name, r.repair_id FROM ships s JOIN repairs r ON s.ship_id = r.ship_id WHERE r.end_date < SYSDATE - 30 AND r.status != 'Completed';
+<|endoftext|>
+Prompt: List the repairs currently in progress and their expected completion dates.
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT repair_id, ship_id, end_date FROM repairs WHERE status = 'In Progress';
+<|endoftext|>
+Prompt: Find the total downtime for all ships due to maintenance in the last year.
+Context: repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT ship_id, SUM(end_date - start_date) AS total_downtime FROM repairs WHERE start_date > ADD_MONTHS(SYSDATE, -12) AND status = 'Completed' GROUP BY ship_id;
+<|endoftext|>
+Prompt: List the most frequently repaired ships and the number of repairs for each.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status.
+Query: SELECT s.name, COUNT(r.repair_id) AS repair_count FROM ships s JOIN repairs r ON s.ship_id = r.ship_id GROUP BY s.name ORDER BY repair_count DESC;
+<|endoftext|>
+Prompt: Which employees have been assigned to the most tasks in the last year?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date.
+Query: SELECT e.first_name, e.last_name, COUNT(et.task_id) AS task_count FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.assigned_date > ADD_MONTHS(SYSDATE, -12) GROUP BY e.first_name, e.last_name ORDER BY task_count DESC;
+<|endoftext|>
+Prompt: Identify the top 3 employees with the highest total task time in the last year.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT e.first_name, e.last_name, SUM(rt.actual_time) AS total_task_time FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id JOIN repair_tasks rt ON et.task_id = rt.task_id WHERE et.assigned_date > ADD_MONTHS(SYSDATE, -12) GROUP BY e.first_name, e.last_name ORDER BY total_task_time DESC FETCH FIRST 3 ROWS ONLY;
+<|endoftext|>
+Prompt: List all invoices issued for repairs in the last 6 months, including ship names and amounts.
+Context: ships table has columns ship_id, name, owner, type, build_year, status. repairs table has columns repair_id, ship_id, start_date, end_date, status. invoices table has columns invoice_id, repair_id, amount, issued_date, status.
+Query: SELECT s.name AS ship_name, i.amount, i.issued_date FROM invoices i JOIN repairs r ON i.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id WHERE i.issued_date > ADD_MONTHS(SYSDATE, -6);
+<|endoftext|>
+Prompt: Find all employees who worked on a repair that exceeded its estimated time by more than 20%.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. employee_tasks table has columns employee_task_id, employee_id, task_id, assigned_date. repair_tasks table has columns task_id, repair_id, task_name, description, estimated_time, actual_time.
+Query: SELECT DISTINCT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id JOIN repair_tasks rt ON et.task_id = rt.task_id WHERE rt.actual_time > rt.estimated_time * 1.2;
+<|endoftext|>
+Prompt: List the total number of employees grouped by availability status.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;
+<|endoftext|>
+Prompt: How many employees are there in each availability category?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;
+<|endoftext|>
+Prompt: Provide a count of employees based on their availability.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;
+<|endoftext|>
+Prompt: Group employees by their availability status and show the total for each group.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;
+<|endoftext|>
+Prompt: What is the number of employees available versus unavailable?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date.
+Query: SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;
+<|endoftext|>
+Prompt: Find the average salary of employees in each department.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;
+<|endoftext|>
+Prompt: What is the average salary for every department?
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;
+<|endoftext|>
+Prompt: Show the average employee salary in each department.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;
+<|endoftext|>
+Prompt: Calculate the mean salary of employees, grouped by department.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;
+<|endoftext|>
+Prompt: Provide the department-wise average salaries for employees.
+Context: employees table has columns employee_id, first_name, last_name, department_id, salary, availability_status, hire_date. departments table has columns department_id, department_name.
+Query: SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;
+<|endoftext|>

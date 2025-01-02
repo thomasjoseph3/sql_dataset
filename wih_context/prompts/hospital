@@ -1,0 +1,102 @@
+Here’s a comprehensive list of possible prompts for the **Hospital Management System Schema**. These prompts cover a wide range of use cases and queries someone might ask, ensuring a robust dataset for training your T5-large model.
+
+---
+
+### **Category 1: Patient Information**
+1. List all patients and their contact information.
+2. Retrieve the details of patients born before 1980.
+3. Show emergency contact details for all patients.
+4. Which patients are located in 'New York'?
+5. Retrieve the email addresses of all patients.
+6. What is the phone number of the patient named 'John Doe'?
+7. List all male patients in the database.
+8. Retrieve details of patients who don’t have an emergency contact listed.
+
+---
+
+### **Category 2: Appointments**
+1. List all appointments scheduled for today.
+2. Retrieve the details of all completed appointments.
+3. Which appointments are still pending?
+4. Show all appointments for patient 'Jane Smith.'
+5. Retrieve the reason for the last appointment of patient 'John Doe.'
+6. List all appointments with Dr. 'Emily Brown.'
+7. How many appointments are scheduled for the next 7 days?
+8. Show the notes for all appointments conducted last month.
+9. Retrieve all appointments canceled in the past week.
+10. List all appointments where the reason is 'Routine Checkup.'
+
+---
+
+### **Category 3: Doctors**
+1. List all doctors and their specializations.
+2. Retrieve contact information for all doctors in the 'Cardiology' department.
+3. Show the hire dates of all doctors in the hospital.
+4. Which doctors were hired before 2015?
+5. List all doctors in the 'Pediatrics' department.
+6. Retrieve the phone numbers of doctors specializing in 'Orthopedics.'
+7. Which doctor heads the 'Neurology' department?
+8. List all doctors with more than 10 years of experience.
+
+---
+
+### **Category 4: Prescriptions**
+1. List all prescriptions issued in the last 30 days.
+2. Retrieve the prescription details for patient 'Jane Smith.'
+3. Which prescriptions were issued for the medicine 'Paracetamol'?
+4. Show all prescriptions for appointments with Dr. 'Emily Brown.'
+5. Retrieve the dosage and frequency for the medicine prescribed to 'John Doe.'
+6. List all active prescriptions (end_date > today).
+7. Which medicines were prescribed more than twice in the past month?
+8. Show the prescriptions for appointments scheduled last week.
+
+---
+
+### **Category 5: Lab Tests**
+1. List all lab tests conducted in the last week.
+2. Retrieve the lab results for patient 'Jane Smith.'
+3. Which lab tests are scheduled for tomorrow?
+4. Show the test names and results for the appointment on '2023-12-01.'
+5. Retrieve the technician names for all lab tests conducted last month.
+6. List all lab tests with the result marked as 'Positive.'
+7. Which lab tests were conducted under the appointment of Dr. 'Emily Brown'?
+8. Show the details of all tests related to 'Blood Work.'
+
+---
+
+### **Category 6: Medical Records**
+1. List all medical records for patient 'John Doe.'
+2. Retrieve the diagnosis and treatment plan for all patients.
+3. Show all medical records created in the last year.
+4. Which patients have a diagnosis of 'Diabetes'?
+5. Retrieve the treatment plans for all patients diagnosed with 'Hypertension.'
+6. List all medical records with no treatment plan specified.
+7. Which medical records were created before 2020?
+8. Show the most recent medical record for patient 'Jane Smith.'
+
+---
+
+### **Category 7: Departments**
+1. List all hospital departments and their budgets.
+2. Retrieve the name of the head doctor for each department.
+3. Which departments have a budget greater than $1,000,000?
+4. Show the names of all doctors working in the 'Radiology' department.
+5. Retrieve the total number of departments in the hospital.
+6. Which departments were created in the last 5 years?
+7. Show the details of the department led by Dr. 'Emily Brown.'
+8. List all departments and their respective budgets.
+
+---
+
+### **Category 8: Summary and Statistics**
+1. How many patients are registered in the hospital?
+2. Retrieve the total number of appointments conducted this year.
+3. How many doctors are working in the hospital?
+4. Show the total number of prescriptions issued last month.
+5. What is the average budget of all departments?
+6. How many lab tests have been conducted this week?
+7. Show the total number of active prescriptions.
+8. How many medical records were created this year?
+
+---
+

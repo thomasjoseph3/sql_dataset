@@ -1,0 +1,111 @@
+Here’s a list of **possible prompts** a supervisor might ask, based on the schema you provided. These prompts are categorized by area for better organization.
+
+---
+
+### **Category 1: Ship Management**
+1. List all ships and their current status.
+2. Retrieve the details of ships built before the year 2000.
+3. What are the inspection scores of all AI-enabled ships?
+4. List all ships currently under repair.
+5. Retrieve the names and locations of all operational ships.
+6. How many ships are owned by each owner?
+7. List all ships of type 'cargo' and their last maintenance dates.
+8. What is the average inspection score of all ships?
+
+---
+
+### **Category 2: Repair and Maintenance**
+1. What is the total cost of all repairs conducted this year?
+2. List all ongoing repairs and their supervisors.
+3. Retrieve details of all completed repairs along with their durations.
+4. Which repair tasks took longer than their estimated time?
+5. What is the costliest repair task completed so far?
+6. List all repairs categorized as high-priority.
+7. How many repairs were completed in the last six months?
+8. Retrieve the names of employees assigned to repair tasks for ship 'Poseidon'.
+
+---
+
+### **Category 3: Employee Management**
+1. List all employees and their salaries.
+2. Retrieve details of employees in the 'Engineering' department.
+3. Who are the employees certified in 'AI Maintenance'?
+4. What is the average salary of employees across all departments?
+5. List employees who have received a salary increment in the last year.
+6. Retrieve all employees and their last training dates.
+7. How many employees are currently unavailable?
+8. List employees assigned more than five tasks in the last month.
+
+---
+
+### **Category 4: Machinery and Equipment**
+1. List all AI cameras that need servicing.
+2. Retrieve details of all drones with battery status below 20%.
+3. What is the total repair cost for all trolleys this year?
+4. List all sensors installed on the ship 'Poseidon' and their statuses.
+5. Which machinery has exceeded its expected lifetime?
+6. Retrieve the last maintenance dates of all cradles.
+7. List all lifts with a capacity greater than 20 tons.
+8. How many AI cameras are operational across all ships?
+
+---
+
+### **Category 5: Cost and Budget Management**
+1. What is the total salary expense for the 'Engineering' department?
+2. Retrieve the total maintenance cost for all AI cameras and drones.
+3. What is the overall budget of each department?
+4. How much has been spent on repair tasks for ship 'Poseidon'?
+5. What is the monthly maintenance cost for all sensors?
+6. Retrieve the highest and lowest repair costs this year.
+7. What is the total cost of repairs conducted by each department?
+8. List the most expensive repair conducted in the last year.
+
+---
+
+### **Category 6: AI Insights and Predictive Maintenance**
+1. Retrieve predictive maintenance insights for the ship 'Poseidon'.
+2. Which ships are predicted to require repairs in the next 30 days?
+3. What is the confidence score of all AI predictions made this month?
+4. Retrieve AI insights categorized under 'structural damage.'
+5. Which ships have an inspection score below 50?
+6. List the top three recommendations from AI for reducing repair costs.
+7. What percentage of AI predictions were accurate in the last year?
+8. Retrieve all predictive maintenance insights generated for drones.
+
+---
+
+### **Category 7: Workflow and Tasks**
+1. List all current stages of ongoing workflows.
+2. Retrieve the next stages of all repair workflows in progress.
+3. How many repair workflows were completed last month?
+4. List all tasks assigned to 'John Doe' and their statuses.
+5. What is the average time taken to complete a repair workflow?
+6. Retrieve the status of all high-priority repair workflows.
+7. List all workflows that started but have no assigned end date.
+8. Retrieve details of tasks that were reassigned mid-workflow.
+
+---
+
+### **Category 8: Training and Certification**
+1. List all employees who completed training in the last 6 months.
+2. Which employees are certified in 'Drone Maintenance'?
+3. What are the upcoming training sessions planned for the 'AI' department?
+4. Retrieve the certifications of employees in the 'Repair' department.
+5. How many employees have certifications in more than three categories?
+6. List all employees with pending certifications.
+7. Retrieve the names of employees who attended the most training sessions this year.
+8. Which certifications are most commonly held by employees?
+
+---
+
+### **Category 9: Inspection and Monitoring**
+1. List all inspections conducted for ship 'Poseidon.'
+2. Retrieve the remarks of inspections conducted last month.
+3. Which employees conducted inspections this year?
+4. List all ships with inspection scores below 60.
+5. How many inspections are scheduled for the next 30 days?
+6. Retrieve the inspection costs for all cradles.
+7. List inspection details for all lifts in 'operational' status.
+8. How many inspections have been conducted for drones?
+
+---

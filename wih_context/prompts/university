@@ -1,0 +1,99 @@
+Here is a list of **possible prompts** a supervisor might ask based on the given schema:
+
+---
+
+### **Category 1: Students**
+1. List all students and their contact details.
+2. Retrieve the names and enrollment dates of students in the 'Computer Science' program.
+3. Show students enrolled before 2020.
+4. Which students are enrolled in the 'Engineering' department?
+5. Retrieve the email addresses of students born after 2000.
+6. List all students who have not enrolled in any courses.
+7. How many students are enrolled in the 'Mathematics' program?
+8. Show the addresses of all students in the database.
+
+---
+
+### **Category 2: Programs**
+1. List all programs and their durations.
+2. Retrieve the programs offered by the 'Science' department.
+3. Show the total number of credits required for all programs.
+4. Which programs have a duration of more than 4 years?
+5. Retrieve the name and duration of the program with ID 101.
+6. How many programs are offered by the 'Engineering' department?
+7. List all programs with fewer than 120 credits required.
+8. Show all programs where the duration is exactly 2 years.
+
+---
+
+### **Category 3: Departments**
+1. List all departments and their budgets.
+2. Retrieve the name of the head of each department.
+3. Show all departments with a budget greater than $1,000,000.
+4. Which departments have faculty with more than 5 years of experience?
+5. Retrieve the total number of departments in the university.
+6. Show the details of the department headed by 'Dr. Jane Smith.'
+7. Which departments have no associated programs?
+8. Show the total budget allocated across all departments.
+
+---
+
+### **Category 4: Faculty**
+1. List all faculty members and their contact details.
+2. Retrieve the names of faculty members in the 'Physics' department.
+3. Show all faculty hired before 2015.
+4. Which faculty members teach courses in the 'Mathematics' department?
+5. Retrieve the email addresses of faculty with the title 'Professor.'
+6. List all faculty members who have not been assigned any courses.
+7. How many faculty members are in the 'Computer Science' department?
+8. Show the hire dates of all faculty members.
+
+---
+
+### **Category 5: Courses**
+1. List all courses and their associated departments.
+2. Retrieve the names of courses taught by 'Dr. John Doe.'
+3. Show courses with a credit value of more than 3.
+4. Which courses are offered by the 'Engineering' department?
+5. Retrieve the name and credits of the course with ID 202.
+6. How many courses are offered in the 'Biology' department?
+7. List all courses with fewer than 4 credits.
+8. Show all courses not assigned to any faculty member.
+
+---
+
+### **Category 6: Enrollments**
+1. List all enrollments for the semester 'Fall 2023.'
+2. Retrieve the grades of students enrolled in the course 'Algebra.'
+3. Show all enrollments for students in the 'Physics' program.
+4. Which students enrolled in courses in the year 2022?
+5. Retrieve the name and semester of the course with the highest enrollments.
+6. How many students are enrolled in the course with ID 301?
+7. List all enrollments where the grade is 'A.'
+8. Show all enrollments for students with no grades assigned.
+
+---
+
+### **Category 7: Exams**
+1. List all exams and their associated courses.
+2. Retrieve the exam dates for the course 'Calculus.'
+3. Show exams scheduled in the 'Main Hall.'
+4. Which exams are scheduled in the month of December?
+5. Retrieve the total marks for the exam with ID 401.
+6. How many exams are scheduled for the 'Spring 2024' semester?
+7. List all exams where the total marks exceed 100.
+8. Show all exams scheduled for courses not offered in the 'Computer Science' department.
+
+---
+
+### **Category 8: Exam Results**
+1. List all exam results for the course 'Physics 101.'
+2. Retrieve the marks obtained by 'Alice Johnson' in the exam with ID 502.
+3. Show all exam results where marks obtained are greater than 90.
+4. Which students scored less than 50 in the 'Mathematics' exam?
+5. Retrieve the names and marks of students with the highest score in 'Biology.'
+6. How many students appeared for the exam with ID 601?
+7. List all exam results where the marks are exactly 100.
+8. Show all results for exams held before 2023.
+
+---
