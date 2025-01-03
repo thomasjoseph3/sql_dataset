@@ -278,6 +278,25 @@
         "query": "SELECT isbn, publisher FROM books WHERE book_id = 102;"
     },
     {
+        "prompt": "Retrieve the ISBN and publisher of the book with id 102.",
+        "context": {
+            "books": {
+                "columns": [
+                    "book_id",
+                    "title",
+                    "author",
+                    "genre",
+                    "publisher",
+                    "publication_year",
+                    "isbn",
+                    "total_copies",
+                    "available_copies"
+                ]
+            }
+        },
+        "query": "SELECT isbn, publisher FROM books WHERE book_id = 102;"
+    },
+    {
         "prompt": "How many copies of the book 'The Great Gatsby' are available?",
         "context": {
             "books": {
