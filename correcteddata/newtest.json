@@ -1,0 +1,2580 @@
+[
+  {
+    "prompt": "List all customers who purchased a smartphone in the last 6 months.",
+    "context": {
+      "customers": {
+        "columns": [
+          "customer_id",
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "purchase_date"
+        ]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name, c.email, c.phone FROM customers c JOIN purchases p ON c.customer_id = p.customer_id JOIN products pr ON p.product_id = pr.product_id WHERE pr.category = 'Smartphone' AND p.purchase_date >= ADD_MONTHS(SYSDATE, -6);"
+  },
+  {
+    "prompt": "List all employees who joined in the last year.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "hire_date",
+          "department_id"
+        ]
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT first_name, last_name, email, phone FROM employees WHERE hire_date >= ADD_MONTHS(SYSDATE, -12);"
+  },
+  {
+    "prompt": "Find the total number of orders placed in the last month.",
+    "context": {
+      "orders": {
+        "columns": ["order_id", "customer_id", "order_date", "order_status"]
+      },
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name"]
+      }
+    },
+    "query": "SELECT COUNT(*) AS total_orders FROM orders WHERE TRUNC(order_date, 'MM') = TRUNC(ADD_MONTHS(SYSDATE, -1), 'MM');"
+  },
+  {
+    "prompt": "List all books borrowed by a specific member.",
+    "context": {
+      "members": {
+        "columns": ["member_id", "first_name", "last_name", "email", "phone"]
+      },
+      "books": {
+        "columns": ["book_id", "title", "author"]
+      },
+      "borrowed_books": {
+        "columns": [
+          "borrow_id",
+          "member_id",
+          "book_id",
+          "borrow_date",
+          "return_date"
+        ],
+        "foreign_keys": {
+          "member_id": "members",
+          "book_id": "books"
+        }
+      }
+    },
+    "query": "SELECT b.title, b.author FROM books b JOIN borrowed_books bb ON b.book_id = bb.book_id WHERE bb.member_id = 123;"
+  },
+  {
+    "prompt": "Find all flights scheduled for the next 7 days.",
+    "context": {
+      "flights": {
+        "columns": [
+          "flight_id",
+          "flight_number",
+          "departure_date",
+          "destination",
+          "status"
+        ]
+      }
+    },
+    "query": "SELECT flight_number, departure_date, destination, status FROM flights WHERE departure_date BETWEEN SYSDATE AND SYSDATE + 7;"
+  },
+  {
+    "prompt": "List all active subscriptions for a user.",
+    "context": {
+      "users": {
+        "columns": ["user_id", "first_name", "last_name", "email"]
+      },
+      "subscriptions": {
+        "columns": [
+          "subscription_id",
+          "user_id",
+          "plan_name",
+          "start_date",
+          "end_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "user_id": "users"
+        }
+      }
+    },
+    "query": "SELECT s.plan_name, s.start_date, s.end_date FROM subscriptions s JOIN users u ON s.user_id = u.user_id WHERE u.user_id = 45 AND s.status = 'Active';"
+  },
+  {
+    "prompt": "Get the details of all products with low stock.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category", "stock_quantity"]
+      }
+    },
+    "query": "SELECT product_name, category, stock_quantity FROM products WHERE stock_quantity < 10;"
+  },
+  {
+    "prompt": "Show all vehicles due for maintenance this month.",
+    "context": {
+      "vehicles": {
+        "columns": [
+          "vehicle_id",
+          "model",
+          "last_service_date",
+          "maintenance_due_date"
+        ]
+      }
+    },
+    "query": "SELECT vehicle_id, model, maintenance_due_date FROM vehicles WHERE TRUNC(maintenance_due_date, 'MM') = TRUNC(SYSDATE, 'MM');"
+  },
+  {
+    "prompt": "Find the average fine amount for overdue books.",
+    "context": {
+      "borrowed_books": {
+        "columns": [
+          "borrow_id",
+          "book_id",
+          "member_id",
+          "borrow_date",
+          "due_date",
+          "return_date",
+          "fine_amount"
+        ]
+      }
+    },
+    "query": "SELECT AVG(fine_amount) AS average_fine FROM borrowed_books WHERE return_date > due_date;"
+  },
+  {
+    "prompt": "List the top 3 products with the highest sales.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT p.product_name, SUM(s.amount) AS total_sales FROM products p JOIN sales s ON p.product_id = s.product_id GROUP BY p.product_name ORDER BY total_sales DESC FETCH FIRST 3 ROWS ONLY;"
+  },
+  {
+    "prompt": "Find all customers who purchased electronics in the past year.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name, c.email FROM customers c JOIN purchases p ON c.customer_id = p.customer_id JOIN products pr ON p.product_id = pr.product_id WHERE pr.category = 'Electronics' AND p.purchase_date >= ADD_MONTHS(SYSDATE, -12);"
+  },
+  {
+    "prompt": "Which employees from the Sales department have the highest commissions this month?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "commission",
+          "hire_date"
+        ]
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "employee_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, e.commission FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Sales' AND EXTRACT(MONTH FROM e.hire_date) = EXTRACT(MONTH FROM SYSDATE) ORDER BY e.commission DESC;"
+  },
+  {
+    "prompt": "Find all overdue loans issued by the bank.",
+    "context": {
+      "loans": {
+        "columns": [
+          "loan_id",
+          "customer_id",
+          "loan_amount",
+          "issue_date",
+          "due_date",
+          "status"
+        ]
+      },
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      }
+    },
+    "query": "SELECT l.loan_id, c.first_name, c.last_name FROM loans l JOIN customers c ON l.customer_id = c.customer_id WHERE l.due_date < SYSDATE AND l.status = 'Overdue';"
+  },
+  {
+    "prompt": "List all flights scheduled for departure next week.",
+    "context": {
+      "flights": {
+        "columns": [
+          "flight_id",
+          "flight_number",
+          "departure_date",
+          "origin",
+          "destination",
+          "status"
+        ]
+      },
+      "airports": {
+        "columns": ["airport_id", "airport_name", "location"]
+      }
+    },
+    "query": "SELECT flight_number, departure_date, origin, destination FROM flights WHERE departure_date BETWEEN SYSDATE AND SYSDATE + 7;"
+  },
+  {
+    "prompt": "Provide a report of total revenue generated by each branch in the last quarter.",
+    "context": {
+      "branches": {
+        "columns": ["branch_id", "branch_name", "location"]
+      },
+      "transactions": {
+        "columns": [
+          "transaction_id",
+          "branch_id",
+          "amount",
+          "transaction_date"
+        ],
+        "foreign_keys": {
+          "branch_id": "branches"
+        }
+      }
+    },
+    "query": "SELECT b.branch_name, SUM(t.amount) AS total_revenue FROM branches b JOIN transactions t ON b.branch_id = t.branch_id WHERE t.transaction_date >= ADD_MONTHS(SYSDATE, -3) GROUP BY b.branch_name;"
+  },
+  {
+    "prompt": "Which books have been reserved but not yet borrowed?",
+    "context": {
+      "books": {
+        "columns": ["book_id", "title", "author", "category"]
+      },
+      "reservations": {
+        "columns": [
+          "reservation_id",
+          "book_id",
+          "member_id",
+          "reservation_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "book_id": "books"
+        }
+      },
+      "borrowed_books": {
+        "columns": ["borrow_id", "book_id", "member_id", "borrow_date"],
+        "foreign_keys": {
+          "book_id": "books"
+        }
+      }
+    },
+    "query": "SELECT b.title FROM books b JOIN reservations r ON b.book_id = r.book_id WHERE r.status = 'Reserved' AND NOT EXISTS (SELECT 1 FROM borrowed_books bb WHERE bb.book_id = b.book_id);"
+  },
+  {
+    "prompt": "Find the total sales for each product category last month.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      },
+      "sales": {
+        "columns": ["sale_id", "product_id", "amount", "sale_date"],
+        "foreign_keys": {
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT p.category, SUM(s.amount) AS total_sales FROM products p JOIN sales s ON p.product_id = s.product_id WHERE TRUNC(s.sale_date, 'MM') = TRUNC(ADD_MONTHS(SYSDATE, -1), 'MM') GROUP BY p.category;"
+  },
+  {
+    "prompt": "What is the average rental duration for rented cars?",
+    "context": {
+      "cars": {
+        "columns": ["car_id", "model", "brand"]
+      },
+      "rentals": {
+        "columns": [
+          "rental_id",
+          "car_id",
+          "rental_start_date",
+          "rental_end_date"
+        ],
+        "foreign_keys": {
+          "car_id": "cars"
+        }
+      }
+    },
+    "query": "SELECT AVG(r.rental_end_date - r.rental_start_date) AS avg_rental_duration FROM rentals r;"
+  },
+  {
+    "prompt": "List all members who reserved gym sessions but did not show up.",
+    "context": {
+      "members": {
+        "columns": ["member_id", "first_name", "last_name", "email"]
+      },
+      "reservations": {
+        "columns": ["reservation_id", "member_id", "session_date", "status"],
+        "foreign_keys": {
+          "member_id": "members"
+        }
+      }
+    },
+    "query": "SELECT m.first_name, m.last_name, m.email FROM members m JOIN reservations r ON m.member_id = r.member_id WHERE r.status = 'No Show';"
+  },
+  {
+    "prompt": "List the top 3 highest-grossing movies in the past year.",
+    "context": {
+      "movies": {
+        "columns": ["movie_id", "title", "release_date", "genre"]
+      },
+      "box_office": {
+        "columns": ["record_id", "movie_id", "revenue", "record_date"],
+        "foreign_keys": {
+          "movie_id": "movies"
+        }
+      }
+    },
+    "query": "SELECT m.title, SUM(b.revenue) AS total_revenue FROM movies m JOIN box_office b ON m.movie_id = b.movie_id WHERE b.record_date >= ADD_MONTHS(SYSDATE, -12) GROUP BY m.title ORDER BY total_revenue DESC FETCH FIRST 3 ROWS ONLY;"
+  },
+  {
+    "prompt": "Find the total number of items sold by each store this month.",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": [
+          "sale_id",
+          "store_id",
+          "product_id",
+          "quantity_sold",
+          "sale_date"
+        ],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      }
+    },
+    "query": "SELECT s.store_name, SUM(sales.quantity_sold) AS total_items_sold FROM stores s JOIN sales ON s.store_id = sales.store_id WHERE TRUNC(sales.sale_date, 'MM') = TRUNC(SYSDATE, 'MM') GROUP BY s.store_name;"
+  },
+  {
+    "prompt": "List all flights that have been delayed for more than 2 hours.",
+    "context": {
+      "flights": {
+        "columns": [
+          "flight_id",
+          "flight_number",
+          "departure_date",
+          "arrival_date",
+          "status",
+          "delay_duration"
+        ]
+      },
+      "airlines": {
+        "columns": ["airline_id", "airline_name", "country"]
+      }
+    },
+    "query": "SELECT flight_number, delay_duration FROM flights WHERE delay_duration > 2;"
+  },
+  {
+    "prompt": "Provide a list of customers who have made purchases in more than one category.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name FROM customers c JOIN purchases p ON c.customer_id = p.customer_id JOIN products pr ON p.product_id = pr.product_id GROUP BY c.customer_id, c.first_name, c.last_name HAVING COUNT(DISTINCT pr.category) > 1;"
+  },
+  {
+    "prompt": "List the names of employees who have never been assigned to a project.",
+    "context": {
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name", "department_id"]
+      },
+      "projects": {
+        "columns": [
+          "project_id",
+          "project_name",
+          "start_date",
+          "end_date",
+          "project_manager_id"
+        ]
+      },
+      "project_assignments": {
+        "columns": ["assignment_id", "project_id", "employee_id", "role"],
+        "foreign_keys": {
+          "project_id": "projects",
+          "employee_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e WHERE NOT EXISTS (SELECT 1 FROM project_assignments pa WHERE pa.employee_id = e.employee_id);"
+  },
+  {
+    "prompt": "Which branches have generated the highest revenue in the last 3 months?",
+    "context": {
+      "branches": {
+        "columns": ["branch_id", "branch_name", "location"]
+      },
+      "transactions": {
+        "columns": [
+          "transaction_id",
+          "branch_id",
+          "transaction_date",
+          "amount"
+        ],
+        "foreign_keys": {
+          "branch_id": "branches"
+        }
+      }
+    },
+    "query": "SELECT b.branch_name, SUM(t.amount) AS total_revenue FROM branches b JOIN transactions t ON b.branch_id = t.branch_id WHERE t.transaction_date >= ADD_MONTHS(SYSDATE, -3) GROUP BY b.branch_name ORDER BY total_revenue DESC;"
+  },
+  {
+    "prompt": "Find all members who have borrowed books more than 5 times.",
+    "context": {
+      "members": {
+        "columns": ["member_id", "first_name", "last_name", "email"]
+      },
+      "borrowed_books": {
+        "columns": ["borrow_id", "member_id", "book_id", "borrow_date"],
+        "foreign_keys": {
+          "member_id": "members"
+        }
+      },
+      "books": {
+        "columns": ["book_id", "title", "author"]
+      }
+    },
+    "query": "SELECT m.first_name, m.last_name FROM members m JOIN borrowed_books bb ON m.member_id = bb.member_id GROUP BY m.first_name, m.last_name HAVING COUNT(bb.borrow_id) > 5;"
+  },
+  {
+    "prompt": "What is the total number of seats reserved for flights this month?",
+    "context": {
+      "flights": {
+        "columns": [
+          "flight_id",
+          "flight_number",
+          "departure_date",
+          "arrival_date"
+        ]
+      },
+      "reservations": {
+        "columns": [
+          "reservation_id",
+          "flight_id",
+          "customer_id",
+          "seats_reserved",
+          "reservation_date"
+        ],
+        "foreign_keys": {
+          "flight_id": "flights"
+        }
+      }
+    },
+    "query": "SELECT SUM(r.seats_reserved) AS total_seats_reserved FROM reservations r JOIN flights f ON r.flight_id = f.flight_id WHERE TRUNC(r.reservation_date, 'MM') = TRUNC(SYSDATE, 'MM');"
+  },
+  {
+    "prompt": "List all books authored by 'John Doe' that have been borrowed in the last 6 months.",
+    "context": {
+      "books": {
+        "columns": ["book_id", "title", "author", "category"]
+      },
+      "borrowed_books": {
+        "columns": ["borrow_id", "book_id", "member_id", "borrow_date"],
+        "foreign_keys": {
+          "book_id": "books"
+        }
+      },
+      "members": {
+        "columns": ["member_id", "first_name", "last_name"]
+      }
+    },
+    "query": "SELECT b.title FROM books b JOIN borrowed_books bb ON b.book_id = bb.book_id WHERE b.author = 'John Doe' AND bb.borrow_date >= ADD_MONTHS(SYSDATE, -6);"
+  },
+  {
+    "prompt": "Find the top 3 bestselling products in the electronics category.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      },
+      "sales": {
+        "columns": ["sale_id", "product_id", "quantity_sold", "sale_date"],
+        "foreign_keys": {
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT p.product_name, SUM(s.quantity_sold) AS total_sold FROM products p JOIN sales s ON p.product_id = s.product_id WHERE p.category = 'Electronics' GROUP BY p.product_name ORDER BY total_sold DESC FETCH FIRST 3 ROWS ONLY;"
+  },
+  {
+    "prompt": "List the details of all employees who joined in the last year.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "hire_date",
+          "department_id"
+        ]
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, e.hire_date FROM employees e WHERE e.hire_date >= ADD_MONTHS(SYSDATE, -12);"
+  },
+  {
+    "prompt": "Find the top 5 authors with the highest number of books in stock.",
+    "context": {
+      "books": {
+        "columns": ["book_id", "title", "author", "stock_quantity"]
+      }
+    },
+    "query": "SELECT author, SUM(stock_quantity) AS total_stock FROM books GROUP BY author ORDER BY total_stock DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "List the total revenue generated by each branch for the current quarter.",
+    "context": {
+      "branches": {
+        "columns": ["branch_id", "branch_name", "location"]
+      },
+      "sales": {
+        "columns": ["sale_id", "branch_id", "amount", "sale_date"],
+        "foreign_keys": {
+          "branch_id": "branches"
+        }
+      }
+    },
+    "query": "SELECT b.branch_name, SUM(s.amount) AS total_revenue FROM branches b JOIN sales s ON b.branch_id = s.branch_id WHERE TRUNC(s.sale_date, 'Q') = TRUNC(SYSDATE, 'Q') GROUP BY b.branch_name;"
+  },
+  {
+    "prompt": "Which employees have not submitted a performance review for the current year?",
+    "context": {
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name", "department_id"]
+      },
+      "performance_reviews": {
+        "columns": ["review_id", "employee_id", "review_date", "score"],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e WHERE NOT EXISTS (SELECT 1 FROM performance_reviews pr WHERE pr.employee_id = e.employee_id AND EXTRACT(YEAR FROM pr.review_date) = EXTRACT(YEAR FROM SYSDATE));"
+  },
+  {
+    "prompt": "Provide the total fine amount collected by the library in the last year.",
+    "context": {
+      "borrowed_books": {
+        "columns": [
+          "borrow_id",
+          "member_id",
+          "book_id",
+          "borrow_date",
+          "return_date",
+          "fine_amount"
+        ]
+      },
+      "members": {
+        "columns": ["member_id", "first_name", "last_name"]
+      },
+      "books": {
+        "columns": ["book_id", "title"]
+      }
+    },
+    "query": "SELECT SUM(bb.fine_amount) AS total_fine FROM borrowed_books bb WHERE bb.return_date >= ADD_MONTHS(SYSDATE, -12);"
+  },
+  {
+    "prompt": "List all customers who have reserved a product but have not yet purchased it.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "reservations": {
+        "columns": [
+          "reservation_id",
+          "customer_id",
+          "product_id",
+          "reservation_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers"
+        }
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers"
+        }
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name FROM customers c JOIN reservations r ON c.customer_id = r.customer_id WHERE r.status = 'Reserved' AND NOT EXISTS (SELECT 1 FROM purchases p WHERE p.customer_id = c.customer_id AND p.product_id = r.product_id);"
+  },
+  {
+    "prompt": "Find the average salary of employees in each department, excluding those who are currently on leave.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "status"
+        ]
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d JOIN employees e ON d.department_id = e.department_id WHERE e.status != 'On Leave' GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "Which books were borrowed more than 10 times in the past year?",
+    "context": {
+      "books": {
+        "columns": ["book_id", "title", "author"]
+      },
+      "borrowed_books": {
+        "columns": ["borrow_id", "book_id", "borrow_date"],
+        "foreign_keys": {
+          "book_id": "books"
+        }
+      }
+    },
+    "query": "SELECT b.title, COUNT(bb.borrow_id) AS borrow_count FROM books b JOIN borrowed_books bb ON b.book_id = bb.book_id WHERE bb.borrow_date >= ADD_MONTHS(SYSDATE, -12) GROUP BY b.title HAVING COUNT(bb.borrow_id) > 10;"
+  },
+  {
+    "prompt": "List all stores that sold products in the 'Electronics' category this year.",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      }
+    },
+    "query": "SELECT DISTINCT s.store_name FROM stores s JOIN sales sa ON s.store_id = sa.store_id JOIN products p ON sa.product_id = p.product_id WHERE p.category = 'Electronics' AND EXTRACT(YEAR FROM sa.sale_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+    "prompt": "How many unique customers purchased items in the 'Books' category last month?",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      }
+    },
+    "query": "SELECT COUNT(DISTINCT p.customer_id) AS unique_customers FROM purchases p JOIN products pr ON p.product_id = pr.product_id WHERE pr.category = 'Books' AND TRUNC(p.purchase_date, 'MM') = TRUNC(ADD_MONTHS(SYSDATE, -1), 'MM');"
+  },
+  {
+    "prompt": "Find all employees who work in a branch that has not generated any revenue this quarter.",
+    "context": {
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name", "branch_id"]
+      },
+      "branches": {
+        "columns": ["branch_id", "branch_name", "location"]
+      },
+      "transactions": {
+        "columns": [
+          "transaction_id",
+          "branch_id",
+          "amount",
+          "transaction_date"
+        ],
+        "foreign_keys": {
+          "branch_id": "branches"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN branches b ON e.branch_id = b.branch_id WHERE NOT EXISTS (SELECT 1 FROM transactions t WHERE t.branch_id = b.branch_id AND TRUNC(t.transaction_date, 'Q') = TRUNC(SYSDATE, 'Q'));"
+  },
+  {
+    "prompt": "List all customers who made a purchase within the last 30 days.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email", "phone"]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name, c.email FROM customers c JOIN purchases p ON c.customer_id = p.customer_id WHERE p.purchase_date >= TRUNC(SYSDATE) - 30;"
+  },
+  {
+    "prompt": "Find all products that have been purchased more than 10 times in the last year.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT pr.product_name, COUNT(p.purchase_id) AS total_purchases FROM products pr JOIN purchases p ON pr.product_id = p.product_id WHERE p.purchase_date >= ADD_MONTHS(SYSDATE, -12) GROUP BY pr.product_name HAVING COUNT(p.purchase_id) > 10;"
+  },
+  {
+    "prompt": "Identify customers who made their first purchase within the last 6 months.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers"
+        }
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name, c.email FROM customers c WHERE c.customer_id IN (SELECT p.customer_id FROM purchases p WHERE p.purchase_date = (SELECT MIN(p2.purchase_date) FROM purchases p2 WHERE p2.customer_id = p.customer_id) AND p.purchase_date >= ADD_MONTHS(SYSDATE, -6));"
+  },
+  {
+    "prompt": "List all customers who purchased products during Black Friday sales last year.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers"
+        }
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name, c.email FROM customers c JOIN purchases p ON c.customer_id = p.customer_id WHERE p.purchase_date BETWEEN TO_DATE('2023-11-24', 'YYYY-MM-DD') AND TO_DATE('2023-11-26', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "Find the total revenue generated in the first quarter of this year.",
+    "context": {
+      "sales": {
+        "columns": ["sale_id", "product_id", "sale_date", "amount"]
+      }
+    },
+    "query": "SELECT SUM(s.amount) AS total_revenue FROM sales s WHERE s.sale_date BETWEEN TRUNC(ADD_MONTHS(SYSDATE, -EXTRACT(MONTH FROM SYSDATE) + 1), 'MM') AND TRUNC(ADD_MONTHS(SYSDATE, -EXTRACT(MONTH FROM SYSDATE) + 3), 'MM');"
+  },
+  {
+    "prompt": "Find all customers who purchased a product more than once in the same month.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name"]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name"]
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name FROM customers c JOIN purchases p ON c.customer_id = p.customer_id GROUP BY c.customer_id, c.first_name, c.last_name, TO_CHAR(p.purchase_date, 'YYYY-MM') HAVING COUNT(*) > 1;"
+  },
+  {
+    "prompt": "Which stores had the highest sales in December of last year?",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores"
+        }
+      }
+    },
+    "query": "SELECT s.store_name, SUM(sa.amount) AS total_sales FROM stores s JOIN sales sa ON s.store_id = sa.store_id WHERE TO_CHAR(sa.sale_date, 'YYYY-MM') = TO_CHAR(ADD_MONTHS(SYSDATE, -12), 'YYYY-MM') AND TO_CHAR(sa.sale_date, 'MM') = '12' GROUP BY s.store_name ORDER BY total_sales DESC;"
+  },
+  {
+    "prompt": "Find all employees who joined the company in the current year.",
+    "context": {
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name", "join_date"]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e WHERE TO_CHAR(e.join_date, 'YYYY') = TO_CHAR(SYSDATE, 'YYYY');"
+  },
+  {
+    "prompt": "List all products that were never purchased.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name"]
+      },
+      "purchases": {
+        "columns": ["purchase_id", "product_id"]
+      }
+    },
+    "query": "SELECT pr.product_name FROM products pr WHERE NOT EXISTS (SELECT 1 FROM purchases p WHERE p.product_id = pr.product_id);"
+  },
+  {
+    "prompt": "Calculate the average fine collected for overdue books in the last year.",
+    "context": {
+      "borrowed_books": {
+        "columns": ["borrow_id", "fine_amount", "return_date"]
+      }
+    },
+    "query": "SELECT AVG(bb.fine_amount) AS avg_fine FROM borrowed_books bb WHERE bb.return_date IS NOT NULL AND bb.return_date > ADD_MONTHS(SYSDATE, -12);"
+  },
+  {
+    "prompt": "Find all customers who purchased a laptop in the last year.",
+    "context": {
+      "customers": {
+        "columns": [
+          "customer_id",
+          "first_name",
+          "last_name",
+          "email",
+          "phone",
+          "address"
+        ]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name, c.email FROM customers c JOIN purchases p ON c.customer_id = p.customer_id JOIN products pr ON p.product_id = pr.product_id WHERE pr.category = 'Laptop' AND p.purchase_date >= ADD_MONTHS(SYSDATE, -12);"
+  },
+  {
+    "prompt": "Show a list of all customers who bought any product from the 'Electronics' category in the past 3 months.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      }
+    },
+    "query": "SELECT DISTINCT c.first_name, c.last_name, c.email FROM customers c JOIN purchases p ON c.customer_id = p.customer_id JOIN products pr ON p.product_id = pr.product_id WHERE pr.category = 'Electronics' AND p.purchase_date >= ADD_MONTHS(SYSDATE, -3);"
+  },
+  {
+    "prompt": "Which customers have purchased both a smartphone and a tablet in the last 6 months?",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name FROM customers c WHERE EXISTS (SELECT 1 FROM purchases p JOIN products pr ON p.product_id = pr.product_id WHERE c.customer_id = p.customer_id AND pr.category = 'Smartphone' AND p.purchase_date >= ADD_MONTHS(SYSDATE, -6)) AND EXISTS (SELECT 1 FROM purchases p JOIN products pr ON p.product_id = pr.product_id WHERE c.customer_id = p.customer_id AND pr.category = 'Tablet' AND p.purchase_date >= ADD_MONTHS(SYSDATE, -6));"
+  },
+  {
+    "prompt": "Find customers who bought more than 5 products in the last month.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email", "phone"]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name"]
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name, COUNT(p.purchase_id) AS total_purchases FROM customers c JOIN purchases p ON c.customer_id = p.customer_id WHERE p.purchase_date >= TRUNC(ADD_MONTHS(SYSDATE, -1), 'MM') GROUP BY c.first_name, c.last_name HAVING COUNT(p.purchase_id) > 5;"
+  },
+  {
+    "prompt": "List all customers who reserved a product but did not purchase it.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "reservations": {
+        "columns": [
+          "reservation_id",
+          "customer_id",
+          "product_id",
+          "reservation_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name"]
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name FROM customers c JOIN reservations r ON c.customer_id = r.customer_id WHERE r.status = 'Reserved' AND NOT EXISTS (SELECT 1 FROM purchases p WHERE p.customer_id = c.customer_id AND p.product_id = r.product_id);"
+  },
+  {
+    "prompt": "Identify customers who purchased items in both the 'Books' and 'Gadgets' categories last year.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name FROM customers c WHERE EXISTS (SELECT 1 FROM purchases p JOIN products pr ON p.product_id = pr.product_id WHERE c.customer_id = p.customer_id AND pr.category = 'Books' AND p.purchase_date >= ADD_MONTHS(SYSDATE, -12)) AND EXISTS (SELECT 1 FROM purchases p JOIN products pr ON p.product_id = pr.product_id WHERE c.customer_id = p.customer_id AND pr.category = 'Gadgets' AND p.purchase_date >= ADD_MONTHS(SYSDATE, -12));"
+  },
+  {
+    "prompt": "List all customers who purchased a product from the 'Electronics' category in a store located in 'New York' in the last year.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "store_id",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products",
+          "store_id": "stores"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      },
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name, c.email FROM customers c JOIN purchases p ON c.customer_id = p.customer_id JOIN products pr ON p.product_id = pr.product_id JOIN stores s ON p.store_id = s.store_id WHERE pr.category = 'Electronics' AND s.location = 'New York' AND p.purchase_date >= ADD_MONTHS(SYSDATE, -12);"
+  },
+  {
+    "prompt": "Find the top 3 products sold by revenue, along with the names of the stores where they were sold, in the past quarter.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "product_id", "store_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "product_id": "products",
+          "store_id": "stores"
+        }
+      },
+      "stores": {
+        "columns": ["store_id", "store_name"]
+      }
+    },
+    "query": "SELECT pr.product_name, s.store_name, SUM(sa.amount) AS total_revenue FROM sales sa JOIN products pr ON sa.product_id = pr.product_id JOIN stores s ON sa.store_id = s.store_id WHERE sa.sale_date >= TRUNC(ADD_MONTHS(SYSDATE, -3), 'MM') GROUP BY pr.product_name, s.store_name ORDER BY total_revenue DESC FETCH FIRST 3 ROWS ONLY;"
+  },
+  {
+    "prompt": "List all employees who worked on projects with budgets exceeding $1 million and are currently active.",
+    "context": {
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name", "department_id"]
+      },
+      "projects": {
+        "columns": ["project_id", "project_name", "budget", "status"]
+      },
+      "project_assignments": {
+        "columns": ["assignment_id", "employee_id", "project_id"],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "project_id": "projects"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, d.department_name FROM employees e JOIN project_assignments pa ON e.employee_id = pa.employee_id JOIN projects p ON pa.project_id = p.project_id JOIN departments d ON e.department_id = d.department_id WHERE p.budget > 1000000 AND p.status = 'Active';"
+  },
+  {
+    "prompt": "Find the total revenue generated by each department, grouped by the type of products they sold this year.",
+    "context": {
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      },
+      "employees": {
+        "columns": ["employee_id", "department_id"]
+      },
+      "sales": {
+        "columns": [
+          "sale_id",
+          "employee_id",
+          "product_id",
+          "sale_date",
+          "amount"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      }
+    },
+    "query": "SELECT d.department_name, pr.category, SUM(s.amount) AS total_revenue FROM departments d JOIN employees e ON d.department_id = e.department_id JOIN sales s ON e.employee_id = s.employee_id JOIN products pr ON s.product_id = pr.product_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY d.department_name, pr.category ORDER BY total_revenue DESC;"
+  },
+  {
+    "prompt": "List all overdue borrowed books along with the names of the members who borrowed them and the contact information of staff who issued the books.",
+    "context": {
+      "borrowed_books": {
+        "columns": [
+          "borrow_id",
+          "book_id",
+          "member_id",
+          "staff_id",
+          "due_date",
+          "return_date"
+        ],
+        "foreign_keys": {
+          "book_id": "books",
+          "member_id": "members",
+          "staff_id": "staff"
+        }
+      },
+      "books": {
+        "columns": ["book_id", "title"]
+      },
+      "members": {
+        "columns": ["member_id", "first_name", "last_name", "email", "phone"]
+      },
+      "staff": {
+        "columns": ["staff_id", "first_name", "last_name", "email", "phone"]
+      }
+    },
+    "query": "SELECT bb.borrow_id, b.title, m.first_name || ' ' || m.last_name AS member_name, m.email AS member_email, m.phone AS member_phone, s.first_name || ' ' || s.last_name AS staff_name, s.email AS staff_email, s.phone AS staff_phone FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id JOIN members m ON bb.member_id = m.member_id JOIN staff s ON bb.staff_id = s.staff_id WHERE bb.return_date IS NULL AND bb.due_date < SYSDATE;"
+  },
+  {
+    "prompt": "Identify the top 5 customers who spent the most in stores located in California this year.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name"]
+      },
+      "purchases": {
+        "columns": [
+          "purchase_id",
+          "customer_id",
+          "product_id",
+          "store_id",
+          "amount",
+          "purchase_date"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "store_id": "stores"
+        }
+      },
+      "stores": {
+        "columns": ["store_id", "location"]
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name, SUM(p.amount) AS total_spent FROM customers c JOIN purchases p ON c.customer_id = p.customer_id JOIN stores s ON p.store_id = s.store_id WHERE s.location = 'California' AND EXTRACT(YEAR FROM p.purchase_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY c.customer_id, c.first_name, c.last_name ORDER BY total_spent DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "List all employees who joined in the last 3 months.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, email FROM employees WHERE hire_date >= ADD_MONTHS(SYSDATE, -3);"
+  },
+  {
+    "prompt": "Find all books borrowed in the last 6 months.",
+    "context": {
+      "borrowed_books": {
+        "columns": [
+          "borrow_id",
+          "book_id",
+          "borrow_date",
+          "due_date",
+          "return_date"
+        ]
+      },
+      "books": {
+        "columns": ["book_id", "title"]
+      }
+    },
+    "query": "SELECT b.title FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id WHERE bb.borrow_date >= ADD_MONTHS(SYSDATE, -6);"
+  },
+  {
+    "prompt": "Show all active projects that started this year.",
+    "context": {
+      "projects": {
+        "columns": [
+          "project_id",
+          "project_name",
+          "start_date",
+          "end_date",
+          "status"
+        ]
+      }
+    },
+    "query": "SELECT project_name FROM projects WHERE status = 'Active' AND EXTRACT(YEAR FROM start_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+    "prompt": "Identify all customers who made a purchase in the last week.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "purchases": {
+        "columns": ["purchase_id", "customer_id", "purchase_date"],
+        "foreign_keys": {
+          "customer_id": "customers"
+        }
+      }
+    },
+    "query": "SELECT DISTINCT c.first_name, c.last_name, c.email FROM customers c JOIN purchases p ON c.customer_id = p.customer_id WHERE p.purchase_date >= TRUNC(SYSDATE) - 7;"
+  },
+  {
+    "prompt": "Find the top-selling products in the last quarter.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT p.product_name, SUM(s.amount) AS total_sales FROM sales s JOIN products p ON s.product_id = p.product_id WHERE s.sale_date >= TRUNC(ADD_MONTHS(SYSDATE, -3), 'MM') GROUP BY p.product_name ORDER BY total_sales DESC;"
+  },
+  {
+    "prompt": "List all overdue borrowed books along with their due dates.",
+    "context": {
+      "borrowed_books": {
+        "columns": [
+          "borrow_id",
+          "book_id",
+          "member_id",
+          "due_date",
+          "return_date"
+        ],
+        "foreign_keys": {
+          "book_id": "books"
+        }
+      },
+      "books": {
+        "columns": ["book_id", "title"]
+      }
+    },
+    "query": "SELECT b.title, bb.due_date FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id WHERE bb.return_date IS NULL AND bb.due_date < SYSDATE;"
+  },
+  {
+    "prompt": "Find the monthly revenue generated by each store this year.",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores"
+        }
+      }
+    },
+    "query": "SELECT s.store_name, TO_CHAR(sa.sale_date, 'YYYY-MM') AS month, SUM(sa.amount) AS total_revenue FROM sales sa JOIN stores s ON sa.store_id = s.store_id WHERE EXTRACT(YEAR FROM sa.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY s.store_name, TO_CHAR(sa.sale_date, 'YYYY-MM') ORDER BY s.store_name, month;"
+  },
+  {
+    "prompt": "Find the number of employees who took leave in the last 30 days.",
+    "context": {
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name"]
+      },
+      "attendance": {
+        "columns": [
+          "attendance_id",
+          "employee_id",
+          "attendance_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT COUNT(DISTINCT e.employee_id) AS employees_on_leave FROM employees e JOIN attendance a ON e.employee_id = a.employee_id WHERE a.status = 'Leave' AND a.attendance_date >= SYSDATE - 30;"
+  },
+  {
+    "prompt": "List all customers who reserved a product that became available in the last 15 days.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "reservations": {
+        "columns": [
+          "reservation_id",
+          "customer_id",
+          "product_id",
+          "reservation_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "availability_date"]
+      }
+    },
+    "query": "SELECT DISTINCT c.first_name, c.last_name, c.email FROM customers c JOIN reservations r ON c.customer_id = r.customer_id JOIN products p ON r.product_id = p.product_id WHERE r.status = 'Reserved' AND p.availability_date >= SYSDATE - 15;"
+  },
+  {
+    "prompt": "Find the average sales per store for the last 7 days.",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores"
+        }
+      }
+    },
+    "query": "SELECT s.store_name, AVG(sa.amount) AS avg_sales FROM sales sa JOIN stores s ON sa.store_id = s.store_id WHERE sa.sale_date >= SYSDATE - 7 GROUP BY s.store_name;"
+  },
+  {
+    "prompt": "Who are the employees that joined our company in the last three months?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "email",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, email FROM employees WHERE hire_date >= ADD_MONTHS(SYSDATE, -3);"
+  },
+  {
+    "prompt": "Can you give me a list of books borrowed in the past six months?",
+    "context": {
+      "borrowed_books": {
+        "columns": [
+          "borrow_id",
+          "book_id",
+          "borrow_date",
+          "due_date",
+          "return_date"
+        ]
+      },
+      "books": {
+        "columns": ["book_id", "title"]
+      }
+    },
+    "query": "SELECT b.title FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id WHERE bb.borrow_date >= ADD_MONTHS(SYSDATE, -6);"
+  },
+  {
+    "prompt": "Show me all active projects that started this year.",
+    "context": {
+      "projects": {
+        "columns": [
+          "project_id",
+          "project_name",
+          "start_date",
+          "end_date",
+          "status"
+        ]
+      }
+    },
+    "query": "SELECT project_name FROM projects WHERE status = 'Active' AND EXTRACT(YEAR FROM start_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+    "prompt": "Which customers made purchases within the last week?",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "purchases": {
+        "columns": ["purchase_id", "customer_id", "purchase_date"],
+        "foreign_keys": {
+          "customer_id": "customers"
+        }
+      }
+    },
+    "query": "SELECT DISTINCT c.first_name, c.last_name, c.email FROM customers c JOIN purchases p ON c.customer_id = p.customer_id WHERE p.purchase_date >= TRUNC(SYSDATE) - 7;"
+  },
+  {
+    "prompt": "What are the top-selling products in the last quarter?",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT p.product_name, SUM(s.amount) AS total_sales FROM sales s JOIN products p ON s.product_id = p.product_id WHERE s.sale_date >= TRUNC(ADD_MONTHS(SYSDATE, -3), 'MM') GROUP BY p.product_name ORDER BY total_sales DESC;"
+  },
+  {
+    "prompt": "Can you show me all overdue borrowed books and their due dates?",
+    "context": {
+      "borrowed_books": {
+        "columns": [
+          "borrow_id",
+          "book_id",
+          "member_id",
+          "due_date",
+          "return_date"
+        ],
+        "foreign_keys": {
+          "book_id": "books"
+        }
+      },
+      "books": {
+        "columns": ["book_id", "title"]
+      }
+    },
+    "query": "SELECT b.title, bb.due_date FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id WHERE bb.return_date IS NULL AND bb.due_date < SYSDATE;"
+  },
+  {
+    "prompt": "Give me a breakdown of monthly revenue for each store this year.",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores"
+        }
+      }
+    },
+    "query": "SELECT s.store_name, TO_CHAR(sa.sale_date, 'YYYY-MM') AS month, SUM(sa.amount) AS total_revenue FROM sales sa JOIN stores s ON sa.store_id = s.store_id WHERE EXTRACT(YEAR FROM sa.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY s.store_name, TO_CHAR(sa.sale_date, 'YYYY-MM') ORDER BY s.store_name, month;"
+  },
+  {
+    "prompt": "How many employees were on leave in the last 30 days?",
+    "context": {
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name"]
+      },
+      "attendance": {
+        "columns": [
+          "attendance_id",
+          "employee_id",
+          "attendance_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT COUNT(DISTINCT e.employee_id) AS employees_on_leave FROM employees e JOIN attendance a ON e.employee_id = a.employee_id WHERE a.status = 'Leave' AND a.attendance_date >= SYSDATE - 30;"
+  },
+  {
+    "prompt": "Who reserved products that became available in the last 15 days?",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name", "email"]
+      },
+      "reservations": {
+        "columns": [
+          "reservation_id",
+          "customer_id",
+          "product_id",
+          "reservation_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "availability_date"]
+      }
+    },
+    "query": "SELECT DISTINCT c.first_name, c.last_name, c.email FROM customers c JOIN reservations r ON c.customer_id = r.customer_id JOIN products p ON r.product_id = p.product_id WHERE r.status = 'Reserved' AND p.availability_date >= SYSDATE - 15;"
+  },
+  {
+    "prompt": "What’s the average sales per store for the last 7 days?",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores"
+        }
+      }
+    },
+    "query": "SELECT s.store_name, AVG(sa.amount) AS avg_sales FROM sales sa JOIN stores s ON sa.store_id = s.store_id WHERE sa.sale_date >= SYSDATE - 7 GROUP BY s.store_name;"
+  },
+  {
+    "prompt": "Can you tell me which 5 cities made the most money this year?",
+    "context": {
+      "cities": {
+        "columns": ["city_id", "city_name"]
+      },
+      "stores": {
+        "columns": ["store_id", "store_name", "city_id"],
+        "foreign_keys": {
+          "city_id": "cities"
+        }
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores"
+        }
+      }
+    },
+    "query": "SELECT c.city_name, SUM(s.amount) AS total_sales FROM cities c JOIN stores st ON c.city_id = st.city_id JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY c.city_name ORDER BY total_sales DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "I need a list of the 5 products that earned the most money this month. Can you help?",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT p.product_name, SUM(s.amount) AS revenue FROM products p JOIN sales s ON p.product_id = s.product_id WHERE TRUNC(s.sale_date, 'MM') = TRUNC(SYSDATE, 'MM') GROUP BY p.product_name ORDER BY revenue DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "Which employees brought in the highest sales this year? I want to see the top ones.",
+    "context": {
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name", "store_id"]
+      },
+      "sales": {
+        "columns": ["sale_id", "employee_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, SUM(s.amount) AS total_sales FROM employees e JOIN sales s ON e.employee_id = s.employee_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY e.first_name, e.last_name ORDER BY total_sales DESC;"
+  },
+  {
+    "prompt": "What are the most popular products being sold? Can you show me the top 5?",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "product_id", "sale_date", "quantity"],
+        "foreign_keys": {
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT p.product_name, SUM(s.quantity) AS total_sold FROM products p JOIN sales s ON p.product_id = s.product_id GROUP BY p.product_name ORDER BY total_sold DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "Can you tell me which stores had no sales in the last month?",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores"
+        }
+      }
+    },
+    "query": "SELECT s.store_name FROM stores s WHERE NOT EXISTS (SELECT 1 FROM sales sa WHERE sa.store_id = s.store_id AND sa.sale_date >= ADD_MONTHS(SYSDATE, -1));"
+  },
+  {
+    "prompt": "Can you break down the revenue by product category for this year?",
+    "context": {
+      "categories": {
+        "columns": ["category_id", "category_name"]
+      },
+      "products": {
+        "columns": ["product_id", "category_id"],
+        "foreign_keys": {
+          "category_id": "categories"
+        }
+      },
+      "sales": {
+        "columns": ["sale_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT c.category_name, SUM(s.amount) AS total_revenue FROM categories c JOIN products p ON c.category_id = p.category_id JOIN sales s ON p.product_id = s.product_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY c.category_name;"
+  },
+  {
+    "prompt": "Can you show me weekly sales for each region this year?",
+    "context": {
+      "regions": {
+        "columns": ["region_id", "region_name"]
+      },
+      "stores": {
+        "columns": ["store_id", "region_id"],
+        "foreign_keys": {
+          "region_id": "regions"
+        }
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores"
+        }
+      }
+    },
+    "query": "SELECT r.region_name, TO_CHAR(sa.sale_date, 'IYYY-IW') AS week, SUM(sa.amount) AS weekly_sales FROM regions r JOIN stores s ON r.region_id = s.region_id JOIN sales sa ON s.store_id = sa.store_id WHERE EXTRACT(YEAR FROM sa.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY r.region_name, TO_CHAR(sa.sale_date, 'IYYY-IW') ORDER BY r.region_name, week;"
+  },
+  {
+    "prompt": "Who are the customers that shopped in more than one store this month?",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "customer_id", "store_id", "sale_date"],
+        "foreign_keys": {
+          "customer_id": "customers"
+        }
+      }
+    },
+    "query": "SELECT DISTINCT c.first_name, c.last_name FROM customers c JOIN sales s ON c.customer_id = s.customer_id WHERE TRUNC(s.sale_date, 'MM') = TRUNC(SYSDATE, 'MM') GROUP BY c.first_name, c.last_name HAVING COUNT(DISTINCT s.store_id) > 1;"
+  },
+  {
+    "prompt": "Show me the top 3 cities with the highest total sales this year.",
+    "context": {
+      "cities": {
+        "columns": ["city_id", "city_name"]
+      },
+      "stores": {
+        "columns": ["store_id", "store_name", "city_id"],
+        "foreign_keys": {
+          "city_id": "cities"
+        }
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores"
+        }
+      }
+    },
+    "query": "SELECT c.city_name, SUM(s.amount) AS total_sales FROM cities c JOIN stores st ON c.city_id = st.city_id JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY c.city_name ORDER BY total_sales DESC FETCH FIRST 3 ROWS ONLY;"
+  },
+  {
+    "prompt": "List the 5 products that generated the most revenue this month.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT p.product_name, SUM(s.amount) AS revenue FROM products p JOIN sales s ON p.product_id = s.product_id WHERE TRUNC(s.sale_date, 'MM') = TRUNC(SYSDATE, 'MM') GROUP BY p.product_name ORDER BY revenue DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "Which employees achieved the highest sales this year?",
+    "context": {
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name", "store_id"]
+      },
+      "sales": {
+        "columns": ["sale_id", "employee_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, SUM(s.amount) AS total_sales FROM employees e JOIN sales s ON e.employee_id = s.employee_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY e.first_name, e.last_name ORDER BY total_sales DESC;"
+  },
+  {
+    "prompt": "What are the 5 most popular products sold across all stores?",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "product_id", "sale_date", "quantity"],
+        "foreign_keys": {
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT p.product_name, SUM(s.quantity) AS total_sold FROM products p JOIN sales s ON p.product_id = s.product_id GROUP BY p.product_name ORDER BY total_sold DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "Which stores had no sales in the past month?",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores"
+        }
+      }
+    },
+    "query": "SELECT s.store_name FROM stores s WHERE NOT EXISTS (SELECT 1 FROM sales sa WHERE sa.store_id = s.store_id AND sa.sale_date >= ADD_MONTHS(SYSDATE, -1));"
+  },
+  {
+    "prompt": "Can you show me the revenue generated by each product category this year?",
+    "context": {
+      "categories": {
+        "columns": ["category_id", "category_name"]
+      },
+      "products": {
+        "columns": ["product_id", "category_id"],
+        "foreign_keys": {
+          "category_id": "categories"
+        }
+      },
+      "sales": {
+        "columns": ["sale_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT c.category_name, SUM(s.amount) AS total_revenue FROM categories c JOIN products p ON c.category_id = p.category_id JOIN sales s ON p.product_id = s.product_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY c.category_name;"
+  },
+  {
+    "prompt": "Give me a breakdown of weekly sales for each region this year.",
+    "context": {
+      "regions": {
+        "columns": ["region_id", "region_name"]
+      },
+      "stores": {
+        "columns": ["store_id", "region_id"],
+        "foreign_keys": {
+          "region_id": "regions"
+        }
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores"
+        }
+      }
+    },
+    "query": "SELECT r.region_name, TO_CHAR(s.sale_date, 'IYYY-IW') AS week, SUM(sa.amount) AS weekly_sales FROM regions r JOIN stores s ON r.region_id = s.region_id JOIN sales sa ON s.store_id = sa.store_id WHERE EXTRACT(YEAR FROM sa.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY r.region_name, TO_CHAR(sa.sale_date, 'IYYY-IW') ORDER BY r.region_name, week;"
+  },
+  {
+    "prompt": "List all customers who made purchases in more than one store this month.",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "customer_id", "store_id", "sale_date"],
+        "foreign_keys": {
+          "customer_id": "customers"
+        }
+      }
+    },
+    "query": "SELECT DISTINCT c.first_name, c.last_name FROM customers c JOIN sales s ON c.customer_id = s.customer_id WHERE TRUNC(s.sale_date, 'MM') = TRUNC(SYSDATE, 'MM') GROUP BY c.first_name, c.last_name HAVING COUNT(DISTINCT s.store_id) > 1;"
+  },
+  {
+    "prompt": "Which products sold out this month?",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "stock_quantity"]
+      },
+      "sales": {
+        "columns": ["sale_id", "product_id", "sale_date", "quantity_sold"],
+        "foreign_keys": {
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT p.product_name FROM products p WHERE p.stock_quantity = 0 AND EXISTS (SELECT 1 FROM sales s WHERE s.product_id = p.product_id AND TRUNC(s.sale_date, 'MM') = TRUNC(SYSDATE, 'MM'));"
+  },
+  {
+    "prompt": "Can you give me the monthly sales trends for each category this year?",
+    "context": {
+      "categories": {
+        "columns": ["category_id", "category_name"]
+      },
+      "products": {
+        "columns": ["product_id", "category_id"],
+        "foreign_keys": {
+          "category_id": "categories"
+        }
+      },
+      "sales": {
+        "columns": ["sale_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT c.category_name, TO_CHAR(s.sale_date, 'YYYY-MM') AS month, SUM(s.amount) AS total_sales FROM categories c JOIN products p ON c.category_id = p.category_id JOIN sales s ON p.product_id = s.product_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY c.category_name, TO_CHAR(s.sale_date, 'YYYY-MM') ORDER BY c.category_name, month;"
+  },
+  {
+    "prompt": "Show me the employees who didn’t sell anything last quarter.",
+    "context": {
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name", "store_id"]
+      },
+      "sales": {
+        "columns": ["sale_id", "employee_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e WHERE NOT EXISTS (SELECT 1 FROM sales s WHERE s.employee_id = e.employee_id AND s.sale_date >= ADD_MONTHS(TRUNC(SYSDATE, 'Q'), -3));"
+  },
+  {
+    "prompt": "Who are the top 3 customers by total purchases this year?",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "customer_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "customer_id": "customers"
+        }
+      }
+    },
+    "query": "SELECT c.first_name, c.last_name, SUM(s.amount) AS total_spent FROM customers c JOIN sales s ON c.customer_id = s.customer_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY c.first_name, c.last_name ORDER BY total_spent DESC FETCH FIRST 3 ROWS ONLY;"
+  },
+  {
+    "prompt": "Which regions had the lowest sales last month?",
+    "context": {
+      "regions": {
+        "columns": ["region_id", "region_name"]
+      },
+      "stores": {
+        "columns": ["store_id", "region_id"],
+        "foreign_keys": {
+          "region_id": "regions"
+        }
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores"
+        }
+      }
+    },
+    "query": "SELECT r.region_name, SUM(s.amount) AS total_sales FROM regions r JOIN stores st ON r.region_id = st.region_id JOIN sales s ON st.store_id = s.store_id WHERE TRUNC(s.sale_date, 'MM') = ADD_MONTHS(TRUNC(SYSDATE, 'MM'), -1) GROUP BY r.region_name ORDER BY total_sales ASC;"
+  },
+  {
+    "prompt": "What is the total revenue generated by each team over the past quarter?",
+    "context": {
+      "teams": {
+        "columns": ["team_id", "team_name"]
+      },
+      "employees": {
+        "columns": ["employee_id", "team_id"],
+        "foreign_keys": {
+          "team_id": "teams"
+        }
+      },
+      "sales": {
+        "columns": ["sale_id", "employee_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT t.team_name, SUM(s.amount) AS total_revenue FROM teams t JOIN employees e ON t.team_id = e.team_id JOIN sales s ON e.employee_id = s.employee_id WHERE s.sale_date >= ADD_MONTHS(TRUNC(SYSDATE, 'Q'), -3) GROUP BY t.team_name;"
+  },
+  {
+    "prompt": "How many customers purchased more than 3 different products in the last month?",
+    "context": {
+      "customers": {
+        "columns": ["customer_id", "first_name", "last_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "customer_id", "product_id", "sale_date"],
+        "foreign_keys": {
+          "customer_id": "customers",
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT COUNT(DISTINCT s.customer_id) AS customer_count FROM sales s WHERE s.sale_date >= ADD_MONTHS(TRUNC(SYSDATE, 'MM'), -1) GROUP BY s.customer_id HAVING COUNT(DISTINCT s.product_id) > 3;"
+  },
+  {
+    "prompt": "Can you give me the total number of sales per week for the last two months?",
+    "context": {
+      "sales": {
+        "columns": ["sale_id", "sale_date", "amount"]
+      }
+    },
+    "query": "SELECT TO_CHAR(s.sale_date, 'IYYY-IW') AS week, COUNT(*) AS total_sales FROM sales s WHERE s.sale_date >= ADD_MONTHS(TRUNC(SYSDATE, 'MM'), -2) GROUP BY TO_CHAR(s.sale_date, 'IYYY-IW') ORDER BY week;"
+  },
+  {
+    "prompt": "Which stores didn’t sell any electronics this year?",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name"]
+      },
+      "products": {
+        "columns": ["product_id", "category"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "product_id", "sale_date"],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      }
+    },
+    "query": "SELECT st.store_name FROM stores st WHERE NOT EXISTS (SELECT 1 FROM sales s JOIN products p ON s.product_id = p.product_id WHERE st.store_id = s.store_id AND p.category = 'Electronics' AND EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE));"
+  },
+  {
+    "prompt": "Which employees made more than $10,000 in sales this year?",
+    "context": {
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name"]
+      },
+      "sales": {
+        "columns": ["sale_id", "employee_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN sales s ON e.employee_id = s.employee_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY e.first_name, e.last_name HAVING SUM(s.amount) > 10000;"
+  },
+
+  {
+    "prompt": "Which are the top 5 stores with the highest sales revenue this year?",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name"]
+      }
+    },
+    "query": "SELECT st.store_name, SUM(s.amount) AS total_sales FROM stores st JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY st.store_name ORDER BY total_sales DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "Can you show me the 5 stores that made the most money this year?",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name"]
+      }
+    },
+    "query": "SELECT st.store_name, SUM(s.amount) AS total_revenue FROM stores st JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY st.store_name ORDER BY total_revenue DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "List the 5 best-performing stores based on sales in the current year.",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name"]
+      }
+    },
+    "query": "SELECT st.store_name, SUM(s.amount) AS total_sales FROM stores st JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY st.store_name ORDER BY total_sales DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "What are the names of the top 5 stores with the highest revenue this year?",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name"]
+      }
+    },
+    "query": "SELECT st.store_name, SUM(s.amount) AS revenue FROM stores st JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY st.store_name ORDER BY revenue DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "Find the top 5 stores that generated the highest sales this calendar year.",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name"]
+      }
+    },
+    "query": "SELECT st.store_name, SUM(s.amount) AS total_revenue FROM stores st JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY st.store_name ORDER BY total_revenue DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "Can you provide a list of the 5 stores with the most sales this year?",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name"]
+      }
+    },
+    "query": "SELECT st.store_name, SUM(s.amount) AS total_revenue FROM stores st JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY st.store_name ORDER BY total_revenue DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "Which stores have the highest revenue this year, and show me the top 5?",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": ["sale_id", "store_id", "product_id", "sale_date", "amount"],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name"]
+      }
+    },
+    "query": "SELECT st.store_name, SUM(s.amount) AS total_sales FROM stores st JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY st.store_name ORDER BY total_sales DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "Which are the top 5 stores selling the highest number of products this year?",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": [
+          "sale_id",
+          "store_id",
+          "product_id",
+          "sale_date",
+          "quantity"
+        ],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      }
+    },
+    "query": "SELECT st.store_name, SUM(s.quantity) AS total_products_sold FROM stores st JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY st.store_name ORDER BY total_products_sold DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "Show me the top 3 stores that sold the largest quantity of products this year.",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": [
+          "sale_id",
+          "store_id",
+          "product_id",
+          "sale_date",
+          "quantity"
+        ],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      }
+    },
+    "query": "SELECT st.store_name, SUM(s.quantity) AS total_quantity_sold FROM stores st JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY st.store_name ORDER BY total_quantity_sold DESC FETCH FIRST 3 ROWS ONLY;"
+  },
+  {
+    "prompt": "Find the top 5 stores with the most sales in terms of product quantity.",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": [
+          "sale_id",
+          "store_id",
+          "product_id",
+          "sale_date",
+          "quantity"
+        ],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name"]
+      }
+    },
+    "query": "SELECT st.store_name, SUM(s.quantity) AS total_quantity FROM stores st JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY st.store_name ORDER BY total_quantity DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "Can you list the 5 stores that sold the most items overall this year?",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": [
+          "sale_id",
+          "store_id",
+          "product_id",
+          "sale_date",
+          "quantity"
+        ],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name"]
+      }
+    },
+    "query": "SELECT st.store_name, SUM(s.quantity) AS total_items_sold FROM stores st JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY st.store_name ORDER BY total_items_sold DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "Which stores are leading in product sales by quantity for this year?",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": [
+          "sale_id",
+          "store_id",
+          "product_id",
+          "sale_date",
+          "quantity"
+        ],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      }
+    },
+    "query": "SELECT st.store_name, SUM(s.quantity) AS total_sales_quantity FROM stores st JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY st.store_name ORDER BY total_sales_quantity DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "Tell me the top 5 stores with the highest product sales by volume this year.",
+    "context": {
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      },
+      "sales": {
+        "columns": [
+          "sale_id",
+          "store_id",
+          "product_id",
+          "sale_date",
+          "quantity"
+        ],
+        "foreign_keys": {
+          "store_id": "stores",
+          "product_id": "products"
+        }
+      },
+      "products": {
+        "columns": ["product_id", "product_name"]
+      }
+    },
+    "query": "SELECT st.store_name, SUM(s.quantity) AS total_volume FROM stores st JOIN sales s ON st.store_id = s.store_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY st.store_name ORDER BY total_volume DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+    "prompt": "Which are the 6 most sold products this year?",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      },
+      "sales": {
+        "columns": [
+          "sale_id",
+          "store_id",
+          "product_id",
+          "sale_date",
+          "quantity"
+        ],
+        "foreign_keys": {
+          "product_id": "products",
+          "store_id": "stores"
+        }
+      },
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      }
+    },
+    "query": "SELECT p.product_name, SUM(s.quantity) AS total_quantity_sold FROM products p JOIN sales s ON p.product_id = s.product_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY p.product_name ORDER BY total_quantity_sold DESC FETCH FIRST 6 ROWS ONLY;"
+  },
+  {
+    "prompt": "Show me the 6 products with the highest sales volume this year.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      },
+      "sales": {
+        "columns": [
+          "sale_id",
+          "store_id",
+          "product_id",
+          "sale_date",
+          "quantity"
+        ],
+        "foreign_keys": {
+          "product_id": "products",
+          "store_id": "stores"
+        }
+      },
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      }
+    },
+    "query": "SELECT p.product_name, SUM(s.quantity) AS total_volume FROM products p JOIN sales s ON p.product_id = s.product_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY p.product_name ORDER BY total_volume DESC FETCH FIRST 6 ROWS ONLY;"
+  },
+  {
+    "prompt": "What are the top 6 best-selling products this year by quantity?",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      },
+      "sales": {
+        "columns": [
+          "sale_id",
+          "store_id",
+          "product_id",
+          "sale_date",
+          "quantity"
+        ],
+        "foreign_keys": {
+          "product_id": "products",
+          "store_id": "stores"
+        }
+      },
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      }
+    },
+    "query": "SELECT p.product_name, SUM(s.quantity) AS total_quantity FROM products p JOIN sales s ON p.product_id = s.product_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY p.product_name ORDER BY total_quantity DESC FETCH FIRST 6 ROWS ONLY;"
+  },
+  {
+    "prompt": "Can you list the top 6 products sold by quantity this year?",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      },
+      "sales": {
+        "columns": [
+          "sale_id",
+          "store_id",
+          "product_id",
+          "sale_date",
+          "quantity"
+        ],
+        "foreign_keys": {
+          "product_id": "products",
+          "store_id": "stores"
+        }
+      },
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      }
+    },
+    "query": "SELECT p.product_name, SUM(s.quantity) AS total_sold FROM products p JOIN sales s ON p.product_id = s.product_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY p.product_name ORDER BY total_sold DESC FETCH FIRST 6 ROWS ONLY;"
+  },
+  {
+    "prompt": "Find the 6 most popular products in terms of units sold this year.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      },
+      "sales": {
+        "columns": [
+          "sale_id",
+          "store_id",
+          "product_id",
+          "sale_date",
+          "quantity"
+        ],
+        "foreign_keys": {
+          "product_id": "products",
+          "store_id": "stores"
+        }
+      },
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      }
+    },
+    "query": "SELECT p.product_name, SUM(s.quantity) AS units_sold FROM products p JOIN sales s ON p.product_id = s.product_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY p.product_name ORDER BY units_sold DESC FETCH FIRST 6 ROWS ONLY;"
+  },
+  {
+    "prompt": "Which products were the most purchased in quantity this year? Show the top 6.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category"]
+      },
+      "sales": {
+        "columns": [
+          "sale_id",
+          "store_id",
+          "product_id",
+          "sale_date",
+          "quantity"
+        ],
+        "foreign_keys": {
+          "product_id": "products",
+          "store_id": "stores"
+        }
+      },
+      "stores": {
+        "columns": ["store_id", "store_name", "location"]
+      }
+    },
+    "query": "SELECT p.product_name, SUM(s.quantity) AS total_purchases FROM products p JOIN sales s ON p.product_id = s.product_id WHERE EXTRACT(YEAR FROM s.sale_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY p.product_name ORDER BY total_purchases DESC FETCH FIRST 6 ROWS ONLY;"
+  },
+  {
+    "prompt": "List all products that are currently unavailable.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category", "stock_quantity"]
+      }
+    },
+    "query": "SELECT product_name FROM products WHERE stock_quantity = 0;"
+  },
+  {
+    "prompt": "Show me all the electronics that are out of stock.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category", "stock_quantity"]
+      }
+    },
+    "query": "SELECT product_name FROM products WHERE category = 'Electronics' AND stock_quantity = 0;"
+  },
+  {
+    "prompt": "Which products have a stock quantity of less than 10?",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category", "stock_quantity"]
+      }
+    },
+    "query": "SELECT product_name FROM products WHERE stock_quantity < 10;"
+  },
+  {
+    "prompt": "Get a list of products that are running low on stock (less than 5 units).",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category", "stock_quantity"]
+      }
+    },
+    "query": "SELECT product_name FROM products WHERE stock_quantity < 5;"
+  },
+  {
+    "prompt": "Can you list all clothing items that are not available?",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category", "stock_quantity"]
+      }
+    },
+    "query": "SELECT product_name FROM products WHERE category = 'Clothing' AND stock_quantity = 0;"
+  },
+  {
+    "prompt": "Find all products in the inventory that need restocking (less than 15 units).",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category", "stock_quantity"]
+      }
+    },
+    "query": "SELECT product_name, stock_quantity FROM products WHERE stock_quantity < 15;"
+  },
+  {
+    "prompt": "Which food items have gone out of stock recently?",
+    "context": {
+      "products": {
+        "columns": [
+          "product_id",
+          "product_name",
+          "category",
+          "stock_quantity",
+          "last_restocked_date"
+        ]
+      }
+    },
+    "query": "SELECT product_name FROM products WHERE category = 'Food' AND stock_quantity = 0;"
+  },
+  {
+    "prompt": "Get me all products with zero stock and their categories.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category", "stock_quantity"]
+      }
+    },
+    "query": "SELECT product_name, category FROM products WHERE stock_quantity = 0;"
+  },
+  {
+    "prompt": "Show all items from the 'Home Appliances' category that are sold out.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category", "stock_quantity"]
+      }
+    },
+    "query": "SELECT product_name FROM products WHERE category = 'Home Appliances' AND stock_quantity = 0;"
+  },
+  {
+    "prompt": "List the top 5 categories with the lowest stock available.",
+    "context": {
+      "products": {
+        "columns": ["product_id", "product_name", "category", "stock_quantity"]
+      }
+    },
+    "query": "SELECT category, SUM(stock_quantity) AS total_stock FROM products GROUP BY category ORDER BY total_stock ASC FETCH FIRST 5 ROWS ONLY;"
+  }
+]

@@ -1,0 +1,5 @@
+Prompt: Which staff members have processed more than 50 borrow transactions?
+Processed Query: SELECT s.first_name, s.last_name, COUNT(bb.borrow_id) AS total_borrowed FROM staff s JOIN borrowed_books bb ON s.staff_id = bb.staff_id GROUP BY s.staff_id, s.first_name, s.last_name HAVING COUNT(bb.borrow_id) > 50
+Oracle error code: 904
+Oracle error message: ORA-00904: "BB"."STAFF_ID": invalid identifier
+----------------------------------------

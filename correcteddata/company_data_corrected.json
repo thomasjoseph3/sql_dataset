@@ -1,0 +1,4492 @@
+[
+  {
+      "prompt": "Who are all the employees in the company?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ]
+          }
+      },
+      "query": "SELECT * FROM employees;"
+  },
+  {
+      "prompt": "Show me details of an employee named John Doe.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ]
+          }
+      },
+      "query": "SELECT * FROM employees WHERE first_name = 'John' AND last_name = 'Doe';"
+  },
+  {
+      "prompt": "How many employees are in each department?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ]
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ]
+          }
+      },
+      "query": "SELECT d.department_name, COUNT(e.employee_id) AS employee_count FROM employees e JOIN departments d ON e.department_id = d.department_id GROUP BY d.department_name;"
+  },
+  {
+      "prompt": "Who is the manager of a specific employee?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ]
+          }
+      },
+      "query": "SELECT e1.first_name AS employee_name, e2.first_name AS manager_name FROM employees e1 JOIN employees e2 ON e1.manager_id = e2.employee_id;"
+  },
+  {
+      "prompt": "List employees hired after 2020.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, hire_date FROM employees WHERE hire_date > TO_DATE('2020-01-01', 'YYYY-MM-DD');"
+  },
+  {
+      "prompt": "Find employees with a salary greater than $100,000.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, salary FROM employees WHERE salary > 100000;"
+  },
+  {
+      "prompt": "What is the bonus for an employee with ID 5?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ]
+          }
+      },
+      "query": "SELECT bonus FROM employees WHERE employee_id = 5;"
+  },
+  {
+      "prompt": "List employees reporting to a specific manager.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM employees WHERE manager_id = (SELECT employee_id FROM employees WHERE first_name = 'Manager FirstName' AND last_name = 'Manager LastName');"
+  },
+  {
+      "prompt": "Who are the employees in the IT department?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'IT';"
+  },
+  {
+      "prompt": "Show me employees whose birthdays are this month.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT first_name, last_name, date_of_birth FROM employees WHERE EXTRACT(MONTH FROM date_of_birth) = EXTRACT(MONTH FROM SYSDATE);"
+  },
+  {
+      "prompt": "Can you provide the contact details of all employees?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT first_name, last_name, email, phone FROM employees;"
+  },
+  {
+      "prompt": "Which employees were hired in the last three months?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT first_name, last_name, hire_date FROM employees WHERE hire_date >= ADD_MONTHS(SYSDATE, -3);"
+  },
+  {
+      "prompt": "Who earns the highest salary in the company?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT first_name, last_name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);"
+  },
+  {
+      "prompt": "Find the employees who do not report to any manager.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT first_name, last_name FROM employees WHERE manager_id IS NULL;"
+  },
+  {
+      "prompt": "What are the names of employees in managerial positions?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "jobs": {
+              "columns": [
+                  "job_id",
+                  "job_title",
+                  "min_salary",
+                  "max_salary"
+              ]
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name FROM employees e JOIN jobs j ON e.job_id = j.job_id WHERE j.job_title LIKE '%Manager%';"
+  },
+  {
+      "prompt": "Who has the longest tenure in the company?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT first_name, last_name, hire_date FROM employees WHERE hire_date = (SELECT MIN(hire_date) FROM employees);"
+  },
+  {
+      "prompt": "Show me the birthdays of employees in the HR department.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, e.date_of_birth FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'HR';"
+  },
+  {
+      "prompt": "How many employees are managed by John Smith?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT COUNT(*) AS employee_count FROM employees WHERE manager_id = (SELECT employee_id FROM employees WHERE first_name = 'John' AND last_name = 'Smith');"
+  },
+  {
+      "prompt": "Which employees have bonuses greater than $10,000?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT first_name, last_name, bonus FROM employees WHERE bonus > 10000;"
+  },
+  {
+      "prompt": "List all employees with their department names and job titles.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          },
+          "jobs": {
+              "columns": [
+                  "job_id",
+                  "job_title",
+                  "min_salary",
+                  "max_salary"
+              ]
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, d.department_name, j.job_title FROM employees e JOIN departments d ON e.department_id = d.department_id JOIN jobs j ON e.job_id = j.job_id;"
+  },
+  {
+      "prompt": "What are all the job titles in the company?",
+      "context": {
+          "jobs": {
+              "columns": [
+                  "job_id",
+                  "job_title",
+                  "min_salary",
+                  "max_salary"
+              ]
+          }
+      },
+      "query": "SELECT job_title FROM jobs;"
+  },
+  {
+      "prompt": "Show the salary range for a Software Engineer.",
+      "context": {
+          "jobs": {
+              "columns": [
+                  "job_id",
+                  "job_title",
+                  "min_salary",
+                  "max_salary"
+              ]
+          }
+      },
+      "query": "SELECT min_salary, max_salary FROM jobs WHERE job_title = 'Software Engineer';"
+  },
+  {
+      "prompt": "Which jobs have a minimum salary greater than $50,000?",
+      "context": {
+          "jobs": {
+              "columns": [
+                  "job_id",
+                  "job_title",
+                  "min_salary",
+                  "max_salary"
+              ]
+          }
+      },
+      "query": "SELECT job_title FROM jobs WHERE min_salary > 50000;"
+  },
+  {
+      "prompt": "Find the job title for an employee with ID 12.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "jobs": {
+              "columns": [
+                  "job_id",
+                  "job_title",
+                  "min_salary",
+                  "max_salary"
+              ]
+          }
+      },
+      "query": "SELECT j.job_title FROM employees e JOIN jobs j ON e.job_id = j.job_id WHERE e.employee_id = 12;"
+  },
+  {
+      "prompt": "What are the minimum and maximum salaries for each job title?",
+      "context": {
+          "jobs": {
+              "columns": [
+                  "job_id",
+                  "job_title",
+                  "min_salary",
+                  "max_salary"
+              ]
+          }
+      },
+      "query": "SELECT job_title, min_salary, max_salary FROM jobs;"
+  },
+  {
+      "prompt": "Find all job titles with 'Manager' in their name.",
+      "context": {
+          "jobs": {
+              "columns": [
+                  "job_id",
+                  "job_title",
+                  "min_salary",
+                  "max_salary"
+              ]
+          }
+      },
+      "query": "SELECT job_title FROM jobs WHERE job_title LIKE '%Manager%';"
+  },
+  {
+      "prompt": "How many employees are working under each job role?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "jobs": {
+              "columns": [
+                  "job_id",
+                  "job_title",
+                  "min_salary",
+                  "max_salary"
+              ]
+          }
+      },
+      "query": "SELECT j.job_title, COUNT(e.employee_id) AS employee_count FROM jobs j LEFT JOIN employees e ON j.job_id = e.job_id GROUP BY j.job_title;"
+  },
+  {
+      "prompt": "What is the highest-paying job in the company?",
+      "context": {
+          "jobs": {
+              "columns": [
+                  "job_id",
+                  "job_title",
+                  "min_salary",
+                  "max_salary"
+              ]
+          }
+      },
+      "query": "SELECT job_title, max_salary FROM jobs WHERE max_salary = (SELECT MAX(max_salary) FROM jobs);"
+  },
+  {
+      "prompt": "Show me the total number of employees in the Marketing department.",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location",
+                  "budget"
+              ]
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(e.employee_id) AS employee_count FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Marketing';"
+  },
+  {
+      "prompt": "List all departments along with their managers and locations.",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location",
+                  "budget"
+              ]
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ]
+          }
+      },
+      "query": "SELECT d.department_name, e.first_name || ' ' || e.last_name AS manager_name, d.location FROM departments d LEFT JOIN employees e ON d.manager_id = e.employee_id;"
+  },
+  {
+      "prompt": "Which department has the smallest headcount?",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location",
+                  "budget"
+              ]
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ]
+          }
+      },
+      "query": "SELECT d.department_name, COUNT(e.employee_id) AS employee_count FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name ORDER BY employee_count ASC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "What is the total salary paid to all employees this month?",
+      "context": {
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "base_salary",
+                  "bonus",
+                  "deductions",
+                  "pay_date"
+              ]
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ]
+          }
+      },
+      "query": "SELECT SUM(base_salary) AS total_salary FROM salaries WHERE EXTRACT(MONTH FROM pay_date) = EXTRACT(MONTH FROM SYSDATE);"
+  },
+  {
+      "prompt": "Show the salary breakdown for an employee named Alice.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "base_salary",
+                  "bonus",
+                  "deductions",
+                  "pay_date"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT s.base_salary, s.bonus, s.deductions FROM employees e JOIN salaries s ON e.employee_id = s.employee_id WHERE e.first_name = 'Alice';"
+  },
+  {
+      "prompt": "Which employees have received a bonus?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "base_salary",
+                  "bonus",
+                  "deductions",
+                  "pay_date"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, s.bonus FROM employees e JOIN salaries s ON e.employee_id = s.employee_id WHERE s.bonus > 0;"
+  },
+  {
+      "prompt": "List deductions for all employees this year.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "base_salary",
+                  "bonus",
+                  "deductions",
+                  "pay_date"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, s.deductions FROM employees e JOIN salaries s ON e.employee_id = s.employee_id WHERE EXTRACT(YEAR FROM s.pay_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+      "prompt": "What is the average salary in the company?",
+      "context": {
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "base_salary",
+                  "bonus",
+                  "deductions",
+                  "pay_date"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT AVG(base_salary) AS average_salary FROM salaries;"
+  },
+  {
+      "prompt": "Show the total bonuses paid to employees this year.",
+      "context": {
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "base_salary",
+                  "bonus",
+                  "deductions",
+                  "pay_date"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT SUM(bonus) AS total_bonuses FROM salaries WHERE EXTRACT(YEAR FROM pay_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+      "prompt": "Find employees whose salaries fall within a specific range.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "base_salary",
+                  "bonus",
+                  "deductions",
+                  "pay_date"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, s.base_salary FROM employees e JOIN salaries s ON e.employee_id = s.employee_id WHERE s.base_salary BETWEEN 50000 AND 100000;"
+  },
+  {
+      "prompt": "Which employees had salary deductions last month?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "base_salary",
+                  "bonus",
+                  "deductions",
+                  "pay_date"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, s.deductions FROM employees e JOIN salaries s ON e.employee_id = s.employee_id WHERE EXTRACT(MONTH FROM s.pay_date) = EXTRACT(MONTH FROM ADD_MONTHS(SYSDATE, -1));"
+  },
+  {
+      "prompt": "What is the average bonus given to employees in the IT department?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "base_salary",
+                  "bonus",
+                  "deductions",
+                  "pay_date"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT AVG(s.bonus) AS average_bonus FROM salaries s JOIN employees e ON s.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'IT';"
+  },
+  {
+      "prompt": "List employees whose total pay (salary + bonus) exceeds $120,000.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "base_salary",
+                  "bonus",
+                  "deductions",
+                  "pay_date"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, (s.base_salary + s.bonus) AS total_pay FROM employees e JOIN salaries s ON e.employee_id = s.employee_id WHERE (s.base_salary + s.bonus) > 120000;"
+  },
+  {
+      "prompt": "What are all the projects in the company?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT project_name FROM projects;"
+  },
+  {
+      "prompt": "Which projects are currently active?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT project_name FROM projects WHERE SYSDATE BETWEEN start_date AND end_date;"
+  },
+  {
+      "prompt": "Who is the project manager for the ABC project?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name FROM projects p JOIN employees e ON p.project_manager_id = e.employee_id WHERE p.project_name = 'ABC';"
+  },
+  {
+      "prompt": "Show the budget for all projects.",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT project_name, budget FROM projects;"
+  },
+  {
+      "prompt": "When does the DEF project start and end?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT start_date, end_date FROM projects WHERE project_name = 'DEF';"
+  },
+  {
+      "prompt": "Show all ongoing projects with their deadlines.",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT project_name, end_date FROM projects WHERE SYSDATE < end_date;"
+  },
+  {
+      "prompt": "Which projects have a budget exceeding $1,000,000?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT project_name, budget FROM projects WHERE budget > 1000000;"
+  },
+  {
+      "prompt": "Find the names of projects managed by Sarah Johnson.",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT p.project_name FROM projects p JOIN employees e ON p.project_manager_id = e.employee_id WHERE e.first_name = 'Sarah' AND e.last_name = 'Johnson';"
+  },
+  {
+      "prompt": "How many employees are working on the XYZ project?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          },
+          "project_assignments": {
+              "columns": [
+                  "assignment_id",
+                  "project_id",
+                  "employee_id",
+                  "role",
+                  "start_date",
+                  "end_date"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects",
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT COUNT(pa.employee_id) AS total_employees FROM projects p JOIN project_assignments pa ON p.project_id = pa.project_id WHERE p.project_name = 'XYZ';"
+  },
+  {
+      "prompt": "Which projects have already been completed this year?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT project_name FROM projects WHERE end_date < SYSDATE AND EXTRACT(YEAR FROM end_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+      "prompt": "Who is working on the XYZ project?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          },
+          "project_assignments": {
+              "columns": [
+                  "assignment_id",
+                  "project_id",
+                  "employee_id",
+                  "role",
+                  "start_date",
+                  "end_date"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects",
+                  "employee_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name FROM employees e JOIN project_assignments pa ON e.employee_id = pa.employee_id JOIN projects p ON pa.project_id = p.project_id WHERE p.project_name = 'XYZ';"
+  },
+  {
+      "prompt": "Show the role of an employee in a specific project.",
+      "context": {
+          "project_assignments": {
+              "columns": [
+                  "assignment_id",
+                  "project_id",
+                  "employee_id",
+                  "role",
+                  "start_date",
+                  "end_date"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects",
+                  "employee_id": "employees"
+              }
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT pa.role FROM project_assignments pa JOIN employees e ON pa.employee_id = e.employee_id JOIN projects p ON pa.project_id = p.project_id WHERE e.first_name = 'Alice' AND p.project_name = 'ABC';"
+  },
+  {
+      "prompt": "List all projects assigned to a specific employee.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          },
+          "project_assignments": {
+              "columns": [
+                  "assignment_id",
+                  "project_id",
+                  "employee_id",
+                  "role",
+                  "start_date",
+                  "end_date"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects",
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT p.project_name FROM projects p JOIN project_assignments pa ON p.project_id = pa.project_id JOIN employees e ON pa.employee_id = e.employee_id WHERE e.first_name = 'John' AND e.last_name = 'Doe';"
+  },
+  {
+      "prompt": "When does the assignment for a specific project end?",
+      "context": {
+          "project_assignments": {
+              "columns": [
+                  "assignment_id",
+                  "project_id",
+                  "employee_id",
+                  "role",
+                  "start_date",
+                  "end_date"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects",
+                  "employee_id": "employees"
+              }
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT pa.end_date FROM project_assignments pa JOIN projects p ON pa.project_id = p.project_id WHERE p.project_name = 'DEF';"
+  },
+  {
+      "prompt": "What roles are assigned to employees in the ABC project?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          },
+          "project_assignments": {
+              "columns": [
+                  "assignment_id",
+                  "project_id",
+                  "employee_id",
+                  "role",
+                  "start_date",
+                  "end_date"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects",
+                  "employee_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, pa.role FROM employees e JOIN project_assignments pa ON e.employee_id = pa.employee_id JOIN projects p ON pa.project_id = p.project_id WHERE p.project_name = 'ABC';"
+  },
+  {
+      "prompt": "Find all projects that an employee named Alice is currently assigned to.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "project_assignments": {
+              "columns": [
+                  "assignment_id",
+                  "project_id",
+                  "employee_id",
+                  "role",
+                  "start_date",
+                  "end_date"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects",
+                  "employee_id": "employees"
+              }
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT p.project_name FROM projects p JOIN project_assignments pa ON p.project_id = pa.project_id JOIN employees e ON pa.employee_id = e.employee_id WHERE e.first_name = 'Alice' AND SYSDATE BETWEEN pa.start_date AND pa.end_date;"
+  },
+  {
+      "prompt": "List employees assigned to multiple projects.",
+      "context": {
+          "project_assignments": {
+              "columns": [
+                  "assignment_id",
+                  "employee_id",
+                  "project_id",
+                  "role",
+                  "start_date",
+                  "end_date"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects",
+                  "employee_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, COUNT(pa.project_id) AS project_count FROM employees e JOIN project_assignments pa ON e.employee_id = pa.employee_id GROUP BY e.first_name, e.last_name HAVING COUNT(pa.project_id) > 1;"
+  },
+  {
+      "prompt": "Who are the team members of a project managed by John Doe?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "project_assignments": {
+              "columns": [
+                  "assignment_id",
+                  "project_id",
+                  "employee_id",
+                  "role",
+                  "start_date",
+                  "end_date"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects",
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name FROM employees e JOIN project_assignments pa ON e.employee_id = pa.employee_id JOIN projects p ON pa.project_id = p.project_id WHERE p.project_manager_id = (SELECT employee_id FROM employees WHERE first_name = 'John' AND last_name = 'Doe');"
+  },
+  {
+      "prompt": "Which employees have had overlapping project assignments?",
+      "context": {
+          "project_assignments": {
+              "columns": [
+                  "assignment_id",
+                  "project_id",
+                  "employee_id",
+                  "role",
+                  "start_date",
+                  "end_date"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects",
+                  "employee_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name FROM employees e JOIN project_assignments pa1 ON e.employee_id = pa1.employee_id JOIN project_assignments pa2 ON e.employee_id = pa2.employee_id WHERE pa1.project_id <> pa2.project_id AND pa1.start_date < pa2.end_date AND pa1.end_date > pa2.start_date;"
+  },
+  {
+      "prompt": "Who are all the clients of the company?",
+      "context": {
+          "clients": {
+              "columns": [
+                  "client_id",
+                  "client_name",
+                  "contact_email",
+                  "contact_phone",
+                  "company_name"
+              ]
+          }
+      },
+      "query": "SELECT client_name FROM clients;"
+  },
+  {
+      "prompt": "Show contact details for the client ABC Corp.",
+      "context": {
+          "clients": {
+              "columns": [
+                  "client_id",
+                  "client_name",
+                  "contact_email",
+                  "contact_phone",
+                  "company_name"
+              ]
+          }
+      },
+      "query": "SELECT contact_email, contact_phone FROM clients WHERE client_name = 'ABC Corp';"
+  },
+  {
+      "prompt": "List projects associated with a specific client.",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          },
+          "clients": {
+              "columns": [
+                  "client_id",
+                  "client_name",
+                  "contact_email",
+                  "contact_phone",
+                  "company_name"
+              ]
+          }
+      },
+      "query": "SELECT p.project_name FROM projects p JOIN clients c ON p.client_id = c.client_id WHERE c.client_name = 'ABC Corp';"
+  },
+  {
+      "prompt": "How many clients does the company have?",
+      "context": {
+          "clients": {
+              "columns": [
+                  "client_id",
+                  "client_name",
+                  "contact_email",
+                  "contact_phone",
+                  "company_name"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_clients FROM clients;"
+  },
+  {
+      "prompt": "Can you show all clients and the number of projects associated with each?",
+      "context": {
+          "clients": {
+              "columns": [
+                  "client_id",
+                  "client_name",
+                  "contact_email",
+                  "contact_phone",
+                  "company_name"
+              ]
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT c.client_name, COUNT(p.project_id) AS project_count FROM clients c LEFT JOIN projects p ON c.client_id = p.client_id GROUP BY c.client_name;"
+  },
+  {
+      "prompt": "Who are the primary points of contact for the company\u00e2\u20ac\u2122s top clients?",
+      "context": {
+          "clients": {
+              "columns": [
+                  "client_id",
+                  "client_name",
+                  "contact_email",
+                  "contact_phone",
+                  "company_name"
+              ]
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT c.client_name, c.contact_email, c.contact_phone FROM clients c JOIN projects p ON c.client_id = p.client_id GROUP BY c.client_name, c.contact_email, c.contact_phone ORDER BY SUM(p.budget) DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+      "prompt": "List all clients whose projects are currently active.",
+      "context": {
+          "clients": {
+              "columns": [
+                  "client_id",
+                  "client_name",
+                  "contact_email",
+                  "contact_phone",
+                  "company_name"
+              ]
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT DISTINCT c.client_name FROM clients c JOIN projects p ON c.client_id = p.client_id WHERE SYSDATE BETWEEN p.start_date AND p.end_date;"
+  },
+  {
+      "prompt": "Which client has the highest project budget?",
+      "context": {
+          "clients": {
+              "columns": [
+                  "client_id",
+                  "client_name",
+                  "contact_email",
+                  "contact_phone",
+                  "company_name"
+              ]
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT c.client_name FROM clients c JOIN projects p ON c.client_id = p.client_id ORDER BY p.budget DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "Show the clients and their associated companies.",
+      "context": {
+          "clients": {
+              "columns": [
+                  "client_id",
+                  "client_name",
+                  "contact_email",
+                  "contact_phone",
+                  "company_name"
+              ]
+          }
+      },
+      "query": "SELECT client_name, company_name FROM clients;"
+  },
+  {
+      "prompt": "What is the annual profit for the IT department?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments",
+                  "project_id": "projects"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT SUM(net_profit) AS annual_profit FROM profits p JOIN departments d ON p.department_id = d.department_id WHERE d.department_name = 'IT' AND p.year = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+      "prompt": "Which projects have the highest revenue?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects"
+              }
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT p.project_name, pr.revenue FROM projects p JOIN profits pr ON p.project_id = pr.project_id ORDER BY pr.revenue DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+      "prompt": "Show the revenue and expenses for each department.",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT d.department_name, SUM(p.revenue) AS total_revenue, SUM(p.expenses) AS total_expenses FROM profits p JOIN departments d ON p.department_id = d.department_id GROUP BY d.department_name;"
+  },
+  {
+      "prompt": "What is the net profit for a specific project in 2023?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects"
+              }
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT p.project_name, pr.net_profit FROM projects p JOIN profits pr ON p.project_id = pr.project_id WHERE pr.year = 2023 AND p.project_name = 'Specific Project';"
+  },
+  {
+      "prompt": "What was the total revenue generated by the Sales department last year?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT SUM(p.revenue) AS total_revenue FROM profits p JOIN departments d ON p.department_id = d.department_id WHERE d.department_name = 'Sales' AND p.year = EXTRACT(YEAR FROM SYSDATE) - 1;"
+  },
+  {
+      "prompt": "Find the profit margin for each project in the company.",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects"
+              }
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT p.project_name, (pr.revenue - pr.expenses) / pr.revenue * 100 AS profit_margin FROM projects p JOIN profits pr ON p.project_id = pr.project_id;"
+  },
+  {
+      "prompt": "Which department has the highest expenses?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "expenses"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ],
+              "foreign_keys": {}
+          }
+      },
+      "query": "SELECT d.department_name, SUM(p.expenses) AS total_expenses FROM profits p JOIN departments d ON p.department_id = d.department_id GROUP BY d.department_name ORDER BY total_expenses DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "Show the net profit for all departments over the last five years.",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "year",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ],
+              "foreign_keys": {}
+          }
+      },
+      "query": "SELECT d.department_name, SUM(p.net_profit) AS total_net_profit FROM profits p JOIN departments d ON p.department_id = d.department_id WHERE p.year >= EXTRACT(YEAR FROM SYSDATE) - 5 GROUP BY d.department_name;"
+  },
+  {
+      "prompt": "How does the revenue of the IT department compare to the Marketing department?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "revenue"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ],
+              "foreign_keys": {}
+          }
+      },
+      "query": "SELECT d.department_name, SUM(p.revenue) AS total_revenue FROM profits p JOIN departments d ON p.department_id = d.department_id WHERE d.department_name IN ('IT', 'Marketing') GROUP BY d.department_name;"
+  },
+  {
+      "prompt": "What is the attendance record for an employee with ID 7?",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name"
+              ],
+              "foreign_keys": {}
+          }
+      },
+      "query": "SELECT attendance_date, status FROM attendance WHERE employee_id = 7;"
+  },
+  {
+      "prompt": "Show the attendance status for all employees on a specific date.",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name"
+              ],
+              "foreign_keys": {}
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, a.status FROM employees e JOIN attendance a ON e.employee_id = a.employee_id WHERE a.attendance_date = TO_DATE('2024-01-15', 'YYYY-MM-DD');"
+  },
+  {
+      "prompt": "Which employees were absent last week?",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name"
+              ],
+              "foreign_keys": {}
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name FROM employees e JOIN attendance a ON e.employee_id = a.employee_id WHERE a.status = 'Absent' AND a.attendance_date BETWEEN SYSDATE - 7 AND SYSDATE;"
+  },
+  {
+      "prompt": "How many days has an employee worked this month?",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT COUNT(*) AS days_worked FROM attendance WHERE employee_id = 7 AND status = 'Present' AND EXTRACT(MONTH FROM attendance_date) = EXTRACT(MONTH FROM SYSDATE) AND EXTRACT(YEAR FROM attendance_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+      "prompt": "Show me the attendance summary for last week.",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name"
+              ],
+              "foreign_keys": {}
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, a.attendance_date, a.status FROM employees e JOIN attendance a ON e.employee_id = a.employee_id WHERE a.attendance_date BETWEEN SYSDATE - 7 AND SYSDATE;"
+  },
+  {
+      "prompt": "Which employees have perfect attendance this month?",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name"
+              ],
+              "foreign_keys": {}
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name FROM employees e JOIN attendance a ON e.employee_id = a.employee_id WHERE a.status = 'Present' AND EXTRACT(MONTH FROM a.attendance_date) = EXTRACT(MONTH FROM SYSDATE) AND EXTRACT(YEAR FROM a.attendance_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY e.first_name, e.last_name HAVING COUNT(*) = (SELECT COUNT(*) FROM attendance WHERE status = 'Present' AND EXTRACT(MONTH FROM attendance_date) = EXTRACT(MONTH FROM SYSDATE) AND EXTRACT(YEAR FROM attendance_date) = EXTRACT(YEAR FROM SYSDATE));"
+  },
+  {
+      "prompt": "Find employees with frequent absences in the last quarter.",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name"
+              ],
+              "foreign_keys": {}
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, COUNT(*) AS absence_count FROM employees e JOIN attendance a ON e.employee_id = a.employee_id WHERE a.status = 'Absent' AND a.attendance_date >= ADD_MONTHS(SYSDATE, -3) GROUP BY e.first_name, e.last_name HAVING COUNT(*) > 5;"
+  },
+  {
+      "prompt": "What is the attendance rate for the Finance department?",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "department_id"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ],
+              "foreign_keys": {}
+          }
+      },
+      "query": "SELECT (COUNT(CASE WHEN a.status = 'Present' THEN 1 END) / COUNT(*)) * 100 AS attendance_rate FROM attendance a JOIN employees e ON a.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Finance';"
+  },
+  {
+      "prompt": "List employees who were present for every workday this year.",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name"
+              ],
+              "foreign_keys": {}
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name FROM employees e JOIN attendance a ON e.employee_id = a.employee_id WHERE a.status = 'Present' AND EXTRACT(YEAR FROM a.attendance_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY e.first_name, e.last_name HAVING COUNT(*) = (SELECT COUNT(DISTINCT attendance_date) FROM attendance WHERE EXTRACT(YEAR FROM attendance_date) = EXTRACT(YEAR FROM SYSDATE));"
+  },
+  {
+      "prompt": "Show performance reviews for an employee named Bob.",
+      "context": {
+          "performance_reviews": {
+              "columns": [
+                  "review_id",
+                  "employee_id",
+                  "review_date",
+                  "performance_score",
+                  "review_comments",
+                  "reviewed_by"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees",
+                  "reviewed_by": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name"
+              ],
+              "foreign_keys": {}
+          }
+      },
+      "query": "SELECT pr.review_date, pr.performance_score, pr.review_comments FROM performance_reviews pr JOIN employees e ON pr.employee_id = e.employee_id WHERE e.first_name = 'Bob';"
+  },
+  {
+      "prompt": "What was the performance score for all employees last quarter?",
+      "context": {
+          "performance_reviews": {
+              "columns": [
+                  "review_id",
+                  "employee_id",
+                  "review_date",
+                  "performance_score"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name"
+              ],
+              "foreign_keys": {}
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, pr.performance_score FROM performance_reviews pr JOIN employees e ON pr.employee_id = e.employee_id WHERE pr.review_date >= ADD_MONTHS(TRUNC(SYSDATE, 'Q'), -3) AND pr.review_date < TRUNC(SYSDATE, 'Q');"
+  },
+  {
+      "prompt": "Who reviewed the performance of a specific employee?",
+      "context": {
+          "performance_reviews": {
+              "columns": [
+                  "review_id",
+                  "employee_id",
+                  "review_date",
+                  "performance_score",
+                  "review_comments",
+                  "reviewed_by"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees",
+                  "reviewed_by": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT e1.first_name AS reviewer_first_name, e1.last_name AS reviewer_last_name FROM performance_reviews pr JOIN employees e1 ON pr.reviewed_by = e1.employee_id JOIN employees e2 ON pr.employee_id = e2.employee_id WHERE e2.employee_id = 12;"
+  },
+  {
+      "prompt": "List all comments from performance reviews in 2023.",
+      "context": {
+          "performance_reviews": {
+              "columns": [
+                  "review_id",
+                  "employee_id",
+                  "review_date",
+                  "performance_score",
+                  "review_comments",
+                  "reviewed_by"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees",
+                  "reviewed_by": "employees"
+              }
+          }
+      },
+      "query": "SELECT review_comments FROM performance_reviews WHERE EXTRACT(YEAR FROM review_date) = 2023;"
+  },
+  {
+      "prompt": "Which employees received the highest performance score this year?",
+      "context": {
+          "performance_reviews": {
+              "columns": [
+                  "review_id",
+                  "employee_id",
+                  "review_date",
+                  "performance_score",
+                  "review_comments",
+                  "reviewed_by"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees",
+                  "reviewed_by": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, pr.performance_score FROM performance_reviews pr JOIN employees e ON pr.employee_id = e.employee_id WHERE EXTRACT(YEAR FROM pr.review_date) = EXTRACT(YEAR FROM SYSDATE) AND pr.performance_score = (SELECT MAX(performance_score) FROM performance_reviews WHERE EXTRACT(YEAR FROM review_date) = EXTRACT(YEAR FROM SYSDATE));"
+  },
+  {
+      "prompt": "Show me all reviews conducted by Sarah Johnson.",
+      "context": {
+          "performance_reviews": {
+              "columns": [
+                  "review_id",
+                  "employee_id",
+                  "review_date",
+                  "performance_score",
+                  "review_comments",
+                  "reviewed_by"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees",
+                  "reviewed_by": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT pr.review_date, pr.review_comments FROM performance_reviews pr JOIN employees e ON pr.reviewed_by = e.employee_id WHERE e.first_name = 'Sarah' AND e.last_name = 'Johnson';"
+  },
+  {
+      "prompt": "Find employees whose performance scores have improved over time.",
+      "context": {
+          "performance_reviews": {
+              "columns": [
+                  "review_id",
+                  "employee_id",
+                  "review_date",
+                  "performance_score",
+                  "review_comments",
+                  "reviewed_by"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees",
+                  "reviewed_by": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name FROM employees e JOIN performance_reviews pr ON e.employee_id = pr.employee_id WHERE pr.performance_score > (SELECT AVG(performance_score) FROM performance_reviews WHERE employee_id = e.employee_id);"
+  },
+  {
+      "prompt": "Which employees have received low performance scores for two consecutive years?",
+      "context": {
+          "performance_reviews": {
+              "columns": [
+                  "review_id",
+                  "employee_id",
+                  "performance_score",
+                  "review_date",
+                  "review_comments",
+                  "reviewed_by"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees",
+                  "reviewed_by": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name FROM employees e JOIN performance_reviews pr ON e.employee_id = pr.employee_id WHERE pr.performance_score < 3 AND EXISTS (SELECT 1 FROM performance_reviews pr2 WHERE pr2.employee_id = e.employee_id AND pr2.performance_score < 3 AND EXTRACT(YEAR FROM pr2.review_date) = EXTRACT(YEAR FROM pr.review_date) - 1);"
+  },
+  {
+      "prompt": "List all performance review comments containing 'exceeds expectations.'",
+      "context": {
+          "performance_reviews": {
+              "columns": [
+                  "review_id",
+                  "employee_id",
+                  "performance_score",
+                  "review_date",
+                  "review_comments",
+                  "reviewed_by"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees",
+                  "reviewed_by": "employees"
+              }
+          }
+      },
+      "query": "SELECT review_comments FROM performance_reviews WHERE LOWER(review_comments) LIKE '%exceeds expectations%';"
+  },
+  {
+      "prompt": "What are the assets owned by the company?",
+      "context": {
+          "assets": {
+              "columns": [
+                  "asset_id",
+                  "asset_name",
+                  "asset_type",
+                  "assigned_to",
+                  "purchase_date",
+                  "cost",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "assigned_to": "employees"
+              }
+          }
+      },
+      "query": "SELECT asset_name, asset_type, purchase_date, cost, status FROM assets;"
+  },
+  {
+      "prompt": "Show assets assigned to an employee named Alice.",
+      "context": {
+          "assets": {
+              "columns": [
+                  "asset_id",
+                  "asset_name",
+                  "asset_type",
+                  "assigned_to",
+                  "purchase_date",
+                  "cost",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "assigned_to": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT asset_name FROM assets a JOIN employees e ON a.assigned_to = e.employee_id WHERE e.first_name = 'Alice';"
+  },
+  {
+      "prompt": "When was a specific asset purchased?",
+      "context": {
+          "assets": {
+              "columns": [
+                  "asset_id",
+                  "asset_name",
+                  "asset_type",
+                  "assigned_to",
+                  "purchase_date",
+                  "cost",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "assigned_to": "employees"
+              }
+          }
+      },
+      "query": "SELECT purchase_date FROM assets WHERE asset_name = 'Specific Asset Name';"
+  },
+  {
+      "prompt": "List all assets that are currently in use.",
+      "context": {
+          "assets": {
+              "columns": [
+                  "asset_id",
+                  "asset_name",
+                  "asset_type",
+                  "assigned_to",
+                  "purchase_date",
+                  "cost",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "assigned_to": "employees"
+              }
+          }
+      },
+      "query": "SELECT asset_name FROM assets WHERE status = 'In Use';"
+  },
+  {
+      "prompt": "What is the cost of all assets assigned to the IT department?",
+      "context": {
+          "assets": {
+              "columns": [
+                  "asset_id",
+                  "asset_name",
+                  "asset_type",
+                  "assigned_to",
+                  "purchase_date",
+                  "cost",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "assigned_to": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT SUM(a.cost) AS total_cost FROM assets a JOIN employees e ON a.assigned_to = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'IT';"
+  },
+  {
+      "prompt": "Show all assets that are currently under maintenance.",
+      "context": {
+          "assets": {
+              "columns": [
+                  "asset_id",
+                  "asset_name",
+                  "asset_type",
+                  "assigned_to",
+                  "purchase_date",
+                  "cost",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "assigned_to": "employees"
+              }
+          }
+      },
+      "query": "SELECT asset_name FROM assets WHERE status = 'Under Maintenance';"
+  },
+  {
+      "prompt": "Which assets have been assigned to multiple employees over time?",
+      "context": {
+          "assets": {
+              "columns": [
+                  "asset_id",
+                  "asset_name",
+                  "asset_type",
+                  "assigned_to",
+                  "purchase_date",
+                  "cost",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "assigned_to": "employees"
+              }
+          }
+      },
+      "query": "SELECT asset_name FROM assets GROUP BY asset_name HAVING COUNT(DISTINCT assigned_to) > 1;"
+  },
+  {
+      "prompt": "List all assets purchased before 2020.",
+      "context": {
+          "assets": {
+              "columns": [
+                  "asset_id",
+                  "asset_name",
+                  "asset_type",
+                  "assigned_to",
+                  "purchase_date",
+                  "cost",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "assigned_to": "employees"
+              }
+          }
+      },
+      "query": "SELECT asset_name, purchase_date FROM assets WHERE purchase_date < TO_DATE('2020-01-01', 'YYYY-MM-DD');"
+  },
+  {
+      "prompt": "What is the total value of assets assigned to the IT department?",
+      "context": {
+          "assets": {
+              "columns": [
+                  "asset_id",
+                  "asset_name",
+                  "asset_type",
+                  "assigned_to",
+                  "purchase_date",
+                  "cost",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "assigned_to": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT SUM(a.cost) AS total_value FROM assets a JOIN employees e ON a.assigned_to = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'IT';"
+  },
+  {
+      "prompt": "Find the most expensive asset purchased by the company.",
+      "context": {
+          "assets": {
+              "columns": [
+                  "asset_id",
+                  "asset_name",
+                  "asset_type",
+                  "assigned_to",
+                  "purchase_date",
+                  "cost",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "assigned_to": "employees"
+              }
+          }
+      },
+      "query": "SELECT asset_name, cost FROM assets WHERE cost = (SELECT MAX(cost) FROM assets);"
+  },
+  {
+      "prompt": "Show me a summary of the company\u00e2\u20ac\u2122s data.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          },
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments",
+                  "project_id": "projects"
+              }
+          }
+      },
+      "query": "SELECT (SELECT COUNT(*) FROM employees) AS total_employees, (SELECT COUNT(*) FROM departments) AS total_departments, (SELECT COUNT(*) FROM projects) AS total_projects, (SELECT SUM(revenue) - SUM(expenses) FROM profits) AS total_net_profit FROM dual;"
+  },
+  {
+      "prompt": "What is the total number of employees, departments, and projects?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT (SELECT COUNT(*) FROM employees) AS total_employees, (SELECT COUNT(*) FROM departments) AS total_departments, (SELECT COUNT(*) FROM projects) AS total_projects FROM dual;"
+  },
+  {
+      "prompt": "Which departments have the highest number of employees?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT d.department_name, COUNT(e.employee_id) AS employee_count FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name ORDER BY employee_count DESC;"
+  },
+  {
+      "prompt": "How much revenue did the company make in the last year?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments",
+                  "project_id": "projects"
+              }
+          }
+      },
+      "query": "SELECT SUM(revenue) AS total_revenue FROM profits WHERE year = EXTRACT(YEAR FROM SYSDATE) - 1;"
+  },
+  {
+      "prompt": "List all overdue projects.",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT project_name, end_date FROM projects WHERE end_date < SYSDATE;"
+  },
+  {
+      "prompt": "Show all overdue projects and their deadlines.",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT project_name, end_date FROM projects WHERE end_date < SYSDATE;"
+  },
+  {
+      "prompt": "What is the total revenue generated by projects last year?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments",
+                  "project_id": "projects"
+              }
+          }
+      },
+      "query": "SELECT SUM(revenue) AS total_revenue FROM profits WHERE year = EXTRACT(YEAR FROM SYSDATE) - 1;"
+  },
+  {
+      "prompt": "Which department generated the highest net profit last year?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments",
+                  "project_id": "projects"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT d.department_name, SUM(p.net_profit) AS total_net_profit FROM profits p JOIN departments d ON p.department_id = d.department_id WHERE p.year = EXTRACT(YEAR FROM SYSDATE) - 1 GROUP BY d.department_name ORDER BY total_net_profit DESC FETCH FIRST 1 ROWS ONLY;"
+  },
+  {
+      "prompt": "Provide a breakdown of employee distribution across all departments.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT d.department_name, COUNT(e.employee_id) AS employee_count FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name ORDER BY employee_count DESC;"
+  },
+  {
+      "prompt": "How many projects are running overdue at the moment?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT COUNT(*) AS overdue_projects FROM projects WHERE end_date < SYSDATE;"
+  },
+  {
+      "prompt": "What are the total expenses incurred by the company this year?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments",
+                  "project_id": "projects"
+              }
+          }
+      },
+      "query": "SELECT SUM(expenses) AS total_expenses FROM profits WHERE year = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+      "prompt": "List all employees who have never worked on a project.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "project_assignments": {
+              "columns": [
+                  "assignment_id",
+                  "project_id",
+                  "employee_id",
+                  "role",
+                  "start_date",
+                  "end_date"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects",
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name FROM employees e LEFT JOIN project_assignments pa ON e.employee_id = pa.employee_id WHERE pa.employee_id IS NULL;"
+  },
+  {
+      "prompt": "Can you show me a summary of all active projects, their budgets, and assigned teams?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          },
+          "project_assignments": {
+              "columns": [
+                  "assignment_id",
+                  "project_id",
+                  "employee_id",
+                  "role",
+                  "start_date",
+                  "end_date"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects",
+                  "employee_id": "employees"
+              }
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT p.project_name, p.budget, e.first_name, e.last_name FROM projects p JOIN project_assignments pa ON p.project_id = pa.project_id JOIN employees e ON pa.employee_id = e.employee_id WHERE SYSDATE BETWEEN p.start_date AND p.end_date;"
+  },
+  {
+      "prompt": "Which department has the highest net profit based on its projects?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments",
+                  "project_id": "projects"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT d.department_name, SUM(p.net_profit) AS total_net_profit FROM profits p JOIN departments d ON p.department_id = d.department_id GROUP BY d.department_name ORDER BY total_net_profit DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "Find the correlation between employee performance scores and their salaries.",
+      "context": {
+          "performance_reviews": {
+              "columns": [
+                  "review_id",
+                  "employee_id",
+                  "review_date",
+                  "performance_score",
+                  "review_comments",
+                  "reviewed_by"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees",
+                  "reviewed_by": "employees"
+              }
+          },
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "base_salary",
+                  "bonus",
+                  "deductions",
+                  "pay_date"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT pr.performance_score, s.base_salary FROM performance_reviews pr JOIN salaries s ON pr.employee_id = s.employee_id;"
+  },
+  {
+      "prompt": "How does employee attendance affect their performance scores?",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          },
+          "performance_reviews": {
+              "columns": [
+                  "review_id",
+                  "employee_id",
+                  "review_date",
+                  "performance_score",
+                  "review_comments",
+                  "reviewed_by"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees",
+                  "reviewed_by": "employees"
+              }
+          }
+      },
+      "query": "SELECT e.employee_id, COUNT(CASE WHEN a.status = 'Present' THEN 1 END) AS attendance_days, AVG(pr.performance_score) AS avg_performance_score FROM employees e JOIN attendance a ON e.employee_id = a.employee_id JOIN performance_reviews pr ON e.employee_id = pr.employee_id GROUP BY e.employee_id;"
+  },
+  {
+      "prompt": "Which projects contributed the most to the company's profit this year?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments",
+                  "project_id": "projects"
+              }
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id",
+                  "budget"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT p.project_name, SUM(pr.net_profit) AS total_net_profit FROM projects p JOIN profits pr ON p.project_id = pr.project_id WHERE pr.year = EXTRACT(YEAR FROM SYSDATE) GROUP BY p.project_name ORDER BY total_net_profit DESC FETCH FIRST 5 ROWS ONLY;"
+  },
+  {
+      "prompt": "What are the trends in revenue generation by departments over the past five years?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments",
+                  "project_id": "projects"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT d.department_name, p.year, SUM(p.revenue) AS total_revenue FROM profits p JOIN departments d ON p.department_id = d.department_id WHERE p.year >= EXTRACT(YEAR FROM SYSDATE) - 5 GROUP BY d.department_name, p.year ORDER BY d.department_name, p.year;"
+  },
+  {
+      "prompt": "Find the department that incurs the most costs.",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments",
+                  "project_id": "projects"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT d.department_name, SUM(p.expenses) AS total_expenses FROM profits p JOIN departments d ON p.department_id = d.department_id GROUP BY d.department_name ORDER BY total_expenses DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "Can you identify which division has the greatest expenditure?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments",
+                  "project_id": "projects"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT d.department_name, SUM(p.expenses) AS total_expenditure FROM profits p JOIN departments d ON p.department_id = d.department_id GROUP BY d.department_name ORDER BY total_expenditure DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "Which department spends the most money overall?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments",
+                  "project_id": "projects"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT d.department_name, SUM(p.expenses) AS total_spending FROM profits p JOIN departments d ON p.department_id = d.department_id GROUP BY d.department_name ORDER BY total_spending DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "Show me the section with the largest total expenses.",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "project_id",
+                  "year",
+                  "revenue",
+                  "expenses",
+                  "net_profit"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments",
+                  "project_id": "projects"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "manager_id",
+                  "location"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT d.department_name, SUM(p.expenses) AS largest_expenses FROM profits p JOIN departments d ON p.department_id = d.department_id GROUP BY d.department_name ORDER BY largest_expenses DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "Which employee has the largest paycheck in the organization?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "base_salary",
+                  "bonus",
+                  "deductions",
+                  "pay_date"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, (s.base_salary + s.bonus) AS total_paycheck FROM employees e JOIN salaries s ON e.employee_id = s.employee_id ORDER BY total_paycheck DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "Can you identify the top earner in the company?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          },
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "base_salary",
+                  "bonus",
+                  "deductions",
+                  "pay_date"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT e.first_name, e.last_name, (s.base_salary + s.bonus) AS total_earnings FROM employees e JOIN salaries s ON e.employee_id = s.employee_id ORDER BY total_earnings DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "Who is the highest-paid employee currently working here?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "hire_date",
+                  "job_id",
+                  "manager_id",
+                  "department_id",
+                  "salary",
+                  "bonus",
+                  "date_of_birth"
+              ],
+              "foreign_keys": {
+                  "job_id": "jobs",
+                  "manager_id": "employees",
+                  "department_id": "departments"
+              }
+          }
+      },
+      "query": "SELECT first_name, last_name, salary FROM employees ORDER BY salary DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "Find the average incentive distributed among IT department workers.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "department_id"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments"
+              }
+          },
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "bonus"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT AVG(s.bonus) AS average_bonus FROM salaries s JOIN employees e ON s.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'IT';"
+  },
+  {
+      "prompt": "What\u00e2\u20ac\u2122s the typical bonus amount for employees in the IT division?",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "department_id"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments"
+              }
+          },
+          "salaries": {
+              "columns": [
+                  "salary_id",
+                  "employee_id",
+                  "bonus"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT AVG(s.bonus) AS average_bonus FROM salaries s JOIN employees e ON s.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'IT';"
+  },
+  {
+      "prompt": "Show me all projects with funding over one million dollars.",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "budget",
+                  "start_date",
+                  "end_date",
+                  "client_id",
+                  "project_manager_id"
+              ],
+              "foreign_keys": {
+                  "client_id": "clients",
+                  "project_manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT project_name, budget FROM projects WHERE budget > 1000000;"
+  },
+  {
+      "prompt": "Which department has the highest net profit based on its projects?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "net_profit",
+                  "project_id",
+                  "year"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments",
+                  "project_id": "projects"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ],
+              "foreign_keys": {
+                  "manager_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT d.department_name, SUM(p.net_profit) AS total_net_profit FROM profits p JOIN departments d ON p.department_id = d.department_id GROUP BY d.department_name ORDER BY total_net_profit DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "Find the correlation between employee performance scores and their salaries.",
+      "context": {
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "first_name",
+                  "last_name",
+                  "salary"
+              ]
+          },
+          "performance_reviews": {
+              "columns": [
+                  "review_id",
+                  "employee_id",
+                  "performance_score"
+              ],
+              "foreign_keys": {
+                  "employee_id": "employees"
+              }
+          }
+      },
+      "query": "SELECT CORR(e.salary, pr.performance_score) AS correlation FROM employees e JOIN performance_reviews pr ON e.employee_id = pr.employee_id;"
+  },
+  {
+      "prompt": "Which projects contributed the most to the company's profit this year?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "project_id",
+                  "net_profit",
+                  "year"
+              ],
+              "foreign_keys": {
+                  "project_id": "projects"
+              }
+          },
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name"
+              ]
+          }
+      },
+      "query": "SELECT p.project_name, SUM(pr.net_profit) AS total_profit FROM projects p JOIN profits pr ON p.project_id = pr.project_id WHERE pr.year = EXTRACT(YEAR FROM SYSDATE) GROUP BY p.project_name ORDER BY total_profit DESC;"
+  },
+  {
+      "prompt": "What are the trends in revenue generation by departments over the past five years?",
+      "context": {
+          "profits": {
+              "columns": [
+                  "profit_id",
+                  "department_id",
+                  "revenue",
+                  "year"
+              ],
+              "foreign_keys": {
+                  "department_id": "departments"
+              }
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ]
+          }
+      },
+      "query": "SELECT d.department_name, p.year, SUM(p.revenue) AS total_revenue FROM profits p JOIN departments d ON p.department_id = d.department_id WHERE p.year >= EXTRACT(YEAR FROM SYSDATE) - 5 GROUP BY d.department_name, p.year ORDER BY d.department_name, p.year;"
+  },
+  {
+      "prompt": "Can you list the projects with a budget greater than $1,000,000?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "budget"
+              ]
+          }
+      },
+      "query": "SELECT project_name, budget FROM projects WHERE budget > 1000000;"
+  },
+  {
+      "prompt": "Which initiatives have allocations above the million-dollar mark?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "budget"
+              ]
+          }
+      },
+      "query": "SELECT project_name, budget FROM projects WHERE budget > 1000000;"
+  },
+  {
+      "prompt": "Find all projects that exceed $1M in their budgets.",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "budget"
+              ]
+          }
+      },
+      "query": "SELECT project_name, budget FROM projects WHERE budget > 1000000;"
+  },
+  {
+      "prompt": "Can you provide the attendance percentage for the Finance team?",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ]
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "department_id"
+              ]
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ]
+          }
+      },
+      "query": "SELECT (COUNT(CASE WHEN a.status = 'Present' THEN 1 END) / COUNT(*)) * 100 AS attendance_percentage FROM attendance a JOIN employees e ON a.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Finance';"
+  },
+  {
+      "prompt": "How regularly do employees in the Finance department attend work?",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ]
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "department_id"
+              ]
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ]
+          }
+      },
+      "query": "SELECT (COUNT(CASE WHEN a.status = 'Present' THEN 1 END) / COUNT(*)) * 100 AS attendance_percentage FROM attendance a JOIN employees e ON a.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Finance';"
+  },
+  {
+      "prompt": "What\u00e2\u20ac\u2122s the overall attendance ratio for the Finance division?",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ]
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "department_id"
+              ]
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ]
+          }
+      },
+      "query": "SELECT (COUNT(CASE WHEN a.status = 'Present' THEN 1 END) / COUNT(*)) AS attendance_ratio FROM attendance a JOIN employees e ON a.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Finance';"
+  },
+  {
+      "prompt": "Show me the attendance statistics for Finance department staff.",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ]
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "department_id"
+              ]
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ]
+          }
+      },
+      "query": "SELECT a.attendance_date, a.status FROM attendance a JOIN employees e ON a.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Finance';"
+  },
+  {
+      "prompt": "Can you list the projects with a budget greater than $1,000,000?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "budget"
+              ]
+          }
+      },
+      "query": "SELECT project_name, budget FROM projects WHERE budget > 1000000;"
+  },
+  {
+      "prompt": "Which initiatives have allocations above the million-dollar mark?",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "budget"
+              ]
+          }
+      },
+      "query": "SELECT project_name, budget FROM projects WHERE budget > 1000000;"
+  },
+  {
+      "prompt": "Find all projects that exceed $1M in their budgets.",
+      "context": {
+          "projects": {
+              "columns": [
+                  "project_id",
+                  "project_name",
+                  "budget"
+              ]
+          }
+      },
+      "query": "SELECT project_name, budget FROM projects WHERE budget > 1000000;"
+  },
+  {
+      "prompt": "Can you provide the attendance percentage for the Finance team?",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ]
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "department_id"
+              ]
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ]
+          }
+      },
+      "query": "SELECT (COUNT(CASE WHEN a.status = 'Present' THEN 1 END) / COUNT(*)) * 100 AS attendance_percentage FROM attendance a JOIN employees e ON a.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Finance';"
+  },
+  {
+      "prompt": "How regularly do employees in the Finance department attend work?",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ]
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "department_id"
+              ]
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ]
+          }
+      },
+      "query": "SELECT (COUNT(CASE WHEN a.status = 'Present' THEN 1 END) / COUNT(*)) * 100 AS attendance_percentage FROM attendance a JOIN employees e ON a.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Finance';"
+  },
+  {
+      "prompt": "What\u00e2\u20ac\u2122s the overall attendance ratio for the Finance division?",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ]
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "department_id"
+              ]
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ]
+          }
+      },
+      "query": "SELECT (COUNT(CASE WHEN a.status = 'Present' THEN 1 END) / COUNT(*)) AS attendance_ratio FROM attendance a JOIN employees e ON a.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Finance';"
+  },
+  {
+      "prompt": "Show me the attendance statistics for Finance department staff.",
+      "context": {
+          "attendance": {
+              "columns": [
+                  "attendance_id",
+                  "employee_id",
+                  "attendance_date",
+                  "status"
+              ]
+          },
+          "employees": {
+              "columns": [
+                  "employee_id",
+                  "department_id"
+              ]
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ]
+          }
+      },
+      "query": "SELECT a.attendance_date, a.status FROM attendance a JOIN employees e ON a.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Finance';"
+  }
+]

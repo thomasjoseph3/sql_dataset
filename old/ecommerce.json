@@ -1,0 +1,1702 @@
+[
+  {
+      "prompt": "List all registered users and their contact details.",
+      "context": {
+          "users": {
+              "columns": [
+                  "user_id",
+                  "username",
+                  "email",
+                  "phone",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT username, email, phone, address FROM users;"
+  },
+  {
+      "prompt": "Retrieve the usernames and emails of users who joined this month.",
+      "context": {
+          "users": {
+              "columns": [
+                  "username",
+                  "email",
+                  "join_date"
+              ]
+          }
+      },
+      "query": "SELECT username, email FROM users WHERE EXTRACT(MONTH FROM join_date) = EXTRACT(MONTH FROM SYSDATE) AND EXTRACT(YEAR FROM join_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+      "prompt": "Show the phone numbers of all users living in 'New York'.",
+      "context": {
+          "users": {
+              "columns": [
+                  "phone",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT phone FROM users WHERE address LIKE '%New York%';"
+  },
+  {
+      "prompt": "Which users joined before 2020?",
+      "context": {
+          "users": {
+              "columns": [
+                  "username",
+                  "join_date"
+              ]
+          }
+      },
+      "query": "SELECT username FROM users WHERE join_date < TO_DATE('2020-01-01', 'YYYY-MM-DD');"
+  },
+  {
+      "prompt": "Retrieve the address of the user with the username 'JohnDoe'.",
+      "context": {
+          "users": {
+              "columns": [
+                  "username",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT address FROM users WHERE username = 'JohnDoe';"
+  },
+  {
+      "prompt": "List all users who registered in the last 7 days.",
+      "context": {
+          "users": {
+              "columns": [
+                  "username",
+                  "join_date"
+              ]
+          }
+      },
+      "query": "SELECT username FROM users WHERE join_date >= SYSDATE - 7;"
+  },
+  {
+      "prompt": "Show the total number of users in the database.",
+      "context": {
+          "users": {
+              "columns": [
+                  "user_id"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_users FROM users;"
+  },
+  {
+      "prompt": "Retrieve details of users who haven\u00e2\u20ac\u2122t placed any orders.",
+      "context": {
+          "users": {
+              "columns": [
+                  "user_id",
+                  "username",
+                  "email"
+              ]
+          },
+          "orders": {
+              "columns": [
+                  "user_id"
+              ]
+          }
+      },
+      "query": "SELECT username, email FROM users WHERE user_id NOT IN (SELECT DISTINCT user_id FROM orders);"
+  },
+  {
+      "prompt": "List all registered users and their contact details.",
+      "context": {
+          "users": {
+              "columns": [
+                  "user_id",
+                  "username",
+                  "email",
+                  "phone",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT username, email, phone, address FROM users;"
+  },
+  {
+      "prompt": "Show usernames, emails, phone numbers, and addresses of all users.",
+      "context": {
+          "users": {
+              "columns": [
+                  "user_id",
+                  "username",
+                  "email",
+                  "phone",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT username, email, phone, address FROM users;"
+  },
+  {
+      "prompt": "Retrieve the usernames and emails of users who joined this month.",
+      "context": {
+          "users": {
+              "columns": [
+                  "username",
+                  "email",
+                  "join_date"
+              ]
+          }
+      },
+      "query": "SELECT username, email FROM users WHERE EXTRACT(MONTH FROM join_date) = EXTRACT(MONTH FROM SYSDATE) AND EXTRACT(YEAR FROM join_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+      "prompt": "Which users joined this month? Provide their usernames and emails.",
+      "context": {
+          "users": {
+              "columns": [
+                  "username",
+                  "email",
+                  "join_date"
+              ]
+          }
+      },
+      "query": "SELECT username, email FROM users WHERE EXTRACT(MONTH FROM join_date) = EXTRACT(MONTH FROM SYSDATE) AND EXTRACT(YEAR FROM join_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+      "prompt": "Show the phone numbers of all users living in 'New York'.",
+      "context": {
+          "users": {
+              "columns": [
+                  "phone",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT phone FROM users WHERE address LIKE '%New York%';"
+  },
+  {
+      "prompt": "Retrieve phone numbers of users based in New York.",
+      "context": {
+          "users": {
+              "columns": [
+                  "phone",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT phone FROM users WHERE address LIKE '%New York%';"
+  },
+  {
+      "prompt": "Which users joined before 2020?",
+      "context": {
+          "users": {
+              "columns": [
+                  "username",
+                  "join_date"
+              ]
+          }
+      },
+      "query": "SELECT username FROM users WHERE join_date < TO_DATE('2020-01-01', 'YYYY-MM-DD');"
+  },
+  {
+      "prompt": "Retrieve all users signed up before the year 2020.",
+      "context": {
+          "users": {
+              "columns": [
+                  "username",
+                  "join_date"
+              ]
+          }
+      },
+      "query": "SELECT username FROM users WHERE join_date < TO_DATE('2020-01-01', 'YYYY-MM-DD');"
+  },
+  {
+      "prompt": "Retrieve the address of the user with the username 'JohnDoe'.",
+      "context": {
+          "users": {
+              "columns": [
+                  "username",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT address FROM users WHERE username = 'JohnDoe';"
+  },
+  {
+      "prompt": "What is the address of 'JohnDoe'?",
+      "context": {
+          "users": {
+              "columns": [
+                  "username",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT address FROM users WHERE username = 'JohnDoe';"
+  },
+  {
+      "prompt": "List all users who registered in the last 7 days.",
+      "context": {
+          "users": {
+              "columns": [
+                  "username",
+                  "join_date"
+              ]
+          }
+      },
+      "query": "SELECT username FROM users WHERE join_date >= SYSDATE - 7;"
+  },
+  {
+      "prompt": "Who are the users registered within the past week?",
+      "context": {
+          "users": {
+              "columns": [
+                  "username",
+                  "join_date"
+              ]
+          }
+      },
+      "query": "SELECT username FROM users WHERE join_date >= SYSDATE - 7;"
+  },
+  {
+      "prompt": "Show the total number of users in the database.",
+      "context": {
+          "users": {
+              "columns": [
+                  "user_id"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_users FROM users;"
+  },
+  {
+      "prompt": "How many users are there in total?",
+      "context": {
+          "users": {
+              "columns": [
+                  "user_id"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_users FROM users;"
+  },
+  {
+      "prompt": "Retrieve details of users who haven\u00e2\u20ac\u2122t placed any orders.",
+      "context": {
+          "users": {
+              "columns": [
+                  "user_id",
+                  "username",
+                  "email"
+              ]
+          },
+          "orders": {
+              "columns": [
+                  "user_id"
+              ]
+          }
+      },
+      "query": "SELECT username, email FROM users WHERE user_id NOT IN (SELECT DISTINCT user_id FROM orders);"
+  },
+  {
+      "prompt": "Which users have no orders in the system?",
+      "context": {
+          "users": {
+              "columns": [
+                  "user_id",
+                  "username",
+                  "email"
+              ]
+          },
+          "orders": {
+              "columns": [
+                  "user_id"
+              ]
+          }
+      },
+      "query": "SELECT username, email FROM users WHERE user_id NOT IN (SELECT DISTINCT user_id FROM orders);"
+  },
+  {
+      "prompt": "List all products and their prices.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "price"
+              ]
+          }
+      },
+      "query": "SELECT name, price FROM products;"
+  },
+  {
+      "prompt": "Show product names and their prices.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "price"
+              ]
+          }
+      },
+      "query": "SELECT name, price FROM products;"
+  },
+  {
+      "prompt": "Retrieve details of products in the 'Electronics' category.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "description",
+                  "price",
+                  "stock_quantity",
+                  "category_id"
+              ]
+          },
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name"
+              ]
+          }
+      },
+      "query": "SELECT name, description, price, stock_quantity FROM products WHERE category_id = (SELECT category_id FROM categories WHERE category_name = 'Electronics');"
+  },
+  {
+      "prompt": "Which products are in the 'Electronics' category?",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "description",
+                  "price",
+                  "stock_quantity",
+                  "category_id"
+              ]
+          },
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name"
+              ]
+          }
+      },
+      "query": "SELECT name, description, price, stock_quantity FROM products WHERE category_id = (SELECT category_id FROM categories WHERE category_name = 'Electronics');"
+  },
+  {
+      "prompt": "Show all products with stock quantities below 10.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "stock_quantity"
+              ]
+          }
+      },
+      "query": "SELECT name FROM products WHERE stock_quantity < 10;"
+  },
+  {
+      "prompt": "List products with stock less than 10.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "stock_quantity"
+              ]
+          }
+      },
+      "query": "SELECT name FROM products WHERE stock_quantity < 10;"
+  },
+  {
+      "prompt": "Which products cost more than $1000?",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "price"
+              ]
+          }
+      },
+      "query": "SELECT name FROM products WHERE price > 1000;"
+  },
+  {
+      "prompt": "Retrieve all products priced above $1000.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "price"
+              ]
+          }
+      },
+      "query": "SELECT name FROM products WHERE price > 1000;"
+  },
+  {
+      "prompt": "List the names and descriptions of all available products.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "description"
+              ]
+          }
+      },
+      "query": "SELECT name, description FROM products;"
+  },
+  {
+      "prompt": "Show all product names and their descriptions.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "description"
+              ]
+          }
+      },
+      "query": "SELECT name, description FROM products;"
+  },
+  {
+      "prompt": "Retrieve the price and stock quantity of the product 'Smartphone.'",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "price",
+                  "stock_quantity"
+              ]
+          }
+      },
+      "query": "SELECT price, stock_quantity FROM products WHERE name = 'Smartphone';"
+  },
+  {
+      "prompt": "What is the price and stock of 'Smartphone'?",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "price",
+                  "stock_quantity"
+              ]
+          }
+      },
+      "query": "SELECT price, stock_quantity FROM products WHERE name = 'Smartphone';"
+  },
+  {
+      "prompt": "Show the total number of products in each category.",
+      "context": {
+          "products": {
+              "columns": [
+                  "category_id"
+              ]
+          },
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name"
+              ]
+          }
+      },
+      "query": "SELECT category_name, COUNT(*) AS total_products FROM categories c JOIN products p ON c.category_id = p.category_id GROUP BY category_name;"
+  },
+  {
+      "prompt": "How many products are in each category?",
+      "context": {
+          "products": {
+              "columns": [
+                  "category_id"
+              ]
+          },
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name"
+              ]
+          }
+      },
+      "query": "SELECT category_name, COUNT(*) AS total_products FROM categories c JOIN products p ON c.category_id = p.category_id GROUP BY category_name;"
+  },
+  {
+      "prompt": "Which products belong to the parent category 'Home Appliances'?",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "category_id"
+              ]
+          },
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name",
+                  "parent_category_id"
+              ]
+          }
+      },
+      "query": "SELECT name FROM products WHERE category_id IN (SELECT category_id FROM categories WHERE parent_category_id = (SELECT category_id FROM categories WHERE category_name = 'Home Appliances'));"
+  },
+  {
+      "prompt": "List products under the parent category 'Home Appliances'.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "category_id"
+              ]
+          },
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name",
+                  "parent_category_id"
+              ]
+          }
+      },
+      "query": "SELECT name FROM products WHERE category_id IN (SELECT category_id FROM categories WHERE parent_category_id = (SELECT category_id FROM categories WHERE category_name = 'Home Appliances'));"
+  },
+  {
+      "prompt": "List all items and their prices.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "price"
+              ]
+          }
+      },
+      "query": "SELECT name, price FROM products;"
+  },
+  {
+      "prompt": "Show all product names and prices.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "price"
+              ]
+          }
+      },
+      "query": "SELECT name, price FROM products;"
+  },
+  {
+      "prompt": "Which products are listed under the 'Electronics' category?",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "description",
+                  "price",
+                  "stock_quantity",
+                  "category_id"
+              ]
+          },
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name"
+              ]
+          }
+      },
+      "query": "SELECT name, description, price, stock_quantity FROM products WHERE category_id = (SELECT category_id FROM categories WHERE category_name = 'Electronics');"
+  },
+  {
+      "prompt": "Retrieve products available in the 'Electronics' section.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "description",
+                  "price",
+                  "stock_quantity",
+                  "category_id"
+              ]
+          },
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name"
+              ]
+          }
+      },
+      "query": "SELECT name, description, price, stock_quantity FROM products WHERE category_id = (SELECT category_id FROM categories WHERE category_name = 'Electronics');"
+  },
+  {
+      "prompt": "Find products with stock less than 10 units.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "stock_quantity"
+              ]
+          }
+      },
+      "query": "SELECT name FROM products WHERE stock_quantity < 10;"
+  },
+  {
+      "prompt": "Which products are running low on stock?",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "stock_quantity"
+              ]
+          }
+      },
+      "query": "SELECT name FROM products WHERE stock_quantity < 10;"
+  },
+  {
+      "prompt": "List all products priced above $1000.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "price"
+              ]
+          }
+      },
+      "query": "SELECT name FROM products WHERE price > 1000;"
+  },
+  {
+      "prompt": "Show products that cost more than $1000.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "price"
+              ]
+          }
+      },
+      "query": "SELECT name FROM products WHERE price > 1000;"
+  },
+  {
+      "prompt": "Show product descriptions and names.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "description"
+              ]
+          }
+      },
+      "query": "SELECT name, description FROM products;"
+  },
+  {
+      "prompt": "Which products have the description listed?",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "description"
+              ]
+          }
+      },
+      "query": "SELECT name, description FROM products;"
+  },
+  {
+      "prompt": "Get details of the product 'Smartphone.'",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "price",
+                  "stock_quantity"
+              ]
+          }
+      },
+      "query": "SELECT price, stock_quantity FROM products WHERE name = 'Smartphone';"
+  },
+  {
+      "prompt": "What are the price and stock levels of 'Smartphone'?",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "price",
+                  "stock_quantity"
+              ]
+          }
+      },
+      "query": "SELECT price, stock_quantity FROM products WHERE name = 'Smartphone';"
+  },
+  {
+      "prompt": "How many products are available in each category?",
+      "context": {
+          "products": {
+              "columns": [
+                  "category_id"
+              ]
+          },
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name"
+              ]
+          }
+      },
+      "query": "SELECT category_name, COUNT(*) AS total_products FROM categories c JOIN products p ON c.category_id = p.category_id GROUP BY category_name;"
+  },
+  {
+      "prompt": "List the total product count per category.",
+      "context": {
+          "products": {
+              "columns": [
+                  "category_id"
+              ]
+          },
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name"
+              ]
+          }
+      },
+      "query": "SELECT category_name, COUNT(*) AS total_products FROM categories c JOIN products p ON c.category_id = p.category_id GROUP BY category_name;"
+  },
+  {
+      "prompt": "Find all products in the 'Home Appliances' parent category.",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "category_id"
+              ]
+          },
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name",
+                  "parent_category_id"
+              ]
+          }
+      },
+      "query": "SELECT name FROM products WHERE category_id IN (SELECT category_id FROM categories WHERE parent_category_id = (SELECT category_id FROM categories WHERE category_name = 'Home Appliances'));"
+  },
+  {
+      "prompt": "What products fall under 'Home Appliances' parent category?",
+      "context": {
+          "products": {
+              "columns": [
+                  "name",
+                  "category_id"
+              ]
+          },
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name",
+                  "parent_category_id"
+              ]
+          }
+      },
+      "query": "SELECT name FROM products WHERE category_id IN (SELECT category_id FROM categories WHERE parent_category_id = (SELECT category_id FROM categories WHERE category_name = 'Home Appliances'));"
+  },
+  {
+      "prompt": "List all product categories and their parents.",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name",
+                  "parent_category_id"
+              ]
+          }
+      },
+      "query": "SELECT category_name, (SELECT category_name FROM categories WHERE category_id = parent_category_id) AS parent_category FROM categories;"
+  },
+  {
+      "prompt": "Show product categories and their parent categories.",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name",
+                  "parent_category_id"
+              ]
+          }
+      },
+      "query": "SELECT category_name, (SELECT category_name FROM categories WHERE category_id = parent_category_id) AS parent_category FROM categories;"
+  },
+  {
+      "prompt": "Subcategories under 'Fashion'?",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name",
+                  "parent_category_id"
+              ]
+          }
+      },
+      "query": "SELECT category_name FROM categories WHERE parent_category_id = (SELECT category_id FROM categories WHERE category_name = 'Fashion');"
+  },
+  {
+      "prompt": "Retrieve subcategories for 'Fashion'.",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name",
+                  "parent_category_id"
+              ]
+          }
+      },
+      "query": "SELECT category_name FROM categories WHERE parent_category_id = (SELECT category_id FROM categories WHERE category_name = 'Fashion');"
+  },
+  {
+      "prompt": "Categories without parent categories?",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name",
+                  "parent_category_id"
+              ]
+          }
+      },
+      "query": "SELECT category_name FROM categories WHERE parent_category_id IS NULL;"
+  },
+  {
+      "prompt": "Show all root categories.",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name",
+                  "parent_category_id"
+              ]
+          }
+      },
+      "query": "SELECT category_name FROM categories WHERE parent_category_id IS NULL;"
+  },
+  {
+      "prompt": "Which categories have subcategories?",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name"
+              ]
+          }
+      },
+      "query": "SELECT DISTINCT c1.category_name FROM categories c1 JOIN categories c2 ON c1.category_id = c2.parent_category_id;"
+  },
+  {
+      "prompt": "List categories with subcategories.",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name"
+              ]
+          }
+      },
+      "query": "SELECT DISTINCT c1.category_name FROM categories c1 JOIN categories c2 ON c1.category_id = c2.parent_category_id;"
+  },
+  {
+      "prompt": "How many categories exist in the database?",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_categories FROM categories;"
+  },
+  {
+      "prompt": "Retrieve total number of categories.",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_categories FROM categories;"
+  },
+  {
+      "prompt": "Subcategories of 'Furniture' parent category?",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name",
+                  "parent_category_id"
+              ]
+          }
+      },
+      "query": "SELECT category_name FROM categories WHERE parent_category_id = (SELECT category_id FROM categories WHERE category_name = 'Furniture');"
+  },
+  {
+      "prompt": "Which categories belong to 'Furniture'?",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name",
+                  "parent_category_id"
+              ]
+          }
+      },
+      "query": "SELECT category_name FROM categories WHERE parent_category_id = (SELECT category_id FROM categories WHERE category_name = 'Furniture');"
+  },
+  {
+      "prompt": "Categories with more than 10 products?",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name"
+              ]
+          },
+          "products": {
+              "columns": [
+                  "category_id"
+              ]
+          }
+      },
+      "query": "SELECT category_name FROM categories WHERE category_id IN (SELECT category_id FROM products GROUP BY category_id HAVING COUNT(*) > 10);"
+  },
+  {
+      "prompt": "List categories having more than 10 items.",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name"
+              ]
+          },
+          "products": {
+              "columns": [
+                  "category_id"
+              ]
+          }
+      },
+      "query": "SELECT category_name FROM categories WHERE category_id IN (SELECT category_id FROM products GROUP BY category_id HAVING COUNT(*) > 10);"
+  },
+  {
+      "prompt": "List all orders placed in the past 30 days.",
+      "context": {
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "order_date",
+                  "status",
+                  "total_price"
+              ]
+          }
+      },
+      "query": "SELECT * FROM orders WHERE order_date >= SYSDATE - 30;"
+  },
+  {
+      "prompt": "Show orders made in the last month.",
+      "context": {
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "order_date",
+                  "status",
+                  "total_price"
+              ]
+          }
+      },
+      "query": "SELECT * FROM orders WHERE order_date >= SYSDATE - 30;"
+  },
+  {
+      "prompt": "Details of orders by 'JaneDoe'?",
+      "context": {
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "user_id",
+                  "order_date",
+                  "status",
+                  "total_price"
+              ]
+          },
+          "users": {
+              "columns": [
+                  "user_id",
+                  "username"
+              ]
+          }
+      },
+      "query": "SELECT * FROM orders WHERE user_id = (SELECT user_id FROM users WHERE username = 'JaneDoe');"
+  },
+  {
+      "prompt": "Retrieve orders for 'JaneDoe'.",
+      "context": {
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "user_id",
+                  "order_date",
+                  "status",
+                  "total_price"
+              ]
+          },
+          "users": {
+              "columns": [
+                  "user_id",
+                  "username"
+              ]
+          }
+      },
+      "query": "SELECT * FROM orders WHERE user_id = (SELECT user_id FROM users WHERE username = 'JaneDoe');"
+  },
+  {
+      "prompt": "Show all completed orders.",
+      "context": {
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM orders WHERE status = 'Completed';"
+  },
+  {
+      "prompt": "Which orders are marked as 'Completed'?",
+      "context": {
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM orders WHERE status = 'Completed';"
+  },
+  {
+      "prompt": "Orders with total price over $500?",
+      "context": {
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "total_price"
+              ]
+          }
+      },
+      "query": "SELECT * FROM orders WHERE total_price > 500;"
+  },
+  {
+      "prompt": "List orders costing more than $500.",
+      "context": {
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "total_price"
+              ]
+          }
+      },
+      "query": "SELECT * FROM orders WHERE total_price > 500;"
+  },
+  {
+      "prompt": "Details of order with ID 101?",
+      "context": {
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "status",
+                  "total_price"
+              ]
+          }
+      },
+      "query": "SELECT status, total_price FROM orders WHERE order_id = 101;"
+  },
+  {
+      "prompt": "Retrieve info for order 101.",
+      "context": {
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "status",
+                  "total_price"
+              ]
+          }
+      },
+      "query": "SELECT status, total_price FROM orders WHERE order_id = 101;"
+  },
+  {
+      "prompt": "How many orders were placed today?",
+      "context": {
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "order_date"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_orders FROM orders WHERE TRUNC(order_date) = TRUNC(SYSDATE);"
+  },
+  {
+      "prompt": "Number of orders placed today?",
+      "context": {
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "order_date"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_orders FROM orders WHERE TRUNC(order_date) = TRUNC(SYSDATE);"
+  },
+  {
+      "prompt": "List pending orders.",
+      "context": {
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM orders WHERE status = 'Pending';"
+  },
+  {
+      "prompt": "Show all 'Pending' orders.",
+      "context": {
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM orders WHERE status = 'Pending';"
+  },
+  {
+      "prompt": "Total revenue from all orders?",
+      "context": {
+          "orders": {
+              "columns": [
+                  "total_price"
+              ]
+          }
+      },
+      "query": "SELECT SUM(total_price) AS total_revenue FROM orders;"
+  },
+  {
+      "prompt": "What is the total revenue generated?",
+      "context": {
+          "orders": {
+              "columns": [
+                  "total_price"
+              ]
+          }
+      },
+      "query": "SELECT SUM(total_price) AS total_revenue FROM orders;"
+  },
+  {
+      "prompt": "List all items in the order with ID 202.",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "order_item_id",
+                  "order_id",
+                  "product_id",
+                  "quantity",
+                  "price"
+              ]
+          }
+      },
+      "query": "SELECT * FROM order_items WHERE order_id = 202;"
+  },
+  {
+      "prompt": "Show items for order ID 202.",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "order_item_id",
+                  "order_id",
+                  "product_id",
+                  "quantity",
+                  "price"
+              ]
+          }
+      },
+      "query": "SELECT * FROM order_items WHERE order_id = 202;"
+  },
+  {
+      "prompt": "Retrieve quantity and price of products in order 303.",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "order_id",
+                  "product_id",
+                  "quantity",
+                  "price"
+              ]
+          }
+      },
+      "query": "SELECT product_id, quantity, price FROM order_items WHERE order_id = 303;"
+  },
+  {
+      "prompt": "Details of products in order 303?",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "order_id",
+                  "product_id",
+                  "quantity",
+                  "price"
+              ]
+          }
+      },
+      "query": "SELECT product_id, quantity, price FROM order_items WHERE order_id = 303;"
+  },
+  {
+      "prompt": "Which products were bought more than 50 times?",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "product_id",
+                  "quantity"
+              ]
+          }
+      },
+      "query": "SELECT product_id, SUM(quantity) AS total_quantity FROM order_items GROUP BY product_id HAVING SUM(quantity) > 50;"
+  },
+  {
+      "prompt": "Products sold over 50 times?",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "product_id",
+                  "quantity"
+              ]
+          }
+      },
+      "query": "SELECT product_id, SUM(quantity) AS total_quantity FROM order_items GROUP BY product_id HAVING SUM(quantity) > 50;"
+  },
+  {
+      "prompt": "Total items sold for each product?",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "product_id",
+                  "quantity"
+              ]
+          }
+      },
+      "query": "SELECT product_id, SUM(quantity) AS total_quantity FROM order_items GROUP BY product_id;"
+  },
+  {
+      "prompt": "Show total sales for each product.",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "product_id",
+                  "quantity"
+              ]
+          }
+      },
+      "query": "SELECT product_id, SUM(quantity) AS total_quantity FROM order_items GROUP BY product_id;"
+  },
+  {
+      "prompt": "Order items priced over $200?",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "order_item_id",
+                  "price"
+              ]
+          }
+      },
+      "query": "SELECT * FROM order_items WHERE price > 200;"
+  },
+  {
+      "prompt": "Retrieve items where price exceeds $200.",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "order_item_id",
+                  "price"
+              ]
+          }
+      },
+      "query": "SELECT * FROM order_items WHERE price > 200;"
+  },
+  {
+      "prompt": "Items associated with product 'Laptop'?",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "order_item_id",
+                  "product_id"
+              ]
+          },
+          "products": {
+              "columns": [
+                  "product_id",
+                  "name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM order_items WHERE product_id = (SELECT product_id FROM products WHERE name = 'Laptop');"
+  },
+  {
+      "prompt": "List order items for 'Laptop'.",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "order_item_id",
+                  "product_id"
+              ]
+          },
+          "products": {
+              "columns": [
+                  "product_id",
+                  "name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM order_items WHERE product_id = (SELECT product_id FROM products WHERE name = 'Laptop');"
+  },
+  {
+      "prompt": "Orders containing more than 5 items?",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "order_id",
+                  "quantity"
+              ]
+          }
+      },
+      "query": "SELECT order_id, SUM(quantity) AS total_items FROM order_items GROUP BY order_id HAVING SUM(quantity) > 5;"
+  },
+  {
+      "prompt": "Show orders with more than 5 items.",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "order_id",
+                  "quantity"
+              ]
+          }
+      },
+      "query": "SELECT order_id, SUM(quantity) AS total_items FROM order_items GROUP BY order_id HAVING SUM(quantity) > 5;"
+  },
+  {
+      "prompt": "Revenue from 'Headphones'?",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "product_id",
+                  "quantity",
+                  "price"
+              ]
+          },
+          "products": {
+              "columns": [
+                  "product_id",
+                  "name"
+              ]
+          }
+      },
+      "query": "SELECT SUM(quantity * price) AS total_revenue FROM order_items WHERE product_id = (SELECT product_id FROM products WHERE name = 'Headphones');"
+  },
+  {
+      "prompt": "Total revenue generated by 'Headphones'?",
+      "context": {
+          "order_items": {
+              "columns": [
+                  "product_id",
+                  "quantity",
+                  "price"
+              ]
+          },
+          "products": {
+              "columns": [
+                  "product_id",
+                  "name"
+              ]
+          }
+      },
+      "query": "SELECT SUM(quantity * price) AS total_revenue FROM order_items WHERE product_id = (SELECT product_id FROM products WHERE name = 'Headphones');"
+  },
+  {
+      "prompt": "List all reviews for the product 'Smartphone'.",
+      "context": {
+          "reviews": {
+              "columns": [
+                  "review_id",
+                  "product_id",
+                  "rating",
+                  "review_text",
+                  "review_date"
+              ]
+          },
+          "products": {
+              "columns": [
+                  "product_id",
+                  "name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM reviews WHERE product_id = (SELECT product_id FROM products WHERE name = 'Smartphone');"
+  },
+  {
+      "prompt": "Show ratings and reviews by user 'JohnDoe'.",
+      "context": {
+          "reviews": {
+              "columns": [
+                  "review_id",
+                  "user_id",
+                  "rating",
+                  "review_text"
+              ]
+          },
+          "users": {
+              "columns": [
+                  "user_id",
+                  "username"
+              ]
+          }
+      },
+      "query": "SELECT rating, review_text FROM reviews WHERE user_id = (SELECT user_id FROM users WHERE username = 'JohnDoe');"
+  },
+  {
+      "prompt": "Which reviews have a 5-star rating?",
+      "context": {
+          "reviews": {
+              "columns": [
+                  "review_id",
+                  "rating"
+              ]
+          }
+      },
+      "query": "SELECT * FROM reviews WHERE rating = 5;"
+  },
+  {
+      "prompt": "Products with more than 10 reviews?",
+      "context": {
+          "reviews": {
+              "columns": [
+                  "review_id",
+                  "product_id"
+              ]
+          }
+      },
+      "query": "SELECT product_id, COUNT(*) AS review_count FROM reviews GROUP BY product_id HAVING COUNT(*) > 10;"
+  },
+  {
+      "prompt": "Average rating of the product 'Gaming Laptop'?",
+      "context": {
+          "reviews": {
+              "columns": [
+                  "product_id",
+                  "rating"
+              ]
+          },
+          "products": {
+              "columns": [
+                  "product_id",
+                  "name"
+              ]
+          }
+      },
+      "query": "SELECT AVG(rating) AS average_rating FROM reviews WHERE product_id = (SELECT product_id FROM products WHERE name = 'Gaming Laptop');"
+  },
+  {
+      "prompt": "Show reviews submitted last week.",
+      "context": {
+          "reviews": {
+              "columns": [
+                  "review_id",
+                  "review_date"
+              ]
+          }
+      },
+      "query": "SELECT * FROM reviews WHERE review_date >= SYSDATE - 7;"
+  },
+  {
+      "prompt": "Total reviews for each product?",
+      "context": {
+          "reviews": {
+              "columns": [
+                  "review_id",
+                  "product_id"
+              ]
+          }
+      },
+      "query": "SELECT product_id, COUNT(*) AS total_reviews FROM reviews GROUP BY product_id;"
+  },
+  {
+      "prompt": "Users who reviewed more than 5 products?",
+      "context": {
+          "reviews": {
+              "columns": [
+                  "review_id",
+                  "user_id"
+              ]
+          }
+      },
+      "query": "SELECT user_id, COUNT(DISTINCT product_id) AS products_reviewed FROM reviews GROUP BY user_id HAVING COUNT(DISTINCT product_id) > 5;"
+  },
+  {
+      "prompt": "Retrieve reviews for 'Smartphone' and their ratings.",
+      "context": {
+          "reviews": {
+              "columns": [
+                  "review_id",
+                  "product_id",
+                  "rating",
+                  "review_text"
+              ]
+          },
+          "products": {
+              "columns": [
+                  "product_id",
+                  "name"
+              ]
+          }
+      },
+      "query": "SELECT rating, review_text FROM reviews WHERE product_id = (SELECT product_id FROM products WHERE name = 'Smartphone');"
+  },
+  {
+      "prompt": "List all 5-star reviews.",
+      "context": {
+          "reviews": {
+              "columns": [
+                  "review_id",
+                  "rating"
+              ]
+          }
+      },
+      "query": "SELECT * FROM reviews WHERE rating = 5;"
+  },
+  {
+      "prompt": "List all active coupons and their discount percentages.",
+      "context": {
+          "coupons": {
+              "columns": [
+                  "coupon_id",
+                  "code",
+                  "discount_percentage",
+                  "expiration_date"
+              ]
+          }
+      },
+      "query": "SELECT code, discount_percentage FROM coupons WHERE expiration_date >= SYSDATE;"
+  },
+  {
+      "prompt": "Retrieve details of expired coupons.",
+      "context": {
+          "coupons": {
+              "columns": [
+                  "coupon_id",
+                  "code",
+                  "discount_percentage",
+                  "expiration_date"
+              ]
+          }
+      },
+      "query": "SELECT * FROM coupons WHERE expiration_date < SYSDATE;"
+  },
+  {
+      "prompt": "Show all coupons with a discount of more than 20%.",
+      "context": {
+          "coupons": {
+              "columns": [
+                  "coupon_id",
+                  "code",
+                  "discount_percentage"
+              ]
+          }
+      },
+      "query": "SELECT * FROM coupons WHERE discount_percentage > 20;"
+  },
+  {
+      "prompt": "Which coupons are set to expire in the next 7 days?",
+      "context": {
+          "coupons": {
+              "columns": [
+                  "coupon_id",
+                  "code",
+                  "expiration_date"
+              ]
+          }
+      },
+      "query": "SELECT * FROM coupons WHERE expiration_date BETWEEN SYSDATE AND SYSDATE + 7;"
+  },
+  {
+      "prompt": "List all coupons with usage limits greater than 100.",
+      "context": {
+          "coupons": {
+              "columns": [
+                  "coupon_id",
+                  "code",
+                  "usage_limit"
+              ]
+          }
+      },
+      "query": "SELECT * FROM coupons WHERE usage_limit > 100;"
+  },
+  {
+      "prompt": "Retrieve the code and expiration date of the coupon with ID 505.",
+      "context": {
+          "coupons": {
+              "columns": [
+                  "coupon_id",
+                  "code",
+                  "expiration_date"
+              ]
+          }
+      },
+      "query": "SELECT code, expiration_date FROM coupons WHERE coupon_id = 505;"
+  },
+  {
+      "prompt": "How many coupons are currently valid?",
+      "context": {
+          "coupons": {
+              "columns": [
+                  "coupon_id",
+                  "expiration_date"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS valid_coupons FROM coupons WHERE expiration_date >= SYSDATE;"
+  },
+  {
+      "prompt": "Category hierarchy starting with 'Electronics'?",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name",
+                  "parent_category_id"
+              ]
+          }
+      },
+      "query": "SELECT category_name FROM categories START WITH category_name = 'Electronics' CONNECT BY PRIOR category_id = parent_category_id;"
+  },
+  {
+      "prompt": "Show hierarchy for 'Electronics' category.",
+      "context": {
+          "categories": {
+              "columns": [
+                  "category_id",
+                  "category_name",
+                  "parent_category_id"
+              ]
+          }
+      },
+      "query": "SELECT category_name FROM categories START WITH category_name = 'Electronics' CONNECT BY PRIOR category_id = parent_category_id;"
+  },
+  {
+      "prompt": "Show the total number of times each coupon has been used.",
+      "context": {
+          "coupons": {
+              "columns": [
+                  "coupon_id",
+                  "code"
+              ]
+          },
+          "orders": {
+              "columns": [
+                  "order_id",
+                  "coupon_id"
+              ]
+          }
+      },
+      "query": "SELECT c.code, COUNT(o.coupon_id) AS total_usage FROM coupons c LEFT JOIN orders o ON c.coupon_id = o.coupon_id GROUP BY c.code;"
+  }
+]

@@ -1,0 +1,2390 @@
+[
+  {
+      "prompt": "List all patients and their contact information.",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "phone",
+                  "email",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, phone, email, address FROM patients;"
+  },
+  {
+      "prompt": "Retrieve the details of all patients along with their contact numbers and addresses.",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "phone",
+                  "email",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, phone, email, address FROM patients;"
+  },
+  {
+      "prompt": "Who are the patients born before 1980?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "dob"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, dob FROM patients WHERE dob < TO_DATE('1980-01-01', 'YYYY-MM-DD');"
+  },
+  {
+      "prompt": "Show emergency contact details for all patients.",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "emergency_contact"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, emergency_contact FROM patients;"
+  },
+  {
+      "prompt": "Retrieve the emergency contacts of all patients.",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "emergency_contact"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, emergency_contact FROM patients;"
+  },
+  {
+      "prompt": "Which patients live in 'New York'?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, address FROM patients WHERE address LIKE '%New York%';"
+  },
+  {
+      "prompt": "List all patients whose address is in 'New York.'",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, address FROM patients WHERE address LIKE '%New York%';"
+  },
+  {
+      "prompt": "Retrieve the email addresses of all patients.",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "email"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, email FROM patients;"
+  },
+  {
+      "prompt": "What are the email addresses of all patients?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "email"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, email FROM patients;"
+  },
+  {
+      "prompt": "What is the phone number of the patient named 'John Doe'?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "phone"
+              ]
+          }
+      },
+      "query": "SELECT phone FROM patients WHERE first_name = 'John' AND last_name = 'Doe';"
+  },
+  {
+      "prompt": "Retrieve the phone number of 'John Doe.'",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "phone"
+              ]
+          }
+      },
+      "query": "SELECT phone FROM patients WHERE first_name = 'John' AND last_name = 'Doe';"
+  },
+  {
+      "prompt": "List all male patients in the database.",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "gender"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM patients WHERE gender = 'Male';"
+  },
+  {
+      "prompt": "Who are the male patients listed in the system?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "gender"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM patients WHERE gender = 'Male';"
+  },
+  {
+      "prompt": "Retrieve details of patients who don\u00e2\u20ac\u2122t have an emergency contact listed.",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "emergency_contact"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM patients WHERE emergency_contact IS NULL;"
+  },
+  {
+      "prompt": "Which patients are missing emergency contact details?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "emergency_contact"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM patients WHERE emergency_contact IS NULL;"
+  },
+  {
+      "prompt": "List patients and contacts.",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "phone",
+                  "email",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, phone, email, address FROM patients;"
+  },
+  {
+      "prompt": "Show all patient details.",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "phone",
+                  "email",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, phone, email, address FROM patients;"
+  },
+  {
+      "prompt": "Patients born before 1980?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "dob"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, dob FROM patients WHERE dob < TO_DATE('1980-01-01', 'YYYY-MM-DD');"
+  },
+  {
+      "prompt": "Emergency contacts for all.",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "emergency_contact"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, emergency_contact FROM patients;"
+  },
+  {
+      "prompt": "List emergency numbers.",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "emergency_contact"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, emergency_contact FROM patients;"
+  },
+  {
+      "prompt": "Who lives in 'New York'?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, address FROM patients WHERE address LIKE '%New York%';"
+  },
+  {
+      "prompt": "Patients from 'New York'?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "address"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, address FROM patients WHERE address LIKE '%New York%';"
+  },
+  {
+      "prompt": "Get all emails.",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "email"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, email FROM patients;"
+  },
+  {
+      "prompt": "Emails of patients?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "email"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, email FROM patients;"
+  },
+  {
+      "prompt": "Phone number for 'John Doe'?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "phone"
+              ]
+          }
+      },
+      "query": "SELECT phone FROM patients WHERE first_name = 'John' AND last_name = 'Doe';"
+  },
+  {
+      "prompt": "Contact for 'John Doe'?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "phone"
+              ]
+          }
+      },
+      "query": "SELECT phone FROM patients WHERE first_name = 'John' AND last_name = 'Doe';"
+  },
+  {
+      "prompt": "Male patients?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "gender"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM patients WHERE gender = 'Male';"
+  },
+  {
+      "prompt": "List all males.",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "gender"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM patients WHERE gender = 'Male';"
+  },
+  {
+      "prompt": "Who lacks emergency contacts?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "emergency_contact"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM patients WHERE emergency_contact IS NULL;"
+  },
+  {
+      "prompt": "Patients with no emergency number?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name",
+                  "emergency_contact"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM patients WHERE emergency_contact IS NULL;"
+  },
+  {
+      "prompt": "Today's appointments?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "doctor_id",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE appointment_date = TRUNC(SYSDATE);"
+  },
+  {
+      "prompt": "Appointments scheduled for today?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "doctor_id",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE appointment_date = TRUNC(SYSDATE);"
+  },
+  {
+      "prompt": "Show completed appointments.",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "doctor_id",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE status = 'Completed';"
+  },
+  {
+      "prompt": "Completed appointments?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "doctor_id",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE status = 'Completed';"
+  },
+  {
+      "prompt": "Pending appointments?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "doctor_id",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE status = 'Pending';"
+  },
+  {
+      "prompt": "Show pending appointments.",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "doctor_id",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE status = 'Pending';"
+  },
+  {
+      "prompt": "Appointments for 'Jane Smith'?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "appointment_date",
+                  "status",
+                  "reason"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'Jane' AND last_name = 'Smith');"
+  },
+  {
+      "prompt": "Show 'Jane Smith's' appointments.",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "appointment_date",
+                  "status",
+                  "reason"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'Jane' AND last_name = 'Smith');"
+  },
+  {
+      "prompt": "Reason for 'John Doe's' last appointment?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "appointment_date",
+                  "reason"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT reason FROM appointments WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'John' AND last_name = 'Doe') ORDER BY appointment_date DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "Appointments with Dr. 'Emily Brown'?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "doctor_id",
+                  "appointment_date",
+                  "status"
+              ]
+          },
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE doctor_id = (SELECT doctor_id FROM doctors WHERE first_name = 'Emily' AND last_name = 'Brown');"
+  },
+  {
+      "prompt": "Next 7 days' appointments?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE appointment_date BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE) + 7;"
+  },
+  {
+      "prompt": "Upcoming appointments in 7 days?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE appointment_date BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE) + 7;"
+  },
+  {
+      "prompt": "Notes from last month's appointments?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date",
+                  "notes"
+              ]
+          }
+      },
+      "query": "SELECT notes FROM appointments WHERE EXTRACT(MONTH FROM appointment_date) = EXTRACT(MONTH FROM ADD_MONTHS(SYSDATE, -1));"
+  },
+  {
+      "prompt": "Appointments canceled last week?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE status = 'Canceled' AND appointment_date BETWEEN TRUNC(SYSDATE) - 7 AND TRUNC(SYSDATE);"
+  },
+  {
+      "prompt": "Canceled appointments this past week?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE status = 'Canceled' AND appointment_date BETWEEN TRUNC(SYSDATE) - 7 AND TRUNC(SYSDATE);"
+  },
+  {
+      "prompt": "Appointments for 'Routine Checkup'?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "reason",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE reason = 'Routine Checkup';"
+  },
+  {
+      "prompt": "Which appointments are today?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "doctor_id",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE appointment_date = TRUNC(SYSDATE);"
+  },
+  {
+      "prompt": "Show all today's bookings.",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "doctor_id",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE appointment_date = TRUNC(SYSDATE);"
+  },
+  {
+      "prompt": "Find completed visits.",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "doctor_id",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE status = 'Completed';"
+  },
+  {
+      "prompt": "Retrieve all finished appointments.",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "doctor_id",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE status = 'Completed';"
+  },
+  {
+      "prompt": "Are there any pending visits?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "doctor_id",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE status = 'Pending';"
+  },
+  {
+      "prompt": "List all open appointments.",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "doctor_id",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE status = 'Pending';"
+  },
+  {
+      "prompt": "Appointments of 'Jane Smith'?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "appointment_date",
+                  "status",
+                  "reason"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'Jane' AND last_name = 'Smith');"
+  },
+  {
+      "prompt": "Which bookings are for 'Jane Smith'?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "appointment_date",
+                  "status",
+                  "reason"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'Jane' AND last_name = 'Smith');"
+  },
+  {
+      "prompt": "Last visit reason for 'John Doe'?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "appointment_date",
+                  "reason"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT reason FROM appointments WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'John' AND last_name = 'Doe') ORDER BY appointment_date DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "Get the last visit reason of 'John Doe.'",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id",
+                  "appointment_date",
+                  "reason"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT reason FROM appointments WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'John' AND last_name = 'Doe') ORDER BY appointment_date DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+      "prompt": "Bookings with Dr. 'Emily Brown'?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "doctor_id",
+                  "appointment_date",
+                  "status"
+              ]
+          },
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE doctor_id = (SELECT doctor_id FROM doctors WHERE first_name = 'Emily' AND last_name = 'Brown');"
+  },
+  {
+      "prompt": "Find visits with Dr. 'Emily Brown.'",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "doctor_id",
+                  "appointment_date",
+                  "status"
+              ]
+          },
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE doctor_id = (SELECT doctor_id FROM doctors WHERE first_name = 'Emily' AND last_name = 'Brown');"
+  },
+  {
+      "prompt": "Upcoming bookings in 7 days?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE appointment_date BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE) + 7;"
+  },
+  {
+      "prompt": "What are the next week's bookings?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE appointment_date BETWEEN TRUNC(SYSDATE) AND TRUNC(SYSDATE) + 7;"
+  },
+  {
+      "prompt": "Last month's appointment notes?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date",
+                  "notes"
+              ]
+          }
+      },
+      "query": "SELECT notes FROM appointments WHERE EXTRACT(MONTH FROM appointment_date) = EXTRACT(MONTH FROM ADD_MONTHS(SYSDATE, -1));"
+  },
+  {
+      "prompt": "Find notes from past month's visits.",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date",
+                  "notes"
+              ]
+          }
+      },
+      "query": "SELECT notes FROM appointments WHERE EXTRACT(MONTH FROM appointment_date) = EXTRACT(MONTH FROM ADD_MONTHS(SYSDATE, -1));"
+  },
+  {
+      "prompt": "Canceled visits last week?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE status = 'Canceled' AND appointment_date BETWEEN TRUNC(SYSDATE) - 7 AND TRUNC(SYSDATE);"
+  },
+  {
+      "prompt": "List appointments canceled this week.",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE status = 'Canceled' AND appointment_date BETWEEN TRUNC(SYSDATE) - 7 AND TRUNC(SYSDATE);"
+  },
+  {
+      "prompt": "Visits for 'Routine Checkup'?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "reason",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT * FROM appointments WHERE reason = 'Routine Checkup';"
+  },
+  {
+      "prompt": "List all doctors and their specializations.",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "specialization"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, specialization FROM doctors;"
+  },
+  {
+      "prompt": "Show all doctors with their specialties.",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "specialization"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, specialization FROM doctors;"
+  },
+  {
+      "prompt": "Retrieve contact info for 'Cardiology' doctors.",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "specialization",
+                  "phone",
+                  "email"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, phone, email FROM doctors WHERE specialization = 'Cardiology';"
+  },
+  {
+      "prompt": "Contact details of 'Cardiology' department doctors?",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "specialization",
+                  "phone",
+                  "email"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, phone, email FROM doctors WHERE specialization = 'Cardiology';"
+  },
+  {
+      "prompt": "Doctors' hire dates in the hospital?",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "hire_date"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, hire_date FROM doctors;"
+  },
+  {
+      "prompt": "When were all doctors hired?",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "hire_date"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, hire_date FROM doctors;"
+  },
+  {
+      "prompt": "Doctors hired before 2015?",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "hire_date"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, hire_date FROM doctors WHERE hire_date < TO_DATE('2015-01-01', 'YYYY-MM-DD');"
+  },
+  {
+      "prompt": "Find all doctors employed prior to 2015.",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "hire_date"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, hire_date FROM doctors WHERE hire_date < TO_DATE('2015-01-01', 'YYYY-MM-DD');"
+  },
+  {
+      "prompt": "Doctors in the 'Pediatrics' department?",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "specialization",
+                  "department_id"
+              ]
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM doctors WHERE department_id = (SELECT department_id FROM departments WHERE department_name = 'Pediatrics');"
+  },
+  {
+      "prompt": "List all 'Pediatrics' doctors.",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "specialization",
+                  "department_id"
+              ]
+          },
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM doctors WHERE department_id = (SELECT department_id FROM departments WHERE department_name = 'Pediatrics');"
+  },
+  {
+      "prompt": "Phone numbers of 'Orthopedics' doctors?",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "specialization",
+                  "phone"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, phone FROM doctors WHERE specialization = 'Orthopedics';"
+  },
+  {
+      "prompt": "Get contacts for doctors in 'Orthopedics'.",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "specialization",
+                  "phone"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name, phone FROM doctors WHERE specialization = 'Orthopedics';"
+  },
+  {
+      "prompt": "Who heads the 'Neurology' department?",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "head_doctor_id"
+              ]
+          },
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM doctors WHERE doctor_id = (SELECT head_doctor_id FROM departments WHERE department_name = 'Neurology');"
+  },
+  {
+      "prompt": "Neurology department lead doctor?",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "head_doctor_id"
+              ]
+          },
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM doctors WHERE doctor_id = (SELECT head_doctor_id FROM departments WHERE department_name = 'Neurology');"
+  },
+  {
+      "prompt": "Doctors with over 10 years experience?",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "hire_date"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM doctors WHERE hire_date < ADD_MONTHS(SYSDATE, -120);"
+  },
+  {
+      "prompt": "Who has been working for more than 10 years?",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "hire_date"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM doctors WHERE hire_date < ADD_MONTHS(SYSDATE, -120);"
+  },
+  {
+      "prompt": "List prescriptions from the last 30 days.",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "appointment_id",
+                  "medicine_name",
+                  "dosage",
+                  "frequency",
+                  "start_date",
+                  "end_date"
+              ]
+          }
+      },
+      "query": "SELECT * FROM prescriptions WHERE start_date >= TRUNC(SYSDATE) - 30;"
+  },
+  {
+      "prompt": "Prescriptions issued in the past month?",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "appointment_id",
+                  "medicine_name",
+                  "dosage",
+                  "frequency",
+                  "start_date",
+                  "end_date"
+              ]
+          }
+      },
+      "query": "SELECT * FROM prescriptions WHERE start_date >= TRUNC(SYSDATE) - 30;"
+  },
+  {
+      "prompt": "Prescriptions for 'Jane Smith'?",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "appointment_id",
+                  "medicine_name",
+                  "dosage",
+                  "frequency",
+                  "start_date",
+                  "end_date"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          },
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id"
+              ]
+          }
+      },
+      "query": "SELECT * FROM prescriptions WHERE appointment_id IN (SELECT appointment_id FROM appointments WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'Jane' AND last_name = 'Smith'));"
+  },
+  {
+      "prompt": "Retrieve prescriptions for 'Jane Smith'.",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "appointment_id",
+                  "medicine_name",
+                  "dosage",
+                  "frequency",
+                  "start_date",
+                  "end_date"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          },
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id"
+              ]
+          }
+      },
+      "query": "SELECT * FROM prescriptions WHERE appointment_id IN (SELECT appointment_id FROM appointments WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'Jane' AND last_name = 'Smith'));"
+  },
+  {
+      "prompt": "Which prescriptions include 'Paracetamol'?",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "medicine_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM prescriptions WHERE medicine_name = 'Paracetamol';"
+  },
+  {
+      "prompt": "Prescriptions for 'Paracetamol'?",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "medicine_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM prescriptions WHERE medicine_name = 'Paracetamol';"
+  },
+  {
+      "prompt": "Show prescriptions for Dr. 'Emily Brown'.",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "appointment_id",
+                  "medicine_name"
+              ]
+          },
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "doctor_id"
+              ]
+          },
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM prescriptions WHERE appointment_id IN (SELECT appointment_id FROM appointments WHERE doctor_id = (SELECT doctor_id FROM doctors WHERE first_name = 'Emily' AND last_name = 'Brown'));"
+  },
+  {
+      "prompt": "List prescriptions for appointments with Dr. 'Emily Brown'.",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "appointment_id",
+                  "medicine_name"
+              ]
+          },
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "doctor_id"
+              ]
+          },
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM prescriptions WHERE appointment_id IN (SELECT appointment_id FROM appointments WHERE doctor_id = (SELECT doctor_id FROM doctors WHERE first_name = 'Emily' AND last_name = 'Brown'));"
+  },
+  {
+      "prompt": "Dosage and frequency for 'John Doe's medicine?",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "appointment_id",
+                  "medicine_name",
+                  "dosage",
+                  "frequency"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          },
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id"
+              ]
+          }
+      },
+      "query": "SELECT dosage, frequency FROM prescriptions WHERE appointment_id IN (SELECT appointment_id FROM appointments WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'John' AND last_name = 'Doe'));"
+  },
+  {
+      "prompt": "Active prescriptions?",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "medicine_name",
+                  "end_date"
+              ]
+          }
+      },
+      "query": "SELECT * FROM prescriptions WHERE end_date > TRUNC(SYSDATE);"
+  },
+  {
+      "prompt": "Which prescriptions are still active?",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "medicine_name",
+                  "end_date"
+              ]
+          }
+      },
+      "query": "SELECT * FROM prescriptions WHERE end_date > TRUNC(SYSDATE);"
+  },
+  {
+      "prompt": "Medicines prescribed more than twice this month?",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "medicine_name",
+                  "start_date"
+              ]
+          }
+      },
+      "query": "SELECT medicine_name FROM prescriptions WHERE start_date >= TRUNC(SYSDATE, 'MM') GROUP BY medicine_name HAVING COUNT(*) > 2;"
+  },
+  {
+      "prompt": "Find medicines prescribed frequently this month.",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "medicine_name",
+                  "start_date"
+              ]
+          }
+      },
+      "query": "SELECT medicine_name FROM prescriptions WHERE start_date >= TRUNC(SYSDATE, 'MM') GROUP BY medicine_name HAVING COUNT(*) > 2;"
+  },
+  {
+      "prompt": "Prescriptions for last week's appointments?",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "appointment_id",
+                  "medicine_name"
+              ]
+          },
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date"
+              ]
+          }
+      },
+      "query": "SELECT * FROM prescriptions WHERE appointment_id IN (SELECT appointment_id FROM appointments WHERE appointment_date BETWEEN TRUNC(SYSDATE) - 7 AND TRUNC(SYSDATE));"
+  },
+  {
+      "prompt": "Show prescriptions from last week's bookings.",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "appointment_id",
+                  "medicine_name"
+              ]
+          },
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date"
+              ]
+          }
+      },
+      "query": "SELECT * FROM prescriptions WHERE appointment_id IN (SELECT appointment_id FROM appointments WHERE appointment_date BETWEEN TRUNC(SYSDATE) - 7 AND TRUNC(SYSDATE));"
+  },
+  {
+      "prompt": "Lab tests conducted in the last 7 days?",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "test_name",
+                  "test_date",
+                  "result",
+                  "technician_id"
+              ]
+          }
+      },
+      "query": "SELECT * FROM labs WHERE test_date BETWEEN TRUNC(SYSDATE) - 7 AND TRUNC(SYSDATE);"
+  },
+  {
+      "prompt": "List all lab tests from last week.",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "test_name",
+                  "test_date",
+                  "result",
+                  "technician_id"
+              ]
+          }
+      },
+      "query": "SELECT * FROM labs WHERE test_date BETWEEN TRUNC(SYSDATE) - 7 AND TRUNC(SYSDATE);"
+  },
+  {
+      "prompt": "Lab results for 'Jane Smith'?",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "appointment_id",
+                  "test_name",
+                  "result"
+              ]
+          },
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT test_name, result FROM labs WHERE appointment_id IN (SELECT appointment_id FROM appointments WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'Jane' AND last_name = 'Smith'));"
+  },
+  {
+      "prompt": "Retrieve lab results for 'Jane Smith'.",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "appointment_id",
+                  "test_name",
+                  "result"
+              ]
+          },
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "patient_id"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT test_name, result FROM labs WHERE appointment_id IN (SELECT appointment_id FROM appointments WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'Jane' AND last_name = 'Smith'));"
+  },
+  {
+      "prompt": "Tests scheduled for tomorrow?",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "test_name",
+                  "test_date"
+              ]
+          }
+      },
+      "query": "SELECT * FROM labs WHERE test_date = TRUNC(SYSDATE) + 1;"
+  },
+  {
+      "prompt": "Lab tests scheduled for the next day.",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "test_name",
+                  "test_date"
+              ]
+          }
+      },
+      "query": "SELECT * FROM labs WHERE test_date = TRUNC(SYSDATE) + 1;"
+  },
+  {
+      "prompt": "Results for appointment on '2023-12-01'?",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "appointment_id",
+                  "test_name",
+                  "result"
+              ]
+          },
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date"
+              ]
+          }
+      },
+      "query": "SELECT test_name, result FROM labs WHERE appointment_id = (SELECT appointment_id FROM appointments WHERE appointment_date = TO_DATE('2023-12-01', 'YYYY-MM-DD'));"
+  },
+  {
+      "prompt": "Lab test details for the 2023-12-01 appointment.",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "appointment_id",
+                  "test_name",
+                  "result"
+              ]
+          },
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date"
+              ]
+          }
+      },
+      "query": "SELECT test_name, result FROM labs WHERE appointment_id = (SELECT appointment_id FROM appointments WHERE appointment_date = TO_DATE('2023-12-01', 'YYYY-MM-DD'));"
+  },
+  {
+      "prompt": "Technicians for last month's tests?",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "test_date",
+                  "technician_id"
+              ]
+          }
+      },
+      "query": "SELECT technician_id FROM labs WHERE EXTRACT(MONTH FROM test_date) = EXTRACT(MONTH FROM ADD_MONTHS(SYSDATE, -1));"
+  },
+  {
+      "prompt": "Who conducted lab tests last month?",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "test_date",
+                  "technician_id"
+              ]
+          }
+      },
+      "query": "SELECT technician_id FROM labs WHERE EXTRACT(MONTH FROM test_date) = EXTRACT(MONTH FROM ADD_MONTHS(SYSDATE, -1));"
+  },
+  {
+      "prompt": "Lab tests under Dr. 'Emily Brown'?",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "appointment_id",
+                  "test_name"
+              ]
+          },
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "doctor_id"
+              ]
+          },
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM labs WHERE appointment_id IN (SELECT appointment_id FROM appointments WHERE doctor_id = (SELECT doctor_id FROM doctors WHERE first_name = 'Emily' AND last_name = 'Brown'));"
+  },
+  {
+      "prompt": "Tests related to 'Blood Work'?",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "test_name",
+                  "result"
+              ]
+          }
+      },
+      "query": "SELECT * FROM labs WHERE test_name = 'Blood Work';"
+  },
+  {
+      "prompt": "Show all tests for 'Blood Work'.",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "test_name",
+                  "result"
+              ]
+          }
+      },
+      "query": "SELECT * FROM labs WHERE test_name = 'Blood Work';"
+  },
+  {
+      "prompt": "Medical records for 'John Doe'?",
+      "context": {
+          "medical_records": {
+              "columns": [
+                  "record_id",
+                  "patient_id",
+                  "record_date",
+                  "diagnosis",
+                  "treatment_plan"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM medical_records WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'John' AND last_name = 'Doe');"
+  },
+  {
+      "prompt": "Retrieve diagnosis and treatment for all patients.",
+      "context": {
+          "medical_records": {
+              "columns": [
+                  "record_id",
+                  "diagnosis",
+                  "treatment_plan"
+              ]
+          }
+      },
+      "query": "SELECT diagnosis, treatment_plan FROM medical_records;"
+  },
+  {
+      "prompt": "Show all medical records from last year.",
+      "context": {
+          "medical_records": {
+              "columns": [
+                  "record_id",
+                  "record_date",
+                  "diagnosis",
+                  "treatment_plan"
+              ]
+          }
+      },
+      "query": "SELECT * FROM medical_records WHERE record_date >= ADD_MONTHS(TRUNC(SYSDATE, 'YYYY'), -12);"
+  },
+  {
+      "prompt": "Who has a diagnosis of 'Diabetes'?",
+      "context": {
+          "medical_records": {
+              "columns": [
+                  "record_id",
+                  "patient_id",
+                  "diagnosis"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM patients WHERE patient_id IN (SELECT patient_id FROM medical_records WHERE diagnosis = 'Diabetes');"
+  },
+  {
+      "prompt": "Treatment plans for 'Hypertension' diagnosis?",
+      "context": {
+          "medical_records": {
+              "columns": [
+                  "record_id",
+                  "diagnosis",
+                  "treatment_plan"
+              ]
+          }
+      },
+      "query": "SELECT treatment_plan FROM medical_records WHERE diagnosis = 'Hypertension';"
+  },
+  {
+      "prompt": "List all records without treatment plans.",
+      "context": {
+          "medical_records": {
+              "columns": [
+                  "record_id",
+                  "treatment_plan"
+              ]
+          }
+      },
+      "query": "SELECT * FROM medical_records WHERE treatment_plan IS NULL;"
+  },
+  {
+      "prompt": "Records created before 2020?",
+      "context": {
+          "medical_records": {
+              "columns": [
+                  "record_id",
+                  "record_date"
+              ]
+          }
+      },
+      "query": "SELECT * FROM medical_records WHERE record_date < TO_DATE('2020-01-01', 'YYYY-MM-DD');"
+  },
+  {
+      "prompt": "Latest record for 'Jane Smith'?",
+      "context": {
+          "medical_records": {
+              "columns": [
+                  "record_id",
+                  "patient_id",
+                  "record_date",
+                  "diagnosis",
+                  "treatment_plan"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM medical_records WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'Jane' AND last_name = 'Smith') AND record_date = (SELECT MAX(record_date) FROM medical_records WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'Jane' AND last_name = 'Smith'));"
+  },
+  {
+      "prompt": "Show treatment plans for patients with 'Hypertension'.",
+      "context": {
+          "medical_records": {
+              "columns": [
+                  "record_id",
+                  "diagnosis",
+                  "treatment_plan"
+              ]
+          }
+      },
+      "query": "SELECT treatment_plan FROM medical_records WHERE diagnosis = 'Hypertension';"
+  },
+  {
+      "prompt": "Who has no treatment plan assigned?",
+      "context": {
+          "medical_records": {
+              "columns": [
+                  "record_id",
+                  "patient_id",
+                  "treatment_plan"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM patients WHERE patient_id IN (SELECT patient_id FROM medical_records WHERE treatment_plan IS NULL);"
+  },
+  {
+      "prompt": "Which records were added before 2020?",
+      "context": {
+          "medical_records": {
+              "columns": [
+                  "record_id",
+                  "record_date"
+              ]
+          }
+      },
+      "query": "SELECT * FROM medical_records WHERE record_date < TO_DATE('2020-01-01', 'YYYY-MM-DD');"
+  },
+  {
+      "prompt": "Most recent record for patient 'Jane Smith'.",
+      "context": {
+          "medical_records": {
+              "columns": [
+                  "record_id",
+                  "patient_id",
+                  "record_date",
+                  "diagnosis",
+                  "treatment_plan"
+              ]
+          },
+          "patients": {
+              "columns": [
+                  "patient_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM medical_records WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'Jane' AND last_name = 'Smith') AND record_date = (SELECT MAX(record_date) FROM medical_records WHERE patient_id = (SELECT patient_id FROM patients WHERE first_name = 'Jane' AND last_name = 'Smith'));"
+  },
+  {
+      "prompt": "List all hospital departments and their budgets.",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "budget"
+              ]
+          }
+      },
+      "query": "SELECT department_name, budget FROM departments;"
+  },
+  {
+      "prompt": "Show department names and budgets.",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "budget"
+              ]
+          }
+      },
+      "query": "SELECT department_name, budget FROM departments;"
+  },
+  {
+      "prompt": "Who heads each department?",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "head_doctor_id"
+              ]
+          },
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT department_name, (SELECT first_name || ' ' || last_name FROM doctors WHERE doctor_id = head_doctor_id) AS head_doctor FROM departments;"
+  },
+  {
+      "prompt": "Retrieve department heads.",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "head_doctor_id"
+              ]
+          },
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT department_name, (SELECT first_name || ' ' || last_name FROM doctors WHERE doctor_id = head_doctor_id) AS head_doctor FROM departments;"
+  },
+  {
+      "prompt": "Departments with budgets over $1,000,000?",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "budget"
+              ]
+          }
+      },
+      "query": "SELECT department_name, budget FROM departments WHERE budget > 1000000;"
+  },
+  {
+      "prompt": "Show departments with high budgets.",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "budget"
+              ]
+          }
+      },
+      "query": "SELECT department_name, budget FROM departments WHERE budget > 1000000;"
+  },
+  {
+      "prompt": "Doctors in 'Radiology'?",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ]
+          },
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "department_id"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM doctors WHERE department_id = (SELECT department_id FROM departments WHERE department_name = 'Radiology');"
+  },
+  {
+      "prompt": "Doctors working in 'Radiology'.",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name"
+              ]
+          },
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name",
+                  "department_id"
+              ]
+          }
+      },
+      "query": "SELECT first_name, last_name FROM doctors WHERE department_id = (SELECT department_id FROM departments WHERE department_name = 'Radiology');"
+  },
+  {
+      "prompt": "Number of hospital departments?",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_departments FROM departments;"
+  },
+  {
+      "prompt": "Total departments in the hospital?",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_departments FROM departments;"
+  },
+  {
+      "prompt": "Department led by Dr. 'Emily Brown'?",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "head_doctor_id"
+              ]
+          },
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM departments WHERE head_doctor_id = (SELECT doctor_id FROM doctors WHERE first_name = 'Emily' AND last_name = 'Brown');"
+  },
+  {
+      "prompt": "Show details for Dr. 'Emily Brown's department.",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "head_doctor_id"
+              ]
+          },
+          "doctors": {
+              "columns": [
+                  "doctor_id",
+                  "first_name",
+                  "last_name"
+              ]
+          }
+      },
+      "query": "SELECT * FROM departments WHERE head_doctor_id = (SELECT doctor_id FROM doctors WHERE first_name = 'Emily' AND last_name = 'Brown');"
+  },
+  {
+      "prompt": "How many patients are registered in the hospital?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_patients FROM patients;"
+  },
+  {
+      "prompt": "Total registered patients?",
+      "context": {
+          "patients": {
+              "columns": [
+                  "patient_id"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_patients FROM patients;"
+  },
+  {
+      "prompt": "Retrieve the total number of appointments conducted this year.",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_appointments FROM appointments WHERE appointment_date >= TO_DATE('2023-01-01', 'YYYY-MM-DD') AND status = 'Completed';"
+  },
+  {
+      "prompt": "How many appointments were completed this year?",
+      "context": {
+          "appointments": {
+              "columns": [
+                  "appointment_id",
+                  "appointment_date",
+                  "status"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_appointments FROM appointments WHERE appointment_date >= TO_DATE('2023-01-01', 'YYYY-MM-DD') AND status = 'Completed';"
+  },
+  {
+      "prompt": "How many doctors are working in the hospital?",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_doctors FROM doctors;"
+  },
+  {
+      "prompt": "Total number of doctors?",
+      "context": {
+          "doctors": {
+              "columns": [
+                  "doctor_id"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_doctors FROM doctors;"
+  },
+  {
+      "prompt": "Show the total number of prescriptions issued last month.",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "start_date"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_prescriptions FROM prescriptions WHERE start_date BETWEEN ADD_MONTHS(TRUNC(SYSDATE, 'MM'), -1) AND TRUNC(SYSDATE, 'MM') - 1;"
+  },
+  {
+      "prompt": "Prescriptions issued last month?",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "start_date"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_prescriptions FROM prescriptions WHERE start_date BETWEEN ADD_MONTHS(TRUNC(SYSDATE, 'MM'), -1) AND TRUNC(SYSDATE, 'MM') - 1;"
+  },
+  {
+      "prompt": "What is the average budget of all departments?",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "budget"
+              ]
+          }
+      },
+      "query": "SELECT AVG(budget) AS average_budget FROM departments;"
+  },
+  {
+      "prompt": "Average budget for departments?",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "budget"
+              ]
+          }
+      },
+      "query": "SELECT AVG(budget) AS average_budget FROM departments;"
+  },
+  {
+      "prompt": "How many lab tests have been conducted this week?",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "test_date"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_lab_tests FROM labs WHERE test_date BETWEEN TRUNC(SYSDATE, 'IW') AND SYSDATE;"
+  },
+  {
+      "prompt": "Lab tests conducted this week?",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "test_date"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_lab_tests FROM labs WHERE test_date BETWEEN TRUNC(SYSDATE, 'IW') AND SYSDATE;"
+  },
+  {
+      "prompt": "Show the total number of active prescriptions.",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "end_date"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_active_prescriptions FROM prescriptions WHERE end_date > SYSDATE;"
+  },
+  {
+      "prompt": "How many active prescriptions are there?",
+      "context": {
+          "prescriptions": {
+              "columns": [
+                  "prescription_id",
+                  "end_date"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_active_prescriptions FROM prescriptions WHERE end_date > SYSDATE;"
+  },
+  {
+      "prompt": "How many medical records were created this year?",
+      "context": {
+          "medical_records": {
+              "columns": [
+                  "record_id",
+                  "record_date"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_medical_records FROM medical_records WHERE record_date >= TO_DATE('2023-01-01', 'YYYY-MM-DD');"
+  },
+  {
+      "prompt": "Medical records created this year?",
+      "context": {
+          "medical_records": {
+              "columns": [
+                  "record_id",
+                  "record_date"
+              ]
+          }
+      },
+      "query": "SELECT COUNT(*) AS total_medical_records FROM medical_records WHERE record_date >= TO_DATE('2023-01-01', 'YYYY-MM-DD');"
+  },
+  {
+      "prompt": "Positive lab test results?",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "test_name",
+                  "result"
+              ]
+          }
+      },
+      "query": "SELECT * FROM labs WHERE DBMS_LOB.SUBSTR(result, 4000) = 'Positive';"
+  },
+  {
+      "prompt": "Find all lab tests marked 'Positive'.",
+      "context": {
+          "labs": {
+              "columns": [
+                  "lab_id",
+                  "test_name",
+                  "result"
+              ]
+          }
+      },
+      "query": "SELECT * FROM labs WHERE DBMS_LOB.SUBSTR(result, 4000) = 'Positive';"
+  },
+  {
+      "prompt": "Departments created in the last 5 years?",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "budget",
+                  "created_at"
+              ]
+          }
+      },
+      "query": "SELECT department_name FROM departments WHERE created_at >= ADD_MONTHS(SYSDATE, -60);"
+  },
+  {
+      "prompt": "Which departments are recent?",
+      "context": {
+          "departments": {
+              "columns": [
+                  "department_id",
+                  "department_name",
+                  "budget",
+                  "created_at"
+              ]
+          }
+      },
+      "query": "SELECT department_name FROM departments WHERE created_at >= ADD_MONTHS(SYSDATE, -60);"
+  }
+]
