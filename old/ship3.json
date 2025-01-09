@@ -1,0 +1,2541 @@
+[
+  {
+    "prompt": "List all ships and their current status.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, status FROM ships;"
+  },
+  {
+    "prompt": "Retrieve the details of ships built before the year 2000.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT * FROM ships WHERE build_year < 2000;"
+  },
+  {
+    "prompt": "What are the inspection scores of all AI-enabled ships?",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, inspection_score FROM ships WHERE ai_enabled = 'TRUE';"
+  },
+  {
+    "prompt": "List all ships currently under repair.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      },
+      "repairs": {
+        "columns": [
+          "repair_id",
+          "ship_id",
+          "start_date",
+          "end_date",
+          "status",
+          "total_cost",
+          "supervisor_id",
+          "priority_level"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT s.name FROM ships s JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';"
+  },
+  {
+    "prompt": "Retrieve the names and locations of all operational ships.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, location FROM ships WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "How many ships are owned by each owner?",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT owner, COUNT(*) AS ship_count FROM ships GROUP BY owner;"
+  },
+  {
+    "prompt": "List all ships of type 'cargo' and their last maintenance dates.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, last_maintenance_date FROM ships WHERE type = 'cargo';"
+  },
+  {
+    "prompt": "What is the average inspection score of all ships?",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT AVG(inspection_score) AS average_score FROM ships;"
+  },
+  {
+    "prompt": "Show me all ships along with their status.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, status FROM ships;"
+  },
+  {
+    "prompt": "What is the current status of all the ships?",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, status FROM ships;"
+  },
+  {
+    "prompt": "Retrieve a list of ships and their operational statuses.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, status FROM ships;"
+  },
+  {
+    "prompt": "Give me the names and statuses of all the ships in the database.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, status FROM ships;"
+  },
+  {
+    "prompt": "Display all ships with their statuses.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, status FROM ships;"
+  },
+  {
+    "prompt": "Retrieve the details of ships built before the year 2001.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT * FROM ships WHERE build_year < 2001;"
+  },
+  {
+    "prompt": "Show all ship information for ships constructed before 1990.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT * FROM ships WHERE build_year < 1990;"
+  },
+  {
+    "prompt": "Which ships were built before the year 1999? Provide their details.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT * FROM ships WHERE build_year < 1999;"
+  },
+  {
+    "prompt": "List all ships that were built prior to 2010.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT * FROM ships WHERE build_year < 2010;"
+  },
+  {
+    "prompt": "Retrieve details for ships constructed earlier than the year 2006.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT * FROM ships WHERE build_year < 2006;"
+  },
+  {
+    "prompt": "Get all information about ships built before 2000.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT * FROM ships WHERE build_year < 2000;"
+  },
+  {
+    "prompt": "Show the inspection scores of AI-equipped ships.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, inspection_score FROM ships WHERE ai_enabled = 'TRUE';"
+  },
+  {
+    "prompt": "List the inspection ratings for all ships with AI integration.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, inspection_score FROM ships WHERE ai_enabled = 'TRUE';"
+  },
+  {
+    "prompt": "Retrieve inspection scores for ships that are AI-enabled.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, inspection_score FROM ships WHERE ai_enabled = 'TRUE';"
+  },
+  {
+    "prompt": "What are the inspection ratings of all ships with AI capabilities?",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, inspection_score FROM ships WHERE ai_enabled = 'TRUE';"
+  },
+  {
+    "prompt": "Display inspection scores for every AI-enabled ship.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, inspection_score FROM ships WHERE ai_enabled = 'TRUE';"
+  },
+  {
+    "prompt": "List all employees and their salaries.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, salary FROM employees;"
+  },
+  {
+    "prompt": "Show me all employees along with their salaries.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, salary FROM employees;"
+  },
+  {
+    "prompt": "Retrieve the details of employees in the 'Engineering' department.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name", "budget", "head_id"]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, e.salary FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Engineering';"
+  },
+  {
+    "prompt": "Who are the employees certified in 'AI Maintenance'?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name FROM employees WHERE certifications LIKE '%AI Maintenance%';"
+  },
+  {
+    "prompt": "List all employees who are certified in 'AI Maintenance'.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name FROM employees WHERE certifications LIKE '%AI Maintenance%';"
+  },
+  {
+    "prompt": "What is the average salary of employees across all departments?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      }
+    },
+    "query": "SELECT AVG(salary) AS average_salary FROM employees;"
+  },
+  {
+    "prompt": "Calculate the average salary of all employees.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      }
+    },
+    "query": "SELECT AVG(salary) AS average_salary FROM employees;"
+  },
+  {
+    "prompt": "List employees who have received a salary increment in the last year.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, increment_rate FROM employees WHERE increment_rate > 0;"
+  },
+  {
+    "prompt": "Retrieve all employees and their last training dates.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, last_training_date FROM employees;"
+  },
+  {
+    "prompt": "Show me the last training dates of all employees.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, last_training_date FROM employees;"
+  },
+  {
+    "prompt": "How many employees are currently unavailable?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      }
+    },
+    "query": "SELECT COUNT(*) AS unavailable_employees FROM employees WHERE availability_status = 'Unavailable';"
+  },
+  {
+    "prompt": "Count the number of employees who are currently unavailable.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      }
+    },
+    "query": "SELECT COUNT(*) AS unavailable_employees FROM employees WHERE availability_status = 'Unavailable';"
+  },
+  {
+    "prompt": "List employees assigned more than five tasks in the last month.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employee_tasks"
+        }
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date",
+          "completion_date"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, COUNT(et.task_id) AS task_count FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.assigned_date >= ADD_MONTHS(SYSDATE, -1) GROUP BY e.first_name, e.last_name HAVING COUNT(et.task_id) > 5;"
+  },
+  {
+    "prompt": "Who completed more than five tasks in the last month?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employee_tasks"
+        }
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date",
+          "completion_date"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, COUNT(et.task_id) AS task_count FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.assigned_date >= ADD_MONTHS(SYSDATE, -1) GROUP BY e.first_name, e.last_name HAVING COUNT(et.task_id) > 5;"
+  },
+  {
+    "prompt": "List all AI cameras that need servicing.",
+    "context": {
+      "ai_cameras": {
+        "columns": [
+          "camera_id",
+          "ship_id",
+          "location",
+          "status",
+          "last_service_date",
+          "repair_cost",
+          "task_assigned_id"
+        ]
+      }
+    },
+    "query": "SELECT camera_id, ship_id, location FROM ai_cameras WHERE status = 'Needs Servicing';"
+  },
+  {
+    "prompt": "Show me all AI cameras that require servicing.",
+    "context": {
+      "ai_cameras": {
+        "columns": [
+          "camera_id",
+          "ship_id",
+          "location",
+          "status",
+          "last_service_date",
+          "repair_cost",
+          "task_assigned_id"
+        ]
+      }
+    },
+    "query": "SELECT camera_id, ship_id, location FROM ai_cameras WHERE status = 'Needs Servicing';"
+  },
+  {
+    "prompt": "Retrieve details of all drones with battery status below 20%.",
+    "context": {
+      "drones": {
+        "columns": [
+          "drone_id",
+          "type",
+          "status",
+          "last_service_date",
+          "battery_status",
+          "repair_cost",
+          "inspection_count"
+        ]
+      }
+    },
+    "query": "SELECT drone_id, type, battery_status FROM drones WHERE battery_status < 20;"
+  },
+  {
+    "prompt": "Which drones have a battery status below 20%? Provide their details.",
+    "context": {
+      "drones": {
+        "columns": [
+          "drone_id",
+          "type",
+          "status",
+          "last_service_date",
+          "battery_status",
+          "repair_cost",
+          "inspection_count"
+        ]
+      }
+    },
+    "query": "SELECT drone_id, type, battery_status FROM drones WHERE battery_status < 20;"
+  },
+  {
+    "prompt": "What is the total repair cost for all trolleys this year?",
+    "context": {
+      "trolleys": {
+        "columns": [
+          "trolley_id",
+          "status",
+          "last_maintenance_date",
+          "repair_cost"
+        ]
+      },
+      "cost_tracking": {
+        "columns": [
+          "cost_id",
+          "type",
+          "description",
+          "amount",
+          "cost_date",
+          "related_id",
+          "related_type"
+        ]
+      }
+    },
+    "query": "SELECT SUM(repair_cost) AS total_repair_cost FROM trolleys WHERE EXTRACT(YEAR FROM last_maintenance_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+    "prompt": "Calculate the total repair cost of all trolleys for the current year.",
+    "context": {
+      "trolleys": {
+        "columns": [
+          "trolley_id",
+          "status",
+          "last_maintenance_date",
+          "repair_cost"
+        ]
+      },
+      "cost_tracking": {
+        "columns": [
+          "cost_id",
+          "type",
+          "description",
+          "amount",
+          "cost_date",
+          "related_id",
+          "related_type"
+        ]
+      }
+    },
+    "query": "SELECT SUM(repair_cost) AS total_repair_cost FROM trolleys WHERE EXTRACT(YEAR FROM last_maintenance_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+    "prompt": "List all sensors installed on the ship 'Poseidon' and their statuses.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      },
+      "sensors": {
+        "columns": [
+          "sensor_id",
+          "type",
+          "ship_id",
+          "location",
+          "status",
+          "data_collected",
+          "last_calibration_date"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT sensor_id, type, status FROM sensors WHERE ship_id = (SELECT ship_id FROM ships WHERE name = 'Poseidon');"
+  },
+  {
+    "prompt": "Retrieve all sensors and their statuses for the ship 'Poseidon'.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      },
+      "sensors": {
+        "columns": [
+          "sensor_id",
+          "type",
+          "ship_id",
+          "location",
+          "status",
+          "data_collected",
+          "last_calibration_date"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT sensor_id, type, status FROM sensors WHERE ship_id = (SELECT ship_id FROM ships WHERE name = 'Poseidon');"
+  },
+  {
+    "prompt": "Which machinery has exceeded its expected lifetime?",
+    "context": {
+      "machinery": {
+        "columns": [
+          "machinery_id",
+          "name",
+          "type",
+          "location",
+          "status",
+          "last_service_date",
+          "repair_cost",
+          "expected_lifetime"
+        ]
+      }
+    },
+    "query": "SELECT machinery_id, name, type FROM machinery WHERE SYSDATE > ADD_MONTHS(last_service_date, expected_lifetime * 12);"
+  },
+  {
+    "prompt": "List all machinery that has passed its expected lifetime.",
+    "context": {
+      "machinery": {
+        "columns": [
+          "machinery_id",
+          "name",
+          "type",
+          "location",
+          "status",
+          "last_service_date",
+          "repair_cost",
+          "expected_lifetime"
+        ]
+      }
+    },
+    "query": "SELECT machinery_id, name, type FROM machinery WHERE SYSDATE > ADD_MONTHS(last_service_date, expected_lifetime * 12);"
+  },
+  {
+    "prompt": "Retrieve the last maintenance dates of all cradles.",
+    "context": {
+      "cradles": {
+        "columns": [
+          "cradle_id",
+          "ship_id",
+          "status",
+          "inspection_date",
+          "repair_cost"
+        ]
+      }
+    },
+    "query": "SELECT cradle_id, inspection_date AS last_maintenance_date FROM cradles;"
+  },
+  {
+    "prompt": "When were all cradles last maintained?",
+    "context": {
+      "cradles": {
+        "columns": [
+          "cradle_id",
+          "ship_id",
+          "status",
+          "inspection_date",
+          "repair_cost"
+        ]
+      }
+    },
+    "query": "SELECT cradle_id, inspection_date AS last_maintenance_date FROM cradles;"
+  },
+  {
+    "prompt": "List all lifts with a capacity greater than 20 tons.",
+    "context": {
+      "lifts": {
+        "columns": [
+          "lift_id",
+          "type",
+          "status",
+          "capacity",
+          "last_inspection_date",
+          "inspection_cost"
+        ]
+      }
+    },
+    "query": "SELECT lift_id, type, capacity FROM lifts WHERE capacity > 20;"
+  },
+  {
+    "prompt": "Show all lifts that can carry more than 20 tons.",
+    "context": {
+      "lifts": {
+        "columns": [
+          "lift_id",
+          "type",
+          "status",
+          "capacity",
+          "last_inspection_date",
+          "inspection_cost"
+        ]
+      }
+    },
+    "query": "SELECT lift_id, type, capacity FROM lifts WHERE capacity > 20;"
+  },
+  {
+    "prompt": "How many AI cameras are operational across all ships?",
+    "context": {
+      "ai_cameras": {
+        "columns": [
+          "camera_id",
+          "ship_id",
+          "location",
+          "status",
+          "last_service_date",
+          "repair_cost",
+          "task_assigned_id"
+        ]
+      }
+    },
+    "query": "SELECT COUNT(*) AS operational_ai_cameras FROM ai_cameras WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "Count the number of operational AI cameras across ships.",
+    "context": {
+      "ai_cameras": {
+        "columns": [
+          "camera_id",
+          "ship_id",
+          "location",
+          "status",
+          "last_service_date",
+          "repair_cost",
+          "task_assigned_id"
+        ]
+      }
+    },
+    "query": "SELECT COUNT(*) AS operational_ai_cameras FROM ai_cameras WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "What is the total salary expense for the 'Engineering' department?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name", "budget", "head_id"]
+      }
+    },
+    "query": "SELECT SUM(e.salary) AS total_salary FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Engineering';"
+  },
+  {
+    "prompt": "Calculate the total salary of employees in the 'Engineering' department.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name", "budget", "head_id"]
+      }
+    },
+    "query": "SELECT SUM(e.salary) AS total_salary FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Engineering';"
+  },
+  {
+    "prompt": "Retrieve the total maintenance cost for all AI cameras and drones.",
+    "context": {
+      "ai_cameras": {
+        "columns": [
+          "camera_id",
+          "ship_id",
+          "location",
+          "status",
+          "last_service_date",
+          "repair_cost",
+          "task_assigned_id"
+        ]
+      },
+      "drones": {
+        "columns": [
+          "drone_id",
+          "type",
+          "status",
+          "last_service_date",
+          "battery_status",
+          "repair_cost",
+          "inspection_count"
+        ]
+      }
+    },
+    "query": "SELECT SUM(ai_cameras.repair_cost + drones.repair_cost) AS total_maintenance_cost FROM ai_cameras, drones;"
+  },
+  {
+    "prompt": "What is the combined repair cost for all AI cameras and drones?",
+    "context": {
+      "ai_cameras": {
+        "columns": [
+          "camera_id",
+          "ship_id",
+          "location",
+          "status",
+          "last_service_date",
+          "repair_cost",
+          "task_assigned_id"
+        ]
+      },
+      "drones": {
+        "columns": [
+          "drone_id",
+          "type",
+          "status",
+          "last_service_date",
+          "battery_status",
+          "repair_cost",
+          "inspection_count"
+        ]
+      }
+    },
+    "query": "SELECT SUM(ai_cameras.repair_cost + drones.repair_cost) AS total_maintenance_cost FROM ai_cameras, drones;"
+  },
+  {
+    "prompt": "What is the overall budget of each department?",
+    "context": {
+      "departments": {
+        "columns": ["department_id", "department_name", "budget", "head_id"]
+      }
+    },
+    "query": "SELECT department_name, budget FROM departments;"
+  },
+  {
+    "prompt": "List the budgets allocated for all departments.",
+    "context": {
+      "departments": {
+        "columns": ["department_id", "department_name", "budget", "head_id"]
+      }
+    },
+    "query": "SELECT department_name, budget FROM departments;"
+  },
+  {
+    "prompt": "How much has been spent on repair tasks for ship 'Poseidon'?",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time",
+          "cost",
+          "assigned_employee_id",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "repairs": {
+        "columns": [
+          "repair_id",
+          "ship_id",
+          "start_date",
+          "end_date",
+          "status",
+          "total_cost",
+          "supervisor_id",
+          "priority_level"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT SUM(rt.cost) AS total_repair_cost FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id WHERE s.name = 'Poseidon';"
+  },
+  {
+    "prompt": "What is the monthly maintenance cost for all sensors?",
+    "context": {
+      "sensors": {
+        "columns": [
+          "sensor_id",
+          "type",
+          "ship_id",
+          "location",
+          "status",
+          "data_collected",
+          "last_calibration_date"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT SUM(repair_cost) AS monthly_maintenance_cost FROM sensors WHERE EXTRACT(MONTH FROM last_calibration_date) = EXTRACT(MONTH FROM SYSDATE);"
+  },
+  {
+    "prompt": "Retrieve the highest and lowest repair costs this year.",
+    "context": {
+      "repairs": {
+        "columns": [
+          "repair_id",
+          "ship_id",
+          "start_date",
+          "end_date",
+          "status",
+          "total_cost",
+          "supervisor_id",
+          "priority_level"
+        ]
+      }
+    },
+    "query": "SELECT MAX(total_cost) AS highest_cost, MIN(total_cost) AS lowest_cost FROM repairs WHERE EXTRACT(YEAR FROM start_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+    "prompt": "What is the total cost of repairs conducted by each department?",
+    "context": {
+      "repairs": {
+        "columns": [
+          "repair_id",
+          "ship_id",
+          "start_date",
+          "end_date",
+          "status",
+          "total_cost",
+          "supervisor_id",
+          "priority_level"
+        ],
+        "foreign_keys": {
+          "supervisor_id": "employees"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name", "budget", "head_id"]
+      }
+    },
+    "query": "SELECT d.department_name, SUM(r.total_cost) AS total_repair_cost FROM repairs r JOIN employees e ON r.supervisor_id = e.employee_id JOIN departments d ON e.department_id = d.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "List the most expensive repair conducted in the last year.",
+    "context": {
+      "repairs": {
+        "columns": [
+          "repair_id",
+          "ship_id",
+          "start_date",
+          "end_date",
+          "status",
+          "total_cost",
+          "supervisor_id",
+          "priority_level"
+        ]
+      }
+    },
+    "query": "SELECT repair_id, total_cost FROM repairs WHERE start_date >= ADD_MONTHS(SYSDATE, -12) ORDER BY total_cost DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+    "prompt": "Retrieve predictive maintenance insights for the ship 'Poseidon'.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      },
+      "ai_insights": {
+        "columns": [
+          "insight_id",
+          "ship_id",
+          "generated_date",
+          "category",
+          "prediction",
+          "confidence_score"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT category, prediction, confidence_score FROM ai_insights WHERE ship_id = (SELECT ship_id FROM ships WHERE name = 'Poseidon');"
+  },
+  {
+    "prompt": "What are the predictive maintenance insights for the ship 'Poseidon'?",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      },
+      "ai_insights": {
+        "columns": [
+          "insight_id",
+          "ship_id",
+          "generated_date",
+          "category",
+          "prediction",
+          "confidence_score"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT category, prediction, confidence_score FROM ai_insights WHERE ship_id = (SELECT ship_id FROM ships WHERE name = 'Poseidon');"
+  },
+  {
+    "prompt": "Which ships are predicted to require repairs in the next 30 days?",
+    "context": {
+      "ai_insights": {
+        "columns": [
+          "insight_id",
+          "ship_id",
+          "generated_date",
+          "category",
+          "prediction",
+          "confidence_score"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT s.name FROM ships s JOIN ai_insights ai ON s.ship_id = ai.ship_id WHERE ai.prediction = 'Repairs Needed' AND ai.generated_date >= SYSDATE AND ai.generated_date <= SYSDATE + 30;"
+  },
+  {
+    "prompt": "List ships that need repairs within the next month according to AI predictions.",
+    "context": {
+      "ai_insights": {
+        "columns": [
+          "insight_id",
+          "ship_id",
+          "generated_date",
+          "category",
+          "prediction",
+          "confidence_score"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT s.name FROM ships s JOIN ai_insights ai ON s.ship_id = ai.ship_id WHERE ai.prediction = 'Repairs Needed' AND ai.generated_date >= SYSDATE AND ai.generated_date <= SYSDATE + 30;"
+  },
+  {
+    "prompt": "What is the confidence score of all AI predictions made this month?",
+    "context": {
+      "ai_insights": {
+        "columns": [
+          "insight_id",
+          "ship_id",
+          "generated_date",
+          "category",
+          "prediction",
+          "confidence_score"
+        ]
+      }
+    },
+    "query": "SELECT prediction, confidence_score FROM ai_insights WHERE EXTRACT(MONTH FROM generated_date) = EXTRACT(MONTH FROM SYSDATE);"
+  },
+  {
+    "prompt": "Retrieve AI insights categorized under 'structural damage.'",
+    "context": {
+      "ai_insights": {
+        "columns": [
+          "insight_id",
+          "ship_id",
+          "generated_date",
+          "category",
+          "prediction",
+          "confidence_score"
+        ]
+      }
+    },
+    "query": "SELECT ship_id, prediction, confidence_score FROM ai_insights WHERE category = 'Structural Damage';"
+  },
+  {
+    "prompt": "Which ships have an inspection score below 50?",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, inspection_score FROM ships WHERE inspection_score < 50;"
+  },
+  {
+    "prompt": "List all ships with inspection scores under 50.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, inspection_score FROM ships WHERE inspection_score < 50;"
+  },
+  {
+    "prompt": "List the top three recommendations from AI for reducing repair costs.",
+    "context": {
+      "ai_insights": {
+        "columns": [
+          "insight_id",
+          "ship_id",
+          "generated_date",
+          "category",
+          "prediction",
+          "confidence_score"
+        ]
+      }
+    },
+    "query": "SELECT prediction FROM ai_insights WHERE category = 'Repair Cost Reduction' ORDER BY confidence_score DESC FETCH FIRST 3 ROWS ONLY;"
+  },
+  {
+    "prompt": "What percentage of AI predictions were accurate in the last year?",
+    "context": {
+      "ai_insights": {
+        "columns": [
+          "insight_id",
+          "ship_id",
+          "generated_date",
+          "category",
+          "prediction",
+          "confidence_score"
+        ]
+      }
+    },
+    "query": "SELECT (COUNT(CASE WHEN confidence_score >= 0.8 THEN 1 END) * 100 / COUNT(*)) AS accuracy_percentage FROM ai_insights WHERE generated_date >= ADD_MONTHS(SYSDATE, -12);"
+  },
+  {
+    "prompt": "Retrieve all predictive maintenance insights generated for drones.",
+    "context": {
+      "drones": {
+        "columns": [
+          "drone_id",
+          "type",
+          "status",
+          "last_service_date",
+          "battery_status",
+          "repair_cost",
+          "inspection_count"
+        ]
+      },
+      "ai_insights": {
+        "columns": [
+          "insight_id",
+          "ship_id",
+          "generated_date",
+          "category",
+          "prediction",
+          "confidence_score"
+        ]
+      }
+    },
+    "query": "SELECT ai.category, ai.prediction, ai.confidence_score FROM ai_insights ai JOIN drones d ON ai.ship_id = d.drone_id WHERE ai.category = 'Predictive Maintenance';"
+  },
+  {
+    "prompt": "List all current stages of ongoing workflows.",
+    "context": {
+      "workflows": {
+        "columns": [
+          "workflow_id",
+          "repair_id",
+          "current_stage",
+          "next_stage",
+          "status",
+          "start_date",
+          "end_date"
+        ]
+      }
+    },
+    "query": "SELECT workflow_id, current_stage FROM workflows WHERE status = 'In Progress';"
+  },
+  {
+    "prompt": "What are the current stages of all ongoing workflows?",
+    "context": {
+      "workflows": {
+        "columns": [
+          "workflow_id",
+          "repair_id",
+          "current_stage",
+          "next_stage",
+          "status",
+          "start_date",
+          "end_date"
+        ]
+      }
+    },
+    "query": "SELECT workflow_id, current_stage FROM workflows WHERE status = 'In Progress';"
+  },
+  {
+    "prompt": "Retrieve the next stages of all repair workflows in progress.",
+    "context": {
+      "workflows": {
+        "columns": [
+          "workflow_id",
+          "repair_id",
+          "current_stage",
+          "next_stage",
+          "status",
+          "start_date",
+          "end_date"
+        ]
+      }
+    },
+    "query": "SELECT workflow_id, next_stage FROM workflows WHERE status = 'In Progress';"
+  },
+  {
+    "prompt": "What are the next stages for all ongoing repair workflows?",
+    "context": {
+      "workflows": {
+        "columns": [
+          "workflow_id",
+          "repair_id",
+          "current_stage",
+          "next_stage",
+          "status",
+          "start_date",
+          "end_date"
+        ]
+      }
+    },
+    "query": "SELECT workflow_id, next_stage FROM workflows WHERE status = 'In Progress';"
+  },
+  {
+    "prompt": "How many repair workflows were completed last month?",
+    "context": {
+      "workflows": {
+        "columns": [
+          "workflow_id",
+          "repair_id",
+          "current_stage",
+          "next_stage",
+          "status",
+          "start_date",
+          "end_date"
+        ]
+      }
+    },
+    "query": "SELECT COUNT(*) AS completed_workflows FROM workflows WHERE status = 'Completed' AND EXTRACT(MONTH FROM end_date) = EXTRACT(MONTH FROM SYSDATE) - 1;"
+  },
+  {
+    "prompt": "Retrieve the count of repair workflows completed in the last month.",
+    "context": {
+      "workflows": {
+        "columns": [
+          "workflow_id",
+          "repair_id",
+          "current_stage",
+          "next_stage",
+          "status",
+          "start_date",
+          "end_date"
+        ]
+      }
+    },
+    "query": "SELECT COUNT(*) AS completed_workflows FROM workflows WHERE status = 'Completed' AND EXTRACT(MONTH FROM end_date) = EXTRACT(MONTH FROM SYSDATE) - 1;"
+  },
+  {
+    "prompt": "List all tasks assigned to 'John Doe' and their statuses.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time",
+          "cost",
+          "assigned_employee_id",
+          "status"
+        ]
+      }
+    },
+    "query": "SELECT rt.task_name, rt.status FROM repair_tasks rt JOIN employees e ON rt.assigned_employee_id = e.employee_id WHERE e.first_name = 'John' AND e.last_name = 'Doe';"
+  },
+  {
+    "prompt": "What is the average time taken to complete a repair workflow?",
+    "context": {
+      "workflows": {
+        "columns": [
+          "workflow_id",
+          "repair_id",
+          "current_stage",
+          "next_stage",
+          "status",
+          "start_date",
+          "end_date"
+        ]
+      }
+    },
+    "query": "SELECT AVG(end_date - start_date) AS average_completion_time FROM workflows WHERE status = 'Completed';"
+  },
+  {
+    "prompt": "Retrieve the status of all high-priority repair workflows.",
+    "context": {
+      "repairs": {
+        "columns": [
+          "repair_id",
+          "ship_id",
+          "start_date",
+          "end_date",
+          "status",
+          "total_cost",
+          "supervisor_id",
+          "priority_level"
+        ]
+      },
+      "workflows": {
+        "columns": [
+          "workflow_id",
+          "repair_id",
+          "current_stage",
+          "next_stage",
+          "status",
+          "start_date",
+          "end_date"
+        ]
+      }
+    },
+    "query": "SELECT w.workflow_id, w.status FROM workflows w JOIN repairs r ON w.repair_id = r.repair_id WHERE r.priority_level = 'High';"
+  },
+  {
+    "prompt": "List all workflows that started but have no assigned end date.",
+    "context": {
+      "workflows": {
+        "columns": [
+          "workflow_id",
+          "repair_id",
+          "current_stage",
+          "next_stage",
+          "status",
+          "start_date",
+          "end_date"
+        ]
+      }
+    },
+    "query": "SELECT workflow_id, current_stage FROM workflows WHERE end_date IS NULL;"
+  },
+  {
+    "prompt": "Retrieve details of tasks that were reassigned mid-workflow.",
+    "context": {
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time",
+          "cost",
+          "assigned_employee_id",
+          "status"
+        ]
+      }
+    },
+    "query": "SELECT task_id, task_name, repair_id FROM repair_tasks WHERE status = 'Reassigned';"
+  },
+  {
+    "prompt": "List all employees who completed training in the last 6 months.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      },
+      "employee_training": {
+        "columns": [
+          "training_id",
+          "employee_id",
+          "training_name",
+          "certification",
+          "completion_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN employee_training et ON e.employee_id = et.employee_id WHERE et.completion_date >= ADD_MONTHS(SYSDATE, -6);"
+  },
+  {
+    "prompt": "Which employees are certified in 'Drone Maintenance'?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name FROM employees WHERE certifications LIKE '%Drone Maintenance%';"
+  },
+  {
+    "prompt": "Retrieve the certifications of employees in the 'Repair' department.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name", "budget", "head_id"]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, e.certifications FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Repair';"
+  },
+  {
+    "prompt": "How many employees have certifications in more than three categories?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      }
+    },
+    "query": "SELECT COUNT(*) AS certified_employees FROM employees WHERE LENGTH(certifications) - LENGTH(REPLACE(certifications, ',', '')) >= 3;"
+  },
+  {
+    "prompt": "List all employees with pending certifications.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      },
+      "employee_training": {
+        "columns": [
+          "training_id",
+          "employee_id",
+          "training_name",
+          "certification",
+          "completion_date"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e LEFT JOIN employee_training et ON e.employee_id = et.employee_id WHERE et.certification IS NULL;"
+  },
+  {
+    "prompt": "Retrieve the names of employees who attended the most training sessions this year.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      },
+      "employee_training": {
+        "columns": [
+          "training_id",
+          "employee_id",
+          "training_name",
+          "certification",
+          "completion_date"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, COUNT(et.training_id) AS training_count FROM employees e JOIN employee_training et ON e.employee_id = et.employee_id WHERE EXTRACT(YEAR FROM et.completion_date) = EXTRACT(YEAR FROM SYSDATE) GROUP BY e.first_name, e.last_name ORDER BY training_count DESC FETCH FIRST 1 ROW ONLY;"
+  },
+  {
+    "prompt": "Which certifications are most commonly held by employees?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      }
+    },
+    "query": "SELECT certifications, COUNT(*) AS certification_count FROM employees GROUP BY certifications ORDER BY certification_count DESC;"
+  },
+  {
+    "prompt": "What are the upcoming training sessions planned for the 'AI' department?",
+    "context": {
+      "employee_training": {
+        "columns": [
+          "training_id",
+          "employee_id",
+          "training_name",
+          "certification",
+          "completion_date"
+        ]
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name", "budget", "head_id"]
+      }
+    },
+    "query": "SELECT et.training_name, et.certification FROM employee_training et JOIN employees e ON et.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'AI' AND et.completion_date > SYSDATE;"
+  },
+  {
+    "prompt": "List all inspections conducted for ship 'Poseidon.'",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      },
+      "cradles": {
+        "columns": [
+          "cradle_id",
+          "ship_id",
+          "status",
+          "inspection_date",
+          "repair_cost"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT inspection_date, status FROM cradles WHERE ship_id = (SELECT ship_id FROM ships WHERE name = 'Poseidon');"
+  },
+  {
+    "prompt": "Retrieve the remarks of inspections conducted last month.",
+    "context": {
+      "cradles": {
+        "columns": [
+          "cradle_id",
+          "ship_id",
+          "status",
+          "inspection_date",
+          "repair_cost"
+        ]
+      }
+    },
+    "query": "SELECT inspection_date, status FROM cradles WHERE EXTRACT(MONTH FROM inspection_date) = EXTRACT(MONTH FROM SYSDATE) - 1;"
+  },
+  {
+    "prompt": "Which employees conducted inspections this year?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      },
+      "cradles": {
+        "columns": [
+          "cradle_id",
+          "ship_id",
+          "status",
+          "inspection_date",
+          "repair_cost"
+        ]
+      }
+    },
+    "query": "SELECT DISTINCT e.first_name, e.last_name FROM employees e JOIN cradles c ON e.employee_id = c.ship_id WHERE EXTRACT(YEAR FROM c.inspection_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+    "prompt": "List all ships with inspection scores below 60.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, inspection_score FROM ships WHERE inspection_score < 60;"
+  },
+  {
+    "prompt": "How many inspections are scheduled for the next 30 days?",
+    "context": {
+      "cradles": {
+        "columns": [
+          "cradle_id",
+          "ship_id",
+          "status",
+          "inspection_date",
+          "repair_cost"
+        ]
+      }
+    },
+    "query": "SELECT COUNT(*) AS scheduled_inspections FROM cradles WHERE inspection_date BETWEEN SYSDATE AND SYSDATE + 30;"
+  },
+  {
+    "prompt": "Retrieve the inspection costs for all cradles.",
+    "context": {
+      "cradles": {
+        "columns": [
+          "cradle_id",
+          "ship_id",
+          "status",
+          "inspection_date",
+          "repair_cost"
+        ]
+      }
+    },
+    "query": "SELECT cradle_id, repair_cost FROM cradles;"
+  },
+  {
+    "prompt": "List inspection details for all lifts in 'operational' status.",
+    "context": {
+      "machinery": {
+        "columns": [
+          "machinery_id",
+          "name",
+          "type",
+          "location",
+          "status",
+          "last_service_date",
+          "repair_cost",
+          "expected_lifetime"
+        ]
+      }
+    },
+    "query": "SELECT machinery_id, name, last_service_date FROM machinery WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "How many inspections have been conducted for drones?",
+    "context": {
+      "drones": {
+        "columns": [
+          "drone_id",
+          "type",
+          "status",
+          "last_service_date",
+          "battery_status",
+          "repair_cost",
+          "inspection_count"
+        ]
+      }
+    },
+    "query": "SELECT SUM(inspection_count) AS total_drone_inspections FROM drones;"
+  },
+  {
+    "prompt": "List all inspections conducted for the ship 'Neptune.'",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      },
+      "cradles": {
+        "columns": [
+          "cradle_id",
+          "ship_id",
+          "status",
+          "inspection_date",
+          "repair_cost"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT inspection_date, status FROM cradles WHERE ship_id = (SELECT ship_id FROM ships WHERE name = 'Neptune');"
+  },
+  {
+    "prompt": "Show me all inspections for ships built before 2010.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      },
+      "cradles": {
+        "columns": [
+          "cradle_id",
+          "ship_id",
+          "status",
+          "inspection_date",
+          "repair_cost"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT c.inspection_date, c.status FROM cradles c JOIN ships s ON c.ship_id = s.ship_id WHERE s.build_year < 2010;"
+  },
+  {
+    "prompt": "Which inspections have a status of 'Pending'?",
+    "context": {
+      "cradles": {
+        "columns": [
+          "cradle_id",
+          "ship_id",
+          "status",
+          "inspection_date",
+          "repair_cost"
+        ]
+      }
+    },
+    "query": "SELECT cradle_id, inspection_date FROM cradles WHERE status = 'Pending';"
+  },
+  {
+    "prompt": "List all operational ships with inspection scores above 80.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, inspection_score FROM ships WHERE status = 'Operational' AND inspection_score > 80;"
+  },
+  {
+    "prompt": "How many inspections were conducted on cradles this year?",
+    "context": {
+      "cradles": {
+        "columns": [
+          "cradle_id",
+          "ship_id",
+          "status",
+          "inspection_date",
+          "repair_cost"
+        ]
+      }
+    },
+    "query": "SELECT COUNT(*) AS cradle_inspections FROM cradles WHERE EXTRACT(YEAR FROM inspection_date) = EXTRACT(YEAR FROM SYSDATE);"
+  },
+  {
+    "prompt": "Retrieve details of inspections conducted on drones with low battery status.",
+    "context": {
+      "drones": {
+        "columns": [
+          "drone_id",
+          "type",
+          "status",
+          "last_service_date",
+          "battery_status",
+          "repair_cost",
+          "inspection_count"
+        ]
+      }
+    },
+    "query": "SELECT drone_id, inspection_count FROM drones WHERE battery_status < 20;"
+  },
+  {
+    "prompt": "Show inspection remarks for all AI cameras on the ship 'Titanic.'",
+    "context": {
+      "ai_cameras": {
+        "columns": [
+          "camera_id",
+          "ship_id",
+          "location",
+          "status",
+          "last_service_date",
+          "repair_cost",
+          "task_assigned_id"
+        ]
+      },
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT camera_id, status FROM ai_cameras WHERE ship_id = (SELECT ship_id FROM ships WHERE name = 'Titanic');"
+  },
+  {
+    "prompt": "List the inspection ratings for all ships without AI integration.",
+    "context": {
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT name, inspection_score FROM ships WHERE ai_enabled = 'FALSE';"
+  },
+  {
+    "prompt": "List all ships inspected by employees certified in 'Structural Analysis.'",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date",
+          "certifications",
+          "increment_rate",
+          "last_training_date"
+        ]
+      },
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      },
+      "cradles": {
+        "columns": [
+          "cradle_id",
+          "ship_id",
+          "status",
+          "inspection_date",
+          "repair_cost"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT DISTINCT s.name FROM ships s JOIN cradles c ON s.ship_id = c.ship_id JOIN employees e ON c.ship_id = e.employee_id WHERE e.certifications LIKE '%Structural Analysis%';"
+  },
+  {
+    "prompt": "What is the total cost of inspections conducted in the last quarter?",
+    "context": {
+      "cost_tracking": {
+        "columns": [
+          "cost_id",
+          "type",
+          "description",
+          "amount",
+          "cost_date",
+          "related_id",
+          "related_type"
+        ]
+      }
+    },
+    "query": "SELECT SUM(amount) AS total_inspection_cost FROM cost_tracking WHERE type = 'Inspection' AND cost_date >= ADD_MONTHS(SYSDATE, -3);"
+  },
+  {
+    "prompt": "Retrieve the inspection schedules for all trolleys.",
+    "context": {
+      "trolleys": {
+        "columns": [
+          "trolley_id",
+          "status",
+          "last_maintenance_date",
+          "repair_cost"
+        ]
+      }
+    },
+    "query": "SELECT trolley_id, last_maintenance_date FROM trolleys WHERE status = 'Scheduled';"
+  },
+  {
+    "prompt": "Show the inspection dates and statuses for all sensors on the ship 'Endeavour.'",
+    "context": {
+      "sensors": {
+        "columns": [
+          "sensor_id",
+          "type",
+          "ship_id",
+          "location",
+          "status",
+          "data_collected",
+          "last_calibration_date"
+        ]
+      },
+      "ships": {
+        "columns": [
+          "ship_id",
+          "name",
+          "owner",
+          "type",
+          "build_year",
+          "status",
+          "location",
+          "ai_enabled",
+          "inspection_score",
+          "last_maintenance_date"
+        ]
+      }
+    },
+    "query": "SELECT sensor_id, last_calibration_date, status FROM sensors WHERE ship_id = (SELECT ship_id FROM ships WHERE name = 'Endeavour');"
+  }
+]

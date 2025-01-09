@@ -1,0 +1,203 @@
+Prompt: List all active members and their contact details.
+Processed Query: SELECT first_name, last_name, email, phone, address FROM members WHERE membership_status = 'Active'
+('John', 'Doe', 'john.doe@example.com', '1234567890', '123 Elm Street')
+('Jane', 'Smith', 'jane.smith@example.com', '0987654321', '456 Oak Avenue')
+----------------------------------------
+Prompt: Retrieve members who joined in the last 6 months.
+Processed Query: SELECT first_name, last_name, email FROM members WHERE join_date >= ADD_MONTHS(SYSDATE, -6)
+No results found.
+----------------------------------------
+Prompt: Show all members with overdue borrowed books.
+Processed Query: SELECT first_name, last_name FROM members WHERE member_id IN (SELECT member_id FROM borrowed_books WHERE return_date IS NULL AND due_date < SYSDATE)
+('John', 'Doe')
+----------------------------------------
+Prompt: Which members have borrowed more than 5 books?
+Processed Query: SELECT first_name, last_name FROM members WHERE member_id IN (SELECT member_id FROM borrowed_books GROUP BY member_id HAVING COUNT(*) > 5)
+No results found.
+----------------------------------------
+Prompt: Retrieve the membership status of the member with email 'john.doe@example.com.'
+Processed Query: SELECT membership_status FROM members WHERE email = 'john.doe@example.com'
+('Active',)
+----------------------------------------
+Prompt: List all members who have made a reservation but haven’t borrowed a book.
+Processed Query: SELECT first_name, last_name FROM members WHERE member_id IN (SELECT member_id FROM reservations) AND member_id NOT IN (SELECT member_id FROM borrowed_books)
+('Alice', 'Brown')
+----------------------------------------
+Prompt: How many members are currently inactive?
+Processed Query: SELECT COUNT(*) AS inactive_members FROM members WHERE membership_status = 'Inactive'
+(1,)
+----------------------------------------
+Prompt: Show the total number of members in the library.
+Processed Query: SELECT COUNT(*) AS total_members FROM members
+(3,)
+----------------------------------------
+Prompt: List all books and their availability.
+Processed Query: SELECT title, available_copies FROM books
+('Python Programming', 7)
+('Data Science Basics', 2)
+('Advanced SQL', 6)
+----------------------------------------
+Prompt: Retrieve the details of books written by 'Agatha Christie.'
+Processed Query: SELECT * FROM books WHERE author = 'Agatha Christie'
+No results found.
+----------------------------------------
+Prompt: Show books published before 2000.
+Processed Query: SELECT title, publication_year FROM books WHERE publication_year < 2000
+No results found.
+----------------------------------------
+Prompt: Which books belong to the genre 'Science Fiction'?
+Processed Query: SELECT title FROM books WHERE genre = 'Science Fiction'
+No results found.
+----------------------------------------
+Prompt: Retrieve the ISBN and publisher of the book with ID 102.
+Processed Query: SELECT isbn, publisher FROM books WHERE book_id = 102
+No results found.
+----------------------------------------
+Prompt: Retrieve the ISBN and publisher of the book with id 102.
+Processed Query: SELECT isbn, publisher FROM books WHERE book_id = 102
+No results found.
+----------------------------------------
+Prompt: How many copies of the book 'The Great Gatsby' are available?
+Processed Query: SELECT available_copies FROM books WHERE title = 'The Great Gatsby'
+No results found.
+----------------------------------------
+Prompt: List all books with less than 5 copies available.
+Processed Query: SELECT title, available_copies FROM books WHERE available_copies < 5
+('Data Science Basics', 2)
+----------------------------------------
+Prompt: Show the total number of books in each genre.
+Processed Query: SELECT genre, COUNT(*) AS total_books FROM books GROUP BY genre
+('Programming', 1)
+('Data Science', 1)
+('Databases', 1)
+----------------------------------------
+Prompt: List all borrowed books and their due dates.
+Processed Query: SELECT b.title, bb.due_date FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id
+('Python Programming', datetime.datetime(2023, 10, 15, 0, 0))
+('Data Science Basics', datetime.datetime(2023, 10, 5, 0, 0))
+----------------------------------------
+Prompt: Retrieve the details of books borrowed by the member 'Alice Johnson.'
+Processed Query: SELECT b.title, b.author, bb.borrow_date, bb.due_date FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id JOIN members m ON bb.member_id = m.member_id WHERE m.first_name = 'Alice' AND m.last_name = 'Johnson'
+No results found.
+----------------------------------------
+Prompt: Show all borrowed books that are overdue.
+Processed Query: SELECT b.title, bb.due_date FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id WHERE bb.due_date < SYSDATE AND bb.return_date IS NULL
+('Python Programming', datetime.datetime(2023, 10, 15, 0, 0))
+----------------------------------------
+Prompt: Which members have borrowed books in the last month?
+Processed Query: SELECT DISTINCT m.first_name, m.last_name FROM borrowed_books bb JOIN members m ON bb.member_id = m.member_id WHERE bb.borrow_date >= ADD_MONTHS(SYSDATE, -1)
+No results found.
+----------------------------------------
+Prompt: Retrieve the fine amount for the borrow with ID 301.
+Processed Query: SELECT fine_amount FROM borrowed_books WHERE borrow_id = 301
+No results found.
+----------------------------------------
+Prompt: How many books were borrowed in the 'Summer 2023' semester?
+Processed Query: SELECT COUNT(*) AS total_borrowed FROM borrowed_books WHERE TO_CHAR(borrow_date, 'YYYY') = '2023' AND TO_CHAR(borrow_date, 'MON') IN ('JUN', 'JUL', 'AUG')
+(0,)
+----------------------------------------
+Prompt: List all borrowed books with a fine greater than $10.
+Processed Query: SELECT b.title, bb.fine_amount FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id WHERE bb.fine_amount > 10
+No results found.
+----------------------------------------
+Prompt: Show all borrowed books that have been returned.
+Processed Query: SELECT b.title, bb.return_date FROM borrowed_books bb JOIN books b ON bb.book_id = b.book_id WHERE bb.return_date IS NOT NULL
+('Data Science Basics', datetime.datetime(2023, 10, 4, 0, 0))
+----------------------------------------
+Prompt: List all staff members and their roles.
+Processed Query: SELECT staff_id, first_name, last_name, role FROM staff
+(1, 'Robert', 'Johnson', 'Librarian')
+(2, 'Laura', 'Wilson', 'Assistant Librarian')
+----------------------------------------
+Prompt: Retrieve the details of staff hired in the last year.
+Processed Query: SELECT * FROM staff WHERE hire_date >= ADD_MONTHS(SYSDATE, -12)
+No results found.
+----------------------------------------
+Prompt: Show staff members with the role 'Librarian.'
+Processed Query: SELECT * FROM staff WHERE role = 'Librarian'
+(1, 'Robert', 'Johnson', 'robert.johnson@example.com', '7778889999', datetime.datetime(2015, 4, 20, 0, 0), 'Librarian')
+----------------------------------------
+Prompt: Retrieve the hire date of the staff member with email 'jane.smith@example.com.'
+Processed Query: SELECT hire_date FROM staff WHERE email = 'jane.smith@example.com'
+No results found.
+----------------------------------------
+Prompt: How many staff members are currently working in the library?
+Processed Query: SELECT COUNT(*) AS total_staff FROM staff
+(2,)
+----------------------------------------
+Prompt: List all staff with the role 'Administrator.'
+Processed Query: SELECT * FROM staff WHERE role = 'Administrator'
+No results found.
+----------------------------------------
+Prompt: Show the contact details of all staff hired before 2015.
+Processed Query: SELECT first_name, last_name, email, phone FROM staff WHERE hire_date < TO_DATE('2015-01-01', 'YYYY-MM-DD')
+No results found.
+----------------------------------------
+Prompt: List all publishers and their contact details.
+Processed Query: SELECT publisher_id, publisher_name, contact_email, contact_phone, address FROM publishers
+(1, 'Tech Books', 'contact@techbooks.com', '1112223333', '123 Tech Way')
+(2, 'Data Books', 'info@databooks.com', '4445556666', '456 Data Lane')
+----------------------------------------
+Prompt: Retrieve the names of books published by 'Penguin Random House.'
+Processed Query: SELECT title FROM books WHERE publisher = 'Penguin Random House'
+No results found.
+----------------------------------------
+Prompt: Show publishers with more than 10 books in the library.
+Processed Query: SELECT publisher, COUNT(*) AS book_count FROM books GROUP BY publisher HAVING COUNT(*) > 10
+No results found.
+----------------------------------------
+Prompt: Which publishers have books borrowed more than 50 times?
+Processed Query: SELECT b.publisher, COUNT(bb.borrow_id) AS borrow_count FROM books b JOIN borrowed_books bb ON b.book_id = bb.book_id GROUP BY b.publisher HAVING COUNT(bb.borrow_id) > 50
+No results found.
+----------------------------------------
+Prompt: Retrieve the contact email of the publisher with ID 501.
+Processed Query: SELECT contact_email FROM publishers WHERE publisher_id = 501
+No results found.
+----------------------------------------
+Prompt: How many publishers are associated with the library?
+Processed Query: SELECT COUNT(*) AS total_publishers FROM publishers
+(2,)
+----------------------------------------
+Prompt: List all publishers who have published books in the 'History' genre.
+Processed Query: SELECT DISTINCT publisher FROM books WHERE genre = 'History'
+No results found.
+----------------------------------------
+Prompt: Show the total number of books published by each publisher.
+Processed Query: SELECT publisher, COUNT(*) AS total_books FROM books GROUP BY publisher
+('Tech Books', 1)
+('Data Books', 1)
+('DB Books', 1)
+----------------------------------------
+Prompt: List all book reservations and their status.
+Processed Query: SELECT reservation_id, book_id, member_id, status FROM reservations
+(1, 3, 3, 'Reserved')
+(2, 2, 1, 'Cancelled')
+----------------------------------------
+Prompt: Retrieve the details of reservations made by 'David Brown.'
+Processed Query: SELECT * FROM reservations WHERE member_id = (SELECT member_id FROM members WHERE first_name = 'David' AND last_name = 'Brown')
+No results found.
+----------------------------------------
+Prompt: Show all reservations for the book '1984.'
+Processed Query: SELECT * FROM reservations WHERE book_id = (SELECT book_id FROM books WHERE title = '1984')
+No results found.
+----------------------------------------
+Prompt: Which reservations are still pending?
+Processed Query: SELECT * FROM reservations WHERE status = 'Pending'
+No results found.
+----------------------------------------
+Prompt: Retrieve the reservation date for the reservation with ID 402.
+Processed Query: SELECT reservation_date FROM reservations WHERE reservation_id = 402
+No results found.
+----------------------------------------
+Prompt: How many reservations were made in the last 30 days?
+Processed Query: SELECT COUNT(*) AS recent_reservations FROM reservations WHERE reservation_date >= ADD_MONTHS(SYSDATE, -1)
+(0,)
+----------------------------------------
+Prompt: List all reservations where the status is 'Cancelled.'
+Processed Query: SELECT * FROM reservations WHERE status = 'Cancelled'
+(2, 1, 2, datetime.datetime(2023, 10, 20, 0, 0), 'Cancelled')
+----------------------------------------
+Prompt: Show all reservations made by inactive members.
+Processed Query: SELECT * FROM reservations WHERE member_id IN (SELECT member_id FROM members WHERE membership_status = 'Inactive')
+(1, 3, 3, datetime.datetime(2023, 11, 1, 0, 0), 'Reserved')
+----------------------------------------

@@ -1,0 +1,30 @@
+[
+    {
+        "prompt": "Which staff members have processed more than 50 borrow transactions?",
+        "context": {
+            "staff": {
+                "columns": [
+                    "staff_id",
+                    "first_name",
+                    "last_name",
+                    "email",
+                    "phone",
+                    "hire_date",
+                    "role"
+                ]
+            },
+            "borrowed_books": {
+                "columns": [
+                    "borrow_id",
+                    "member_id",
+                    "book_id",
+                    "borrow_date",
+                    "due_date",
+                    "return_date",
+                    "fine_amount"
+                ]
+            }
+        },
+        "query": "SELECT s.first_name, s.last_name, COUNT(bb.borrow_id) AS total_borrowed FROM staff s JOIN borrowed_books bb ON s.staff_id = bb.staff_id GROUP BY s.staff_id, s.first_name, s.last_name HAVING COUNT(bb.borrow_id) > 50;"
+    }
+]

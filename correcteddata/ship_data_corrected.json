@@ -1,0 +1,5119 @@
+[
+  {
+    "prompt": "List all employees and their salaries.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, salary FROM employees;"
+  },
+  {
+    "prompt": "List all employees.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT * FROM employees;"
+  },
+  {
+    "prompt": "What is the total salary of all employees?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT SUM(salary) FROM employees;"
+  },
+  {
+    "prompt": "Retrieve the salary of all employees in ascending order.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT salary FROM employees ORDER BY salary ASC;"
+  },
+  {
+    "prompt": "Retrieve the salary of all employees in descending order.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT salary FROM employees ORDER BY salary DESC;"
+  },
+  {
+    "prompt": "Select all employees who are earning more than the average salary.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, salary FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);"
+  },
+  {
+    "prompt": "Select all employees who are earning below the average salary.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, salary FROM employees WHERE salary < (SELECT AVG(salary) FROM employees);"
+  },
+  {
+    "prompt": "Retrieve the salary of all employees in ascending order.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT salary FROM employees ORDER BY salary ASC;"
+  },
+  {
+    "prompt": "Retrieve the salary of all employees in descending order.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT salary FROM employees ORDER BY salary DESC;"
+  },
+  {
+    "prompt": "Select all employees who are earning more than the average salary.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, salary FROM employees WHERE salary > (SELECT AVG(salary) FROM employees);"
+  },
+  {
+    "prompt": "Select all employees who are earning below the average salary.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, salary FROM employees WHERE salary < (SELECT AVG(salary) FROM employees);"
+  },
+  {
+    "prompt": "Retrieve all employees and their joining dates.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, hire_date FROM employees;"
+  },
+  {
+    "prompt": "Retrieve all employees along with their years of experience.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, FLOOR(MONTHS_BETWEEN(SYSDATE, hire_date) / 12) AS years_of_experience FROM employees;"
+  },
+  {
+    "prompt": "Retrieve all employees who have more than 5 years of experience.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, FLOOR(MONTHS_BETWEEN(SYSDATE, hire_date) / 12) AS years_of_experience FROM employees WHERE FLOOR(MONTHS_BETWEEN(SYSDATE, hire_date) / 12) > 5;"
+  },
+  {
+    "prompt": "List all employees working in the Operations department.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Operations';"
+  },
+  {
+    "prompt": "List all ships currently under maintenance.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT name FROM ships WHERE status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "List all repair tasks for ships owned by 'Oceanic Co.'.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT rt.task_name, rt.description FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id WHERE s.owner = 'Oceanic Co.';"
+  },
+  {
+    "prompt": "Which employees are assigned to repair tasks?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id;"
+  },
+  {
+    "prompt": "List all trolleys and their status.",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT trolley_id, status FROM trolleys;"
+  },
+  {
+    "prompt": "What is the condition of all wheels attached to trolleys?",
+    "context": {
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      },
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id;"
+  },
+  {
+    "prompt": "Which lifts are operational?",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type, capacity FROM lifts WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "List the names and types of all ships built after 2010.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT name, type FROM ships WHERE build_year > 2010;"
+  },
+  {
+    "prompt": "How many cradles are currently in use?",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT COUNT(*) FROM cradles WHERE status = 'In Use';"
+  },
+  {
+    "prompt": "List all employees hired after 2020.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name FROM employees WHERE hire_date > TO_DATE('2020-12-31', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "Which employees are unavailable for tasks?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name FROM employees WHERE availability_status = 'Unavailable';"
+  },
+  {
+    "prompt": "What is the total amount of all unpaid invoices?",
+    "context": {
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT SUM(amount) FROM invoices WHERE status = 'Unpaid';"
+  },
+  {
+    "prompt": "List all repairs and their associated ships.",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT r.repair_id, s.name FROM repairs r JOIN ships s ON r.ship_id = s.ship_id;"
+  },
+  {
+    "prompt": "Which ships have inspections scheduled after January 1, 2024?",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT s.name FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE ir.inspection_date > TO_DATE('2024-01-01', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "List the names of ships and their types.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT name, type FROM ships;"
+  },
+  {
+    "prompt": "What is the total number of repair tasks?",
+    "context": {
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT COUNT(*) FROM repair_tasks;"
+  },
+  {
+    "prompt": "List all employees and their assigned tasks.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, rt.task_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id JOIN repair_tasks rt ON et.task_id = rt.task_id;"
+  },
+  {
+    "prompt": "Which ships have a status of 'Operational'?",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT name FROM ships WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "List all departments and their employee counts.",
+    "context": {
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      }
+    },
+    "query": "SELECT d.department_name, COUNT(e.employee_id) AS employee_count FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "What is the maximum salary of employees in each department?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT d.department_name, MAX(e.salary) AS max_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "List all ships with associated repairs that are in progress.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT s.name, r.status FROM ships s JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';"
+  },
+  {
+    "prompt": "List the inspection records for the ship named 'Titan'.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT ir.inspection_date, ir.remarks FROM inspection_records ir JOIN ships s ON ir.ship_id = s.ship_id WHERE s.name = 'Titan';"
+  },
+  {
+    "prompt": "What is the average time required for all repair tasks?",
+    "context": {
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT AVG(estimated_time) FROM repair_tasks;"
+  },
+  {
+    "prompt": "List all invoices issued after January 1, 2023, and their amounts.",
+    "context": {
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT invoice_id, amount FROM invoices WHERE issued_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "List all trolleys and their statuses.",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT trolley_id, status FROM trolleys;"
+  },
+  {
+    "prompt": "Which trolleys are operational?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT trolley_id FROM trolleys WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "List the condition of all wheels and their associated trolleys.",
+    "context": {
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      },
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT w.wheel_id, w.condition, t.status FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id;"
+  },
+  {
+    "prompt": "How many wheels need replacement?",
+    "context": {
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT COUNT(*) FROM wheels WHERE condition = 'Needs Replacement';"
+  },
+  {
+    "prompt": "List all cradles currently in use.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT cradle_id FROM cradles WHERE status = 'In Use';"
+  },
+  {
+    "prompt": "List the names of ships in cradles currently in use.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT s.name FROM ships s JOIN cradles c ON s.ship_id = c.ship_id WHERE c.status = 'In Use';"
+  },
+  {
+    "prompt": "List all lifts and their capacities.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type, capacity FROM lifts;"
+  },
+  {
+    "prompt": "Which lifts are operational and have a capacity greater than 10 tons?",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type, capacity FROM lifts WHERE status = 'Operational' AND capacity > 10;"
+  },
+  {
+    "prompt": "List all lifts that are under maintenance.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type FROM lifts WHERE status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "How many trolleys are currently under maintenance?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT COUNT(*) FROM trolleys WHERE status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "What is the condition of wheels for trolleys under maintenance?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "List the IDs and types of all operational lifts.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type FROM lifts WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "Which lifts can lift more than 15 tons?",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type, capacity FROM lifts WHERE capacity > 15;"
+  },
+  {
+    "prompt": "List all cradles associated with ships under repair.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT c.cradle_id, s.name FROM cradles c JOIN ships s ON c.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';"
+  },
+  {
+    "prompt": "How many operational trolleys have all their wheels in good condition?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT COUNT(DISTINCT t.trolley_id) FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id WHERE t.status = 'Operational' AND w.condition = 'Good' GROUP BY t.trolley_id HAVING COUNT(w.wheel_id) = (SELECT COUNT(*) FROM wheels w2 WHERE w2.trolley_id = t.trolley_id);"
+  },
+  {
+    "prompt": "List all trolleys and their statuses.",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT trolley_id, status FROM trolleys;"
+  },
+  {
+    "prompt": "Which trolleys are operational?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT trolley_id FROM trolleys WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "List the condition of all wheels and their associated trolleys.",
+    "context": {
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      },
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT w.wheel_id, w.condition, t.status FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id;"
+  },
+  {
+    "prompt": "How many wheels need replacement?",
+    "context": {
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT COUNT(*) FROM wheels WHERE condition = 'Needs Replacement';"
+  },
+  {
+    "prompt": "List all cradles currently in use.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT cradle_id FROM cradles WHERE status = 'In Use';"
+  },
+  {
+    "prompt": "List the names of ships in cradles currently in use.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT s.name FROM ships s JOIN cradles c ON s.ship_id = c.ship_id WHERE c.status = 'In Use';"
+  },
+  {
+    "prompt": "List all lifts and their capacities.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type, capacity FROM lifts;"
+  },
+  {
+    "prompt": "Which lifts are operational and have a capacity greater than 10 tons?",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type, capacity FROM lifts WHERE status = 'Operational' AND capacity > 10;"
+  },
+  {
+    "prompt": "List all lifts that are under maintenance.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type FROM lifts WHERE status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "How many trolleys are currently under maintenance?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT COUNT(*) FROM trolleys WHERE status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "What is the condition of wheels for trolleys under maintenance?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "List the IDs and types of all operational lifts.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type FROM lifts WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "Which lifts can lift more than 15 tons?",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type, capacity FROM lifts WHERE capacity > 15;"
+  },
+  {
+    "prompt": "List all cradles associated with ships under repair.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT c.cradle_id, s.name FROM cradles c JOIN ships s ON c.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';"
+  },
+  {
+    "prompt": "How many operational trolleys have all their wheels in good condition?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT COUNT(DISTINCT t.trolley_id) FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id WHERE t.status = 'Operational' AND w.condition = 'Good' GROUP BY t.trolley_id HAVING COUNT(w.wheel_id) = (SELECT COUNT(*) FROM wheels w2 WHERE w2.trolley_id = t.trolley_id);"
+  },
+  {
+    "prompt": "List all trolleys and their statuses.",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT trolley_id, status FROM trolleys;"
+  },
+  {
+    "prompt": "Which trolleys are operational?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT trolley_id FROM trolleys WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "List the condition of all wheels and their associated trolleys.",
+    "context": {
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      },
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT w.wheel_id, w.condition, t.status FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id;"
+  },
+  {
+    "prompt": "How many wheels need replacement?",
+    "context": {
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT COUNT(*) FROM wheels WHERE condition = 'Needs Replacement';"
+  },
+  {
+    "prompt": "List all cradles currently in use.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT cradle_id FROM cradles WHERE status = 'In Use';"
+  },
+  {
+    "prompt": "List the names of ships in cradles currently in use.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT s.name FROM ships s JOIN cradles c ON s.ship_id = c.ship_id WHERE c.status = 'In Use';"
+  },
+  {
+    "prompt": "List all lifts and their capacities.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type, capacity FROM lifts;"
+  },
+  {
+    "prompt": "Which lifts are operational and have a capacity greater than 10 tons?",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type, capacity FROM lifts WHERE status = 'Operational' AND capacity > 10;"
+  },
+  {
+    "prompt": "List all lifts that are under maintenance.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type FROM lifts WHERE status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "How many trolleys are currently under maintenance?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT COUNT(*) FROM trolleys WHERE status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "What is the condition of wheels for trolleys under maintenance?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "List the IDs and types of all operational lifts.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type FROM lifts WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "Which lifts can lift more than 15 tons?",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type, capacity FROM lifts WHERE capacity > 15;"
+  },
+  {
+    "prompt": "List all cradles associated with ships under repair.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT c.cradle_id, s.name FROM cradles c JOIN ships s ON c.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';"
+  },
+  {
+    "prompt": "How many operational trolleys have all their wheels in good condition?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT COUNT(DISTINCT t.trolley_id) FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id WHERE t.status = 'Operational' AND w.condition = 'Good' GROUP BY t.trolley_id HAVING COUNT(w.wheel_id) = (SELECT COUNT(*) FROM wheels w2 WHERE w2.trolley_id = t.trolley_id);"
+  },
+  {
+    "prompt": "Show the IDs of all cradles that are not currently in use.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT cradle_id FROM cradles WHERE status != 'In Use';"
+  },
+  {
+    "prompt": "List the cradles not in use.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT cradle_id FROM cradles WHERE status != 'In Use';"
+  },
+  {
+    "prompt": "Which ships are held in cradles that are under maintenance?",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT s.name FROM ships s JOIN cradles c ON s.ship_id = c.ship_id WHERE c.status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "Find the names of ships whose cradles are under maintenance.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT s.name FROM ships s JOIN cradles c ON s.ship_id = c.ship_id WHERE c.status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "How many lifts are not operational?",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT COUNT(*) FROM lifts WHERE status != 'Operational';"
+  },
+  {
+    "prompt": "Count the lifts that are currently not operational.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT COUNT(*) FROM lifts WHERE status != 'Operational';"
+  },
+  {
+    "prompt": "List all wheels that are attached to trolleys under maintenance.",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "Find the IDs and conditions of wheels belonging to trolleys that are being repaired.",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "Which ships have repairs in progress?",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT s.name FROM ships s JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';"
+  },
+  {
+    "prompt": "List the names of ships currently undergoing repairs.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT s.name FROM ships s JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';"
+  },
+  {
+    "prompt": "List the repair tasks with their estimated and actual times.",
+    "context": {
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT task_name, estimated_time, actual_time FROM repair_tasks;"
+  },
+  {
+    "prompt": "Find all repair tasks and their estimated vs actual times.",
+    "context": {
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT task_name, estimated_time, actual_time FROM repair_tasks;"
+  },
+  {
+    "prompt": "How many trolleys have all their wheels in good condition?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT COUNT(DISTINCT t.trolley_id) FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id WHERE w.condition = 'Good' GROUP BY t.trolley_id HAVING COUNT(w.wheel_id) = (SELECT COUNT(*) FROM wheels w2 WHERE w2.trolley_id = t.trolley_id);"
+  },
+  {
+    "prompt": "Count the trolleys where all wheels are in good condition.",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT COUNT(DISTINCT t.trolley_id) FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id WHERE w.condition = 'Good' GROUP BY t.trolley_id HAVING COUNT(w.wheel_id) = (SELECT COUNT(*) FROM wheels w2 WHERE w2.trolley_id = t.trolley_id);"
+  },
+  {
+    "prompt": "List all employees assigned to repair tasks.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id;"
+  },
+  {
+    "prompt": "Show the names of employees who are assigned to tasks.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id;"
+  },
+  {
+    "prompt": "Find all employees with their assigned repair tasks.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, rt.task_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id JOIN repair_tasks rt ON et.task_id = rt.task_id;"
+  },
+  {
+    "prompt": "Which employees are assigned to specific repair tasks?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, rt.task_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id JOIN repair_tasks rt ON et.task_id = rt.task_id;"
+  },
+  {
+    "prompt": "Get the assigned tasks for each employee.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, rt.task_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id JOIN repair_tasks rt ON et.task_id = rt.task_id;"
+  },
+  {
+    "prompt": "How many employees are assigned to repair tasks?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      }
+    },
+    "query": "SELECT COUNT(DISTINCT et.employee_id) FROM employee_tasks et;"
+  },
+  {
+    "prompt": "Count the employees currently assigned to tasks.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      }
+    },
+    "query": "SELECT COUNT(DISTINCT et.employee_id) FROM employee_tasks et;"
+  },
+  {
+    "prompt": "List employees working on a task assigned after January 1, 2023.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.assigned_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "Find employees assigned to tasks after January 2023.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.assigned_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "Which employees are assigned to tasks after January 2023?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.assigned_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "List employees assigned to tasks after January 2023.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.assigned_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "List all ships and their owners.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT name, owner FROM ships;"
+  },
+  {
+    "prompt": "Show the names and statuses of all ships.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT name, status FROM ships;"
+  },
+  {
+    "prompt": "Find all ships built before 2000.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT name FROM ships WHERE build_year < 2000;"
+  },
+  {
+    "prompt": "List the names of ships that are under maintenance.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT name FROM ships WHERE status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "Find the repair tasks with their estimated and actual times.",
+    "context": {
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT task_name, estimated_time, actual_time FROM repair_tasks;"
+  },
+  {
+    "prompt": "Which employees are inspectors for inspections conducted after January 1, 2024?",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN inspection_records ir ON e.employee_id = ir.inspector_id WHERE ir.inspection_date > TO_DATE('2024-01-01', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "List all inspections for ships owned by 'Oceanic Co.'",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT ir.inspection_date, ir.remarks FROM inspection_records ir JOIN ships s ON ir.ship_id = s.ship_id WHERE s.owner = 'Oceanic Co.';"
+  },
+  {
+    "prompt": "What is the total salary of all employees?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT SUM(salary) FROM employees;"
+  },
+  {
+    "prompt": "List all employees hired after 2020.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name FROM employees WHERE hire_date > TO_DATE('2020-12-31', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "Show the departments and the number of employees in each.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT d.department_name, COUNT(e.employee_id) AS employee_count FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "List all repairs and their associated ships.",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT r.repair_id, s.name FROM repairs r JOIN ships s ON r.ship_id = s.ship_id;"
+  },
+  {
+    "prompt": "Find all invoices issued after January 1, 2023.",
+    "context": {
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT invoice_id, amount FROM invoices WHERE issued_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "List all trolleys currently under maintenance.",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT trolley_id FROM trolleys WHERE status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "How many wheels need replacement?",
+    "context": {
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT COUNT(*) FROM wheels WHERE condition = 'Needs Replacement';"
+  },
+  {
+    "prompt": "Which lifts have a capacity greater than 10 tons?",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type FROM lifts WHERE capacity > 10;"
+  },
+  {
+    "prompt": "List all cradles currently in use.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT cradle_id FROM cradles WHERE status = 'In Use';"
+  },
+  {
+    "prompt": "Which employees are assigned to repair tasks?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id;"
+  },
+  {
+    "prompt": "List all ships and their current status.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT name, status FROM ships;"
+  },
+  {
+    "prompt": "Which ships are under maintenance?",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT name FROM ships WHERE status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "Find the repair tasks for ships built after 2015.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT rt.task_name, rt.description FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id WHERE s.build_year > 2015;"
+  },
+  {
+    "prompt": "List the employees working on tasks related to repairs.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id;"
+  },
+  {
+    "prompt": "Which cradles are currently not in use?",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT cradle_id FROM cradles WHERE status != 'In Use';"
+  },
+  {
+    "prompt": "Find the total number of lifts and their operational status.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT COUNT(lift_id) AS total_lifts, status FROM lifts GROUP BY status;"
+  },
+  {
+    "prompt": "List all ships and the number of repairs performed on each ship.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT s.name, COUNT(r.repair_id) AS repair_count FROM ships s LEFT JOIN repairs r ON s.ship_id = r.ship_id GROUP BY s.name;"
+  },
+  {
+    "prompt": "How many invoices are still unpaid?",
+    "context": {
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT COUNT(*) FROM invoices WHERE status = 'Unpaid';"
+  },
+  {
+    "prompt": "Get the inspection records for ships inspected after January 1, 2023.",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT s.name, ir.inspection_date, ir.remarks FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE ir.inspection_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "List all departments and the number of employees in each.",
+    "context": {
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      }
+    },
+    "query": "SELECT d.department_name, COUNT(e.employee_id) AS employee_count FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "What is the average salary of employees in each department?",
+    "context": {
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      }
+    },
+    "query": "SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "List all repairs completed between January and June 2023.",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT repair_id, start_date, end_date FROM repairs WHERE status = 'Completed' AND start_date >= TO_DATE('2023-01-01', 'YYYY-MM-DD') AND end_date <= TO_DATE('2023-06-30', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "Which employees have not been assigned any tasks?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e LEFT JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.employee_id IS NULL;"
+  },
+  {
+    "prompt": "List the repair tasks and their completion time for each repair.",
+    "context": {
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT task_name, estimated_time, actual_time FROM repair_tasks;"
+  },
+  {
+    "prompt": "List all inspection records with their remarks.",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT inspection_id, inspection_date, remarks FROM inspection_records;"
+  },
+  {
+    "prompt": "Find all inspections conducted after January 1, 2023.",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT inspection_id, inspection_date FROM inspection_records WHERE inspection_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "Which ships have inspections scheduled after June 30, 2023?",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT s.name FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE ir.inspection_date > TO_DATE('2023-06-30', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "Get the details of inspections performed by employees named 'John Doe'.",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT ir.inspection_id, ir.inspection_date, ir.remarks FROM inspection_records ir JOIN employees e ON ir.inspector_id = e.employee_id WHERE e.first_name = 'John' AND e.last_name = 'Doe';"
+  },
+  {
+    "prompt": "List the ships and inspection remarks for all inspections conducted in 2022.",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT s.name, ir.remarks FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE EXTRACT(YEAR FROM ir.inspection_date) = 2022;"
+  },
+  {
+    "prompt": "Count the number of inspections conducted for each ship.",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT s.name, COUNT(ir.inspection_id) AS inspection_count FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id GROUP BY s.name;"
+  },
+  {
+    "prompt": "Find the names of employees who inspected ships in January 2023.",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT DISTINCT e.first_name, e.last_name FROM employees e JOIN inspection_records ir ON e.employee_id = ir.inspector_id WHERE ir.inspection_date BETWEEN TO_DATE('2023-01-01', 'YYYY-MM-DD') AND TO_DATE('2023-01-31', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "Which employees have conducted more than 5 inspections?",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, COUNT(ir.inspection_id) AS inspection_count FROM employees e JOIN inspection_records ir ON e.employee_id = ir.inspector_id GROUP BY e.first_name, e.last_name HAVING COUNT(ir.inspection_id) > 5;"
+  },
+  {
+    "prompt": "List all inspections along with the names of the ships inspected.",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT ir.inspection_id, s.name, ir.inspection_date FROM inspection_records ir JOIN ships s ON ir.ship_id = s.ship_id;"
+  },
+  {
+    "prompt": "Find inspections performed by employees from the Maintenance department.",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT ir.inspection_id, ir.inspection_date FROM inspection_records ir JOIN employees e ON ir.inspector_id = e.employee_id JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Maintenance';"
+  },
+  {
+    "prompt": "List all ships and their owners.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT name, owner FROM ships;"
+  },
+  {
+    "prompt": "Find ships built before 2010 and their current status.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT name, status FROM ships WHERE build_year < 2010;"
+  },
+  {
+    "prompt": "How many ships are currently under maintenance?",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT COUNT(*) FROM ships WHERE status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "List all employees in the Maintenance department with their salaries.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, e.salary FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE d.department_name = 'Maintenance';"
+  },
+  {
+    "prompt": "What is the average salary of employees in each department?",
+    "context": {
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      }
+    },
+    "query": "SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "List all repair tasks that took longer than the estimated time.",
+    "context": {
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT task_name, estimated_time, actual_time FROM repair_tasks WHERE actual_time > estimated_time;"
+  },
+  {
+    "prompt": "Which cradles are currently in use?",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT cradle_id FROM cradles WHERE status = 'In Use';"
+  },
+  {
+    "prompt": "Find all wheels that need replacement and their associated trolleys.",
+    "context": {
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      },
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      }
+    },
+    "query": "SELECT w.wheel_id, t.trolley_id FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE w.condition = 'Needs Replacement';"
+  },
+  {
+    "prompt": "List all lifts and their capacity.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT lift_id, type, capacity FROM lifts;"
+  },
+  {
+    "prompt": "Which employees have not been assigned any tasks?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e LEFT JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.employee_id IS NULL;"
+  },
+  {
+    "prompt": "Find the details of the most recent inspection for each ship.",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT s.name, MAX(ir.inspection_date) AS recent_inspection, ir.remarks FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id GROUP BY s.name, ir.remarks;"
+  },
+  {
+    "prompt": "List all invoices that have not been paid.",
+    "context": {
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT invoice_id, amount FROM invoices WHERE status = 'Unpaid';"
+  },
+  {
+    "prompt": "Which ships have inspections scheduled after June 2023?",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT s.name FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE ir.inspection_date > TO_DATE('2023-06-30', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "Find the total number of repairs completed in 2022.",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT COUNT(*) FROM repairs WHERE status = 'Completed' AND EXTRACT(YEAR FROM end_date) = 2022;"
+  },
+  {
+    "prompt": "List the tasks for repairs that are still in progress.",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT rt.task_name, rt.description FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id WHERE r.status = 'In Progress';"
+  },
+  {
+    "prompt": "Find all employees who joined after 2020.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name FROM employees WHERE hire_date > TO_DATE('2020-12-31', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "Which ships have never had any repairs?",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT s.name FROM ships s LEFT JOIN repairs r ON s.ship_id = r.ship_id WHERE r.repair_id IS NULL;"
+  },
+  {
+    "prompt": "List the types of ships and their counts.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT type, COUNT(*) AS count FROM ships GROUP BY type;"
+  },
+  {
+    "prompt": "Find the employees with the highest salaries.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, salary FROM employees WHERE salary = (SELECT MAX(salary) FROM employees);"
+  },
+  {
+    "prompt": "How many employees are currently unavailable for tasks?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT COUNT(*) FROM employees WHERE availability_status = 'Unavailable';"
+  },
+  {
+    "prompt": "List all repair tasks and their associated ships.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT rt.task_name, rt.description, s.name FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id;"
+  },
+  {
+    "prompt": "Find the total cost of all repairs.",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT SUM(amount) AS total_repair_cost FROM invoices;"
+  },
+  {
+    "prompt": "What is the average repair duration for completed repairs?",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT AVG(end_date - start_date) AS avg_repair_duration FROM repairs WHERE status = 'Completed';"
+  },
+  {
+    "prompt": "Which trolleys are operational and have wheels in good condition?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT t.trolley_id FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id WHERE t.status = 'Operational' AND w.condition = 'Good';"
+  },
+  {
+    "prompt": "How many inspections were conducted by each employee?",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, COUNT(ir.inspection_id) AS inspection_count FROM employees e JOIN inspection_records ir ON e.employee_id = ir.inspector_id GROUP BY e.first_name, e.last_name;"
+  },
+  {
+    "prompt": "List all inspections with their remarks for ships owned by 'Blue Ocean Co.'.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT ir.inspection_date, ir.remarks FROM inspection_records ir JOIN ships s ON ir.ship_id = s.ship_id WHERE s.owner = 'Blue Ocean Co.';"
+  },
+  {
+    "prompt": "Which repairs are overdue as of today?",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT repair_id, ship_id FROM repairs WHERE end_date < SYSDATE AND status != 'Completed';"
+  },
+  {
+    "prompt": "List all employees who have joined after 2015 and their salaries.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, salary FROM employees WHERE hire_date > TO_DATE('2015-12-31', 'YYYY-MM-DD');"
+  },
+  {
+    "prompt": "How many ships are owned by 'Atlantic Shipping Corp.'?",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      }
+    },
+    "query": "SELECT COUNT(*) FROM ships WHERE owner = 'Atlantic Shipping Corp.';"
+  },
+  {
+    "prompt": "What is the maximum capacity of operational lifts?",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT MAX(capacity) FROM lifts WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "List the invoices issued in 2023 with their amounts.",
+    "context": {
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT invoice_id, amount FROM invoices WHERE EXTRACT(YEAR FROM issued_date) = 2023;"
+  },
+  {
+    "prompt": "Find the names of ships inspected by 'Jane Smith'.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT s.name FROM ships s JOIN inspection_records ir ON s.ship_id = ir.ship_id JOIN employees e ON ir.inspector_id = e.employee_id WHERE e.first_name = 'Jane' AND e.last_name = 'Smith';"
+  },
+  {
+    "prompt": "Which cradles are assigned to ships undergoing repairs?",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT c.cradle_id, c.status AS cradle_status, s.name AS ship_name FROM cradles c JOIN ships s ON c.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id WHERE r.status = 'In Progress';"
+  },
+  {
+    "prompt": "List all lifts and their capacities with ships assigned to them for repairs.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT l.lift_id, l.type, l.capacity, s.name AS ship_name FROM lifts l JOIN repairs r ON l.lift_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id WHERE r.status = 'In Progress';"
+  },
+  {
+    "prompt": "Which trolleys and wheels are associated with ships under maintenance?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT t.trolley_id, t.status AS trolley_status, w.wheel_id, w.condition AS wheel_condition, s.name AS ship_name FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id JOIN repairs r ON t.trolley_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id WHERE r.status = 'In Progress';"
+  },
+  {
+    "prompt": "Find the invoices for repairs that include tasks assigned to multiple employees.",
+    "context": {
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      }
+    },
+    "query": "SELECT i.invoice_id, i.amount FROM invoices i JOIN repairs r ON i.repair_id = r.repair_id JOIN repair_tasks rt ON r.repair_id = rt.repair_id JOIN employee_tasks et ON rt.task_id = et.task_id GROUP BY i.invoice_id, i.amount HAVING COUNT(et.employee_id) > 1;"
+  },
+  {
+    "prompt": "List all cradles and trolleys associated with ships under maintenance.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT c.cradle_id, c.status AS cradle_status, t.trolley_id, t.status AS trolley_status, s.name AS ship_name FROM cradles c JOIN ships s ON c.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id JOIN trolleys t ON t.trolley_id = r.repair_id WHERE r.status = 'In Progress';"
+  },
+  {
+    "prompt": "Which repair tasks involved multiple employees and resulted in invoices over $5000?",
+    "context": {
+      "repair_tasks": {
+        "columns": ["task_id", "repair_id", "task_name"],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "employee_tasks": {
+        "columns": ["employee_task_id", "employee_id", "task_id"],
+        "foreign_keys": {
+          "task_id": "repair_tasks"
+        }
+      },
+      "invoices": {
+        "columns": ["invoice_id", "repair_id", "amount"],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT rt.task_name FROM repair_tasks rt JOIN employee_tasks et ON rt.task_id = et.task_id JOIN invoices i ON rt.repair_id = i.repair_id GROUP BY rt.task_name HAVING COUNT(et.employee_id) > 1 AND MAX(i.amount) > 5000;"
+  },
+  {
+    "prompt": "Which trolleys and wheels are used for ships under maintenance?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT t.trolley_id, t.status AS trolley_status, w.wheel_id, w.condition AS wheel_condition, s.name AS ship_name FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id JOIN repairs r ON t.trolley_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id WHERE r.status = 'In Progress';"
+  },
+  {
+    "prompt": "Find all repair tasks that exceeded their estimated time by more than 20%.",
+    "context": {
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ]
+      }
+    },
+    "query": "SELECT task_name FROM repair_tasks WHERE actual_time > estimated_time * 1.2;"
+  },
+  {
+    "prompt": "Which ships have the highest repair costs in the last five years?",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "invoices": {
+        "columns": ["invoice_id", "repair_id", "amount"],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT s.name AS ship_name, SUM(i.amount) AS total_repair_cost FROM ships s JOIN repairs r ON s.ship_id = r.ship_id JOIN invoices i ON r.repair_id = i.repair_id WHERE r.end_date >= ADD_MONTHS(SYSDATE, -60) GROUP BY s.name ORDER BY total_repair_cost DESC;"
+  },
+  {
+    "prompt": "List the total number of employees grouped by availability status.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;"
+  },
+  {
+    "prompt": "Find the average salary of employees in each department.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "List all repairs that have exceeded their expected end date.",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      }
+    },
+    "query": "SELECT repair_id, ship_id FROM repairs WHERE end_date < SYSDATE AND status != 'Completed';"
+  },
+  {
+    "prompt": "Find all ships that have not been inspected in the last two years.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT s.name FROM ships s LEFT JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE ir.inspection_date < ADD_MONTHS(SYSDATE, -24) OR ir.inspection_date IS NULL;"
+  },
+  {
+    "prompt": "List the total repair costs for each ship.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      },
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT s.name, SUM(i.amount) AS total_repair_cost FROM ships s JOIN repairs r ON s.ship_id = r.ship_id JOIN invoices i ON r.repair_id = i.repair_id GROUP BY s.name;"
+  },
+  {
+    "prompt": "Find all employees who have been assigned tasks but are currently unavailable.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE e.availability_status = 'Unavailable';"
+  },
+  {
+    "prompt": "List the names and capacities of all operational lifts.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT type, capacity FROM lifts WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "Find the condition of wheels for each trolley under maintenance.",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "List all employees who were hired in the last five years and their departments.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, d.department_name FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE e.hire_date > ADD_MONTHS(SYSDATE, -60);"
+  },
+  {
+    "prompt": "Find the total number of repairs performed for ships owned by 'Oceanic Co.'.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT COUNT(r.repair_id) AS total_repairs FROM repairs r JOIN ships s ON r.ship_id = s.ship_id WHERE s.owner = 'Oceanic Co.';"
+  },
+  {
+    "prompt": "List the total number of employees grouped by availability status.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;"
+  },
+  {
+    "prompt": "Find the average salary of employees in each department.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "List all repairs that have exceeded their expected end date.",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      }
+    },
+    "query": "SELECT repair_id, ship_id FROM repairs WHERE end_date < SYSDATE AND status != 'Completed';"
+  },
+  {
+    "prompt": "Find all ships that have not been inspected in the last two years.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT s.name FROM ships s LEFT JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE ir.inspection_date < ADD_MONTHS(SYSDATE, -24) OR ir.inspection_date IS NULL;"
+  },
+  {
+    "prompt": "List the total repair costs for each ship.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      },
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT s.name, SUM(i.amount) AS total_repair_cost FROM ships s JOIN repairs r ON s.ship_id = r.ship_id JOIN invoices i ON r.repair_id = i.repair_id GROUP BY s.name;"
+  },
+  {
+    "prompt": "Find all employees who have been assigned tasks but are currently unavailable.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE e.availability_status = 'Unavailable';"
+  },
+  {
+    "prompt": "List the names and capacities of all operational lifts.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT type, capacity FROM lifts WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "Find the condition of wheels for each trolley under maintenance.",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "List all employees who were hired in the last five years and their departments.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, d.department_name FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE e.hire_date > ADD_MONTHS(SYSDATE, -60);"
+  },
+  {
+    "prompt": "Find the total number of repairs performed for ships owned by 'Oceanic Co.'.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT COUNT(r.repair_id) AS total_repairs FROM repairs r JOIN ships s ON r.ship_id = s.ship_id WHERE s.owner = 'Oceanic Co.';"
+  },
+  {
+    "prompt": "Which ships have repairs overdue by more than 30 days?",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      }
+    },
+    "query": "SELECT s.name, r.repair_id FROM ships s JOIN repairs r ON s.ship_id = r.ship_id WHERE r.end_date < SYSDATE - 30 AND r.status != 'Completed';"
+  },
+  {
+    "prompt": "List the repairs currently in progress and their expected completion dates.",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      }
+    },
+    "query": "SELECT repair_id, ship_id, end_date FROM repairs WHERE status = 'In Progress';"
+  },
+  {
+    "prompt": "Find the total downtime for all ships due to maintenance in the last year.",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      }
+    },
+    "query": "SELECT ship_id, SUM(end_date - start_date) AS total_downtime FROM repairs WHERE start_date > ADD_MONTHS(SYSDATE, -12) AND status = 'Completed' GROUP BY ship_id;"
+  },
+  {
+    "prompt": "List the most frequently repaired ships and the number of repairs for each.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      }
+    },
+    "query": "SELECT s.name, COUNT(r.repair_id) AS repair_count FROM ships s JOIN repairs r ON s.ship_id = r.ship_id GROUP BY s.name ORDER BY repair_count DESC;"
+  },
+  {
+    "prompt": "List the total number of employees grouped by availability status.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;"
+  },
+  {
+    "prompt": "Find the average salary of employees in each department.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "List all repairs that have exceeded their expected end date.",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      }
+    },
+    "query": "SELECT repair_id, ship_id FROM repairs WHERE end_date < SYSDATE AND status != 'Completed';"
+  },
+  {
+    "prompt": "Find all ships that have not been inspected in the last two years.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT s.name FROM ships s LEFT JOIN inspection_records ir ON s.ship_id = ir.ship_id WHERE ir.inspection_date < ADD_MONTHS(SYSDATE, -24) OR ir.inspection_date IS NULL;"
+  },
+  {
+    "prompt": "List the total repair costs for each ship.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      },
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT s.name, SUM(i.amount) AS total_repair_cost FROM ships s JOIN repairs r ON s.ship_id = r.ship_id JOIN invoices i ON r.repair_id = i.repair_id GROUP BY s.name;"
+  },
+  {
+    "prompt": "Find all employees who have been assigned tasks but are currently unavailable.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE e.availability_status = 'Unavailable';"
+  },
+  {
+    "prompt": "List the names and capacities of all operational lifts.",
+    "context": {
+      "lifts": {
+        "columns": ["lift_id", "type", "status", "capacity"]
+      }
+    },
+    "query": "SELECT type, capacity FROM lifts WHERE status = 'Operational';"
+  },
+  {
+    "prompt": "Find the condition of wheels for each trolley under maintenance.",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      }
+    },
+    "query": "SELECT w.wheel_id, w.condition FROM wheels w JOIN trolleys t ON w.trolley_id = t.trolley_id WHERE t.status = 'Under Maintenance';"
+  },
+  {
+    "prompt": "List all employees who were hired in the last five years and their departments.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, d.department_name FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE e.hire_date > ADD_MONTHS(SYSDATE, -60);"
+  },
+  {
+    "prompt": "Find the total number of repairs performed for ships owned by 'Oceanic Co.'.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT COUNT(r.repair_id) AS total_repairs FROM repairs r JOIN ships s ON r.ship_id = s.ship_id WHERE s.owner = 'Oceanic Co.';"
+  },
+  {
+    "prompt": "Which ships have repairs overdue by more than 30 days?",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      }
+    },
+    "query": "SELECT s.name, r.repair_id FROM ships s JOIN repairs r ON s.ship_id = r.ship_id WHERE r.end_date < SYSDATE - 30 AND r.status != 'Completed';"
+  },
+  {
+    "prompt": "List the repairs currently in progress and their expected completion dates.",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      }
+    },
+    "query": "SELECT repair_id, ship_id, end_date FROM repairs WHERE status = 'In Progress';"
+  },
+  {
+    "prompt": "Find the total downtime for all ships due to maintenance in the last year.",
+    "context": {
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      }
+    },
+    "query": "SELECT ship_id, SUM(end_date - start_date) AS total_downtime FROM repairs WHERE start_date > ADD_MONTHS(SYSDATE, -12) AND status = 'Completed' GROUP BY ship_id;"
+  },
+  {
+    "prompt": "List the most frequently repaired ships and the number of repairs for each.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      }
+    },
+    "query": "SELECT s.name, COUNT(r.repair_id) AS repair_count FROM ships s JOIN repairs r ON s.ship_id = r.ship_id GROUP BY s.name ORDER BY repair_count DESC;"
+  },
+  {
+    "prompt": "Which employees have been assigned to the most tasks in the last year?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, COUNT(et.task_id) AS task_count FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id WHERE et.assigned_date > ADD_MONTHS(SYSDATE, -12) GROUP BY e.first_name, e.last_name ORDER BY task_count DESC;"
+  },
+  {
+    "prompt": "Identify the top 3 employees with the highest total task time in the last year.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ]
+      }
+    },
+    "query": "SELECT e.first_name, e.last_name, SUM(rt.actual_time) AS total_task_time FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id JOIN repair_tasks rt ON et.task_id = rt.task_id WHERE et.assigned_date > ADD_MONTHS(SYSDATE, -12) GROUP BY e.first_name, e.last_name ORDER BY total_task_time DESC FETCH FIRST 3 ROWS ONLY;"
+  },
+  {
+    "prompt": "List all invoices issued for repairs in the last 6 months, including ship names and amounts.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"]
+      },
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT s.name AS ship_name, i.amount, i.issued_date FROM invoices i JOIN repairs r ON i.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id WHERE i.issued_date > ADD_MONTHS(SYSDATE, -6);"
+  },
+  {
+    "prompt": "Find all employees who worked on a repair that exceeded its estimated time by more than 20%.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ]
+      }
+    },
+    "query": "SELECT DISTINCT e.first_name, e.last_name FROM employees e JOIN employee_tasks et ON e.employee_id = et.employee_id JOIN repair_tasks rt ON et.task_id = rt.task_id WHERE rt.actual_time > rt.estimated_time * 1.2;"
+  },
+  {
+    "prompt": "List the total number of employees grouped by availability status.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;"
+  },
+  {
+    "prompt": "How many employees are there in each availability category?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;"
+  },
+  {
+    "prompt": "Provide a count of employees based on their availability.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;"
+  },
+  {
+    "prompt": "Group employees by their availability status and show the total for each group.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;"
+  },
+  {
+    "prompt": "What is the number of employees available versus unavailable?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT availability_status, COUNT(*) AS employee_count FROM employees GROUP BY availability_status;"
+  },
+  {
+    "prompt": "Find the average salary of employees in each department.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "What is the average salary for every department?",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "Show the average employee salary in each department.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "Calculate the mean salary of employees, grouped by department.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "Provide the department-wise average salaries for employees.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT d.department_name, AVG(e.salary) AS average_salary FROM departments d LEFT JOIN employees e ON d.department_id = e.department_id GROUP BY d.department_name;"
+  },
+  {
+    "prompt": "Retrieve all employees who joined in 2023.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT first_name, last_name, hire_date FROM employees WHERE EXTRACT(YEAR FROM hire_date) = 2023;"
+  },
+  {
+    "prompt": "Find all employees who inspected ships and the repairs associated with those ships.",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT e.first_name || ' ' || e.last_name AS inspector_name, s.name AS ship_name, r.status AS repair_status FROM inspection_records ir JOIN employees e ON ir.inspector_id = e.employee_id JOIN ships s ON ir.ship_id = s.ship_id LEFT JOIN repairs r ON s.ship_id = r.ship_id;"
+  },
+  {
+    "prompt": "List all invoices with ship name, repair status, and assigned employees.",
+    "context": {
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT i.invoice_id, i.amount, s.name AS ship_name, r.status AS repair_status, e.first_name || ' ' || e.last_name AS employee_name FROM invoices i JOIN repairs r ON i.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id LEFT JOIN repair_tasks rt ON r.repair_id = rt.repair_id LEFT JOIN employee_tasks et ON rt.task_id = et.task_id LEFT JOIN employees e ON et.employee_id = e.employee_id;"
+  },
+  {
+    "prompt": "List all employees, their departments, and the tasks they are currently assigned to.",
+    "context": {
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT e.first_name || ' ' || e.last_name AS employee_name, d.department_name, rt.task_name FROM employees e JOIN departments d ON e.department_id = d.department_id LEFT JOIN employee_tasks et ON e.employee_id = et.employee_id LEFT JOIN repair_tasks rt ON et.task_id = rt.task_id;"
+  },
+  {
+    "prompt": "Find all repair tasks, the ship names they belong to, the employees assigned, and the departments of those employees.",
+    "context": {
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ],
+        "foreign_keys": {
+          "department_id": "departments"
+        }
+      },
+      "departments": {
+        "columns": ["department_id", "department_name"]
+      }
+    },
+    "query": "SELECT rt.task_name, s.name AS ship_name, e.first_name || ' ' || e.last_name AS employee_name, d.department_name FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id JOIN departments d ON e.department_id = d.department_id;"
+  },
+  {
+    "prompt": "List all invoices with their repair tasks, the ships involved, and the employees assigned to those tasks.",
+    "context": {
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT i.invoice_id, i.amount, rt.task_name, s.name AS ship_name, e.first_name || ' ' || e.last_name AS employee_name FROM invoices i JOIN repairs r ON i.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id JOIN repair_tasks rt ON r.repair_id = rt.repair_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id;"
+  },
+  {
+    "prompt": "Find all inspection records, the ships inspected, the employees who conducted the inspections, and the repairs related to those ships.",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT ir.inspection_date, ir.remarks, s.name AS ship_name, e.first_name || ' ' || e.last_name AS inspector_name, r.status AS repair_status FROM inspection_records ir JOIN ships s ON ir.ship_id = s.ship_id JOIN employees e ON ir.inspector_id = e.employee_id LEFT JOIN repairs r ON s.ship_id = r.ship_id;"
+  },
+
+  {
+    "prompt": "List all cradles, the ships assigned to them, the repair tasks associated with those ships, and the employees assigned.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT c.cradle_id, c.status AS cradle_status, s.name AS ship_name, rt.task_name, e.first_name || ' ' || e.last_name AS employee_name FROM cradles c JOIN ships s ON c.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id JOIN repair_tasks rt ON r.repair_id = rt.repair_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id;"
+  },
+  {
+    "prompt": "Which trolleys and wheels are used for ships under maintenance, and which employees are responsible for those tasks?",
+    "context": {
+      "trolleys": {
+        "columns": ["trolley_id", "status"]
+      },
+      "wheels": {
+        "columns": ["wheel_id", "trolley_id", "condition"],
+        "foreign_keys": {
+          "trolley_id": "trolleys"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT t.trolley_id, t.status AS trolley_status, w.wheel_id, w.condition AS wheel_condition, s.name AS ship_name, e.first_name || ' ' || e.last_name AS employee_name FROM trolleys t JOIN wheels w ON t.trolley_id = w.trolley_id JOIN repairs r ON t.trolley_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id JOIN repair_tasks rt ON r.repair_id = rt.repair_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id WHERE r.status = 'In Progress';"
+  },
+  {
+    "prompt": "List all repair tasks, their ships, invoices, and the employees who handled both the repair and the inspection.",
+    "context": {
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "invoices": {
+        "columns": [
+          "invoice_id",
+          "repair_id",
+          "amount",
+          "issued_date",
+          "status"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id",
+          "remarks"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "employees": {
+        "columns": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "department_id",
+          "salary",
+          "availability_status",
+          "hire_date"
+        ]
+      }
+    },
+    "query": "SELECT rt.task_name, s.name AS ship_name, i.amount AS invoice_amount, e1.first_name || ' ' || e1.last_name AS repair_employee, e2.first_name || ' ' || e2.last_name AS inspector_employee FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id JOIN invoices i ON r.repair_id = i.repair_id LEFT JOIN employee_tasks et ON rt.task_id = et.task_id LEFT JOIN employees e1 ON et.employee_id = e1.employee_id LEFT JOIN inspection_records ir ON s.ship_id = ir.ship_id LEFT JOIN employees e2 ON ir.inspector_id = e2.employee_id;"
+  },
+  {
+    "prompt": "List all repair tasks with the ship name, repair status, and employee assigned.",
+    "context": {
+      "repair_tasks": {
+        "columns": [
+          "task_id",
+          "repair_id",
+          "task_name",
+          "description",
+          "estimated_time",
+          "actual_time"
+        ],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "start_date", "end_date", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "owner", "type", "build_year", "status"]
+      },
+      "employee_tasks": {
+        "columns": [
+          "employee_task_id",
+          "employee_id",
+          "task_id",
+          "assigned_date"
+        ],
+        "foreign_keys": {
+          "employee_id": "employees",
+          "task_id": "repair_tasks"
+        }
+      },
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name"]
+      }
+    },
+    "query": "SELECT rt.task_name, s.name AS ship_name, r.status AS repair_status, e.first_name || ' ' || e.last_name AS employee_name FROM repair_tasks rt JOIN repairs r ON rt.repair_id = r.repair_id JOIN ships s ON r.ship_id = s.ship_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id;"
+  },
+  {
+    "prompt": "Which employees inspected ships and also participated in repairs for those ships?",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "employee_tasks": {
+        "columns": ["employee_task_id", "employee_id", "task_id"],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      },
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name"]
+      }
+    },
+    "query": "SELECT e.first_name || ' ' || e.last_name AS employee_name FROM inspection_records ir JOIN employees e ON ir.inspector_id = e.employee_id JOIN repairs r ON ir.ship_id = r.ship_id JOIN employee_tasks et ON e.employee_id = et.employee_id;"
+  },
+  {
+    "prompt": "Find all inspections, their associated repairs, and the employees involved in both.",
+    "context": {
+      "inspection_records": {
+        "columns": ["inspection_id", "ship_id", "inspector_id"],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "employee_tasks": {
+        "columns": ["employee_task_id", "employee_id", "task_id"],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      },
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name"]
+      }
+    },
+    "query": "SELECT ir.inspection_id, r.status AS repair_status, e.first_name || ' ' || e.last_name AS employee_name FROM inspection_records ir JOIN repairs r ON ir.ship_id = r.ship_id JOIN employee_tasks et ON ir.inspector_id = et.employee_id JOIN employees e ON et.employee_id = e.employee_id;"
+  },
+  {
+    "prompt": "List all ships, their repairs, the employees assigned, and the invoices generated.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "employee_tasks": {
+        "columns": ["employee_task_id", "employee_id", "task_id"],
+        "foreign_keys": {
+          "employee_id": "employees"
+        }
+      },
+      "invoices": {
+        "columns": ["invoice_id", "repair_id", "amount"],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name"]
+      }
+    },
+    "query": "SELECT s.name AS ship_name, r.status AS repair_status, e.first_name || ' ' || e.last_name AS employee_name, i.amount AS invoice_amount FROM ships s JOIN repairs r ON s.ship_id = r.ship_id JOIN employee_tasks et ON r.repair_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id JOIN invoices i ON r.repair_id = i.repair_id;"
+  },
+  {
+    "prompt": "Find all ships, their repair tasks, the employees assigned to each task, and the associated invoices.",
+    "context": {
+      "ships": {
+        "columns": ["ship_id", "name", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "repair_tasks": {
+        "columns": ["task_id", "repair_id", "task_name", "description"],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "employee_tasks": {
+        "columns": ["employee_task_id", "employee_id", "task_id"],
+        "foreign_keys": {
+          "task_id": "repair_tasks"
+        }
+      },
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name"]
+      },
+      "invoices": {
+        "columns": ["invoice_id", "repair_id", "amount"],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      }
+    },
+    "query": "SELECT s.name AS ship_name, rt.task_name, e.first_name || ' ' || e.last_name AS employee_name, i.amount AS invoice_amount FROM ships s JOIN repairs r ON s.ship_id = r.ship_id JOIN repair_tasks rt ON r.repair_id = rt.repair_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id LEFT JOIN invoices i ON r.repair_id = i.repair_id;"
+  },
+  {
+    "prompt": "List all inspection records, the ships inspected, the employees who inspected them, and their assigned repair tasks.",
+    "context": {
+      "inspection_records": {
+        "columns": ["inspection_id", "ship_id", "inspector_id", "remarks"],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "status"]
+      },
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name"]
+      },
+      "repair_tasks": {
+        "columns": ["task_id", "repair_id", "task_name"],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      }
+    },
+    "query": "SELECT ir.inspection_id, s.name AS ship_name, e.first_name || ' ' || e.last_name AS inspector_name, rt.task_name FROM inspection_records ir JOIN ships s ON ir.ship_id = s.ship_id JOIN employees e ON ir.inspector_id = e.employee_id LEFT JOIN repairs r ON s.ship_id = r.ship_id LEFT JOIN repair_tasks rt ON r.repair_id = rt.repair_id;"
+  },
+  {
+    "prompt": "Which employees are assigned to repair tasks on ships inspected in 2023?",
+    "context": {
+      "inspection_records": {
+        "columns": [
+          "inspection_id",
+          "ship_id",
+          "inspection_date",
+          "inspector_id"
+        ],
+        "foreign_keys": {
+          "ship_id": "ships",
+          "inspector_id": "employees"
+        }
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "repair_tasks": {
+        "columns": ["task_id", "repair_id", "task_name"],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "employee_tasks": {
+        "columns": ["employee_task_id", "employee_id", "task_id"],
+        "foreign_keys": {
+          "task_id": "repair_tasks"
+        }
+      },
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name"]
+      }
+    },
+    "query": "SELECT e.first_name || ' ' || e.last_name AS employee_name, rt.task_name, s.name AS ship_name FROM inspection_records ir JOIN ships s ON ir.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id JOIN repair_tasks rt ON r.repair_id = rt.repair_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id WHERE EXTRACT(YEAR FROM ir.inspection_date) = 2023;"
+  },
+  {
+    "prompt": "List all cradles, their associated ships, the repair tasks performed, and the employees involved.",
+    "context": {
+      "cradles": {
+        "columns": ["cradle_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "ships": {
+        "columns": ["ship_id", "name", "status"]
+      },
+      "repairs": {
+        "columns": ["repair_id", "ship_id", "status"],
+        "foreign_keys": {
+          "ship_id": "ships"
+        }
+      },
+      "repair_tasks": {
+        "columns": ["task_id", "repair_id", "task_name"],
+        "foreign_keys": {
+          "repair_id": "repairs"
+        }
+      },
+      "employee_tasks": {
+        "columns": ["employee_task_id", "employee_id", "task_id"],
+        "foreign_keys": {
+          "task_id": "repair_tasks"
+        }
+      },
+      "employees": {
+        "columns": ["employee_id", "first_name", "last_name"]
+      }
+    },
+    "query": "SELECT c.cradle_id, s.name AS ship_name, rt.task_name, e.first_name || ' ' || e.last_name AS employee_name FROM cradles c JOIN ships s ON c.ship_id = s.ship_id JOIN repairs r ON s.ship_id = r.ship_id JOIN repair_tasks rt ON r.repair_id = rt.repair_id JOIN employee_tasks et ON rt.task_id = et.task_id JOIN employees e ON et.employee_id = e.employee_id;"
+  }
+]
