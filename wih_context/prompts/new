@@ -1,0 +1,170 @@
+Generating all possible prompts for a complex schema like the one provided would result in an enormous list. Instead, I'll categorize and provide **examples of prompts** grouped by functionality for each table and its relationships. This will give you a comprehensive starting point to generate a structured dataset.
+
+---
+
+### **General Categories for Prompts**
+
+1. **Entity Retrieval**:
+   - Retrieve basic details of individual entities (e.g., employees, vehicles).
+   - List all items in a category (e.g., all projects, all departments).
+
+2. **Filter-Based Queries**:
+   - Filter entities based on attributes (e.g., employees with a specific role, vehicles under maintenance).
+
+3. **Relationship-Based Queries**:
+   - Queries involving foreign key relationships (e.g., projects under a department, maintenance tasks for a vehicle).
+
+4. **Aggregate Information**:
+   - Aggregate operations (e.g., total expenses by department, count of employees in a team).
+
+5. **Complex Relationships**:
+   - Multi-table queries involving relationships (e.g., list employees working on active projects).
+
+6. **Historical and Status-Based Queries**:
+   - Historical data or status queries (e.g., completed maintenance tasks, past projects).
+
+---
+
+### **Prompts by Table**
+
+#### **1. Companies**
+- "List all companies and their contact details."
+- "Retrieve the address and industry of a company named 'Tech Solutions'."
+- "Show all departments under the company with ID 1."
+
+#### **2. Departments**
+- "List all departments and their budget."
+- "Which department has the largest budget?"
+- "Retrieve all employees in the 'IT' department."
+
+#### **3. Employees**
+- "List all employees with their roles and departments."
+- "Show employees hired after 2020."
+- "Retrieve employees working in the 'Finance' department."
+- "Find employees with a salary greater than $50,000."
+
+#### **4. Teams**
+- "List all teams and their leads."
+- "Retrieve employees in the team named 'Development'."
+
+#### **5. Projects**
+- "List all active projects and their budgets."
+- "Retrieve the name and description of projects starting in January 2025."
+- "Which employees are assigned to the project 'New Website Development'?"
+
+#### **6. Project Assignments**
+- "Show all employees assigned to project ID 5."
+- "Retrieve the roles of employees in project 'AI Implementation'."
+
+#### **7. Vehicles**
+- "List all vehicles and their statuses."
+- "Show vehicles owned by 'John Doe'."
+- "Which vehicles are currently under maintenance?"
+
+#### **8. Maintenance Records**
+- "List all maintenance records for vehicle ID 3."
+- "Retrieve the total cost of maintenance for all vehicles."
+- "Show the status of ongoing maintenance tasks."
+
+#### **9. Maintenance Tasks**
+- "List all tasks under maintenance ID 4."
+- "Show the estimated and actual cost of tasks for vehicle ID 5."
+- "Find completed maintenance tasks for the last month."
+
+#### **10. Equipment**
+- "List all equipment and their statuses."
+- "Show equipment last serviced in 2023."
+- "Retrieve equipment assigned to the 'Engineering' department."
+
+#### **11. Equipment Usage**
+- "List all usage records for equipment ID 6."
+- "Retrieve workers who used equipment for 'Testing'."
+
+#### **12. Spare Parts**
+- "List all spare parts and their quantities."
+- "Retrieve the status of spare parts with low quantities."
+
+#### **13. Equipment Parts**
+- "Show all parts used in equipment ID 7."
+- "Retrieve the quantity of part ID 3 used in maintenance."
+
+#### **14. Suppliers**
+- "List all suppliers and their contact details."
+- "Show suppliers providing 'Engine Parts'."
+
+#### **15. Safety Audits**
+- "List all safety audits conducted for vehicle ID 2."
+- "Retrieve remarks from the last audit performed by 'Jane Smith'."
+
+#### **16. Tasks**
+- "List all tasks under project ID 4."
+- "Show overdue tasks assigned to 'John Doe'."
+
+#### **17. Documents**
+- "List all documents uploaded by employee ID 7."
+- "Retrieve documents related to project ID 3."
+
+#### **18. Expenses**
+- "Show total expenses by department."
+- "Retrieve all expenses for project 'AI System Upgrade'."
+
+#### **19. Training Sessions**
+- "List all training sessions conducted by 'Emily White'."
+- "Retrieve sessions completed in 2023."
+
+#### **20. Training Attendance**
+- "Show all employees who attended training session ID 2."
+- "Retrieve the attendance status for employee ID 5."
+
+#### **21. Notifications**
+- "List all unread notifications for employee ID 9."
+- "Retrieve notifications related to project ID 4."
+
+#### **22. Events**
+- "List all events organized by 'HR Department'."
+- "Show events happening in December 2025."
+
+---
+
+### **Relationship-Based Prompts**
+
+#### **Employee and Department**
+- "List employees and their respective department names."
+- "Retrieve all employees in the department with the largest budget."
+
+#### **Project and Assignments**
+- "Show all employees working on active projects."
+- "Retrieve the total budget for projects managed by 'John Smith'."
+
+#### **Vehicles and Maintenance**
+- "Find all maintenance tasks for vehicles in 'Engineering' department."
+- "Retrieve the total maintenance cost for vehicle ID 8."
+
+#### **Equipment and Usage**
+- "Show the most frequently used equipment."
+- "Retrieve the total usage time for equipment ID 3."
+
+#### **Training and Attendance**
+- "List employees who completed all training sessions in 2024."
+- "Retrieve training sessions attended by 'Mark Johnson'."
+
+---
+
+### **Aggregate and Analytical Prompts**
+
+- "What is the total salary of employees in the 'Finance' department?"
+- "Which project has the highest number of employees assigned?"
+- "Show the total cost of all maintenance tasks completed in 2025."
+- "Retrieve the average inspection score for vehicles."
+
+---
+
+### **Custom Prompts**
+- "What is the total maintenance cost for vehicles under project ID 3?"
+- "List all overdue tasks and the employees assigned to them."
+- "Retrieve the training completion percentage for each employee."
+- "Which suppliers provide parts for equipment in the 'Engineering' department?"
+
+---
+
+These prompts cover a wide range of functionalities, ensuring a robust dataset for training models to generate Oracle DB queries. Let me know if you'd like assistance in refining or expanding this list!
