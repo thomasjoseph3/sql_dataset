@@ -1,0 +1,112 @@
+List all ships and their current status.
+Retrieve the details of ships built before the year 2000.
+What are the inspection scores of all AI-enabled ships?
+List all ships currently under repair.
+Retrieve the names and locations of all operational ships.
+How many ships are owned by each owner?
+List all ships of type 'cargo' and their last maintenance dates.
+What is the average inspection score of all ships?
+Show me all ships along with their status.
+What is the current status of all the ships?
+Retrieve a list of ships and their operational statuses.
+Give me the names and statuses of all the ships in the database.
+Display all ships with their statuses.
+Retrieve the details of ships built before the year 2001.
+Show all ship information for ships constructed before 1990.
+Which ships were built before the year 1999? Provide their details.
+List all ships that were built prior to 2010.
+Retrieve details for ships constructed earlier than the year 2006.
+Get all information about ships built before 2000.
+Show the inspection scores of AI-equipped ships.
+List the inspection ratings for all ships with AI integration.
+Retrieve inspection scores for ships that are AI-enabled.
+What are the inspection ratings of all ships with AI capabilities?
+Display inspection scores for every AI-enabled ship.
+List all employees and their salaries.
+Show me all employees along with their salaries.
+Retrieve the details of employees in the 'Engineering' department.
+Who are the employees certified in 'AI Maintenance'?
+List all employees who are certified in 'AI Maintenance'.
+What is the average salary of employees across all departments?
+Calculate the average salary of all employees.
+List employees who have received a salary increment in the last year.
+Retrieve all employees and their last training dates.
+Show me the last training dates of all employees.
+How many employees are currently unavailable?
+Count the number of employees who are currently unavailable.
+List employees assigned more than five tasks in the last month.
+Who completed more than five tasks in the last month?
+List all AI cameras that need servicing.
+Show me all AI cameras that require servicing.
+Retrieve details of all drones with battery status below 20%.
+Which drones have a battery status below 20%? Provide their details.
+What is the total repair cost for all trolleys this year?
+Calculate the total repair cost of all trolleys for the current year.
+List all sensors installed on the ship 'Poseidon' and their statuses.
+Retrieve all sensors and their statuses for the ship 'Poseidon'.
+Which machinery has exceeded its expected lifetime?
+List all machinery that has passed its expected lifetime.
+Retrieve the last maintenance dates of all cradles.
+When were all cradles last maintained?
+List all lifts with a capacity greater than 20 tons.
+Show all lifts that can carry more than 20 tons.
+How many AI cameras are operational across all ships?
+Count the number of operational AI cameras across ships.
+What is the total salary expense for the 'Engineering' department?
+Calculate the total salary of employees in the 'Engineering' department.
+Retrieve the total maintenance cost for all AI cameras and drones.
+What is the combined repair cost for all AI cameras and drones?
+What is the overall budget of each department?
+List the budgets allocated for all departments.
+How much has been spent on repair tasks for ship 'Poseidon'?
+Retrieve the highest and lowest repair costs this year.
+What is the total cost of repairs conducted by each department?
+List the most expensive repair conducted in the last year.
+Retrieve predictive maintenance insights for the ship 'Poseidon'.
+What are the predictive maintenance insights for the ship 'Poseidon'?
+Which ships are predicted to require repairs in the next 30 days?
+List ships that need repairs within the next month according to AI predictions.
+What is the confidence score of all AI predictions made this month?
+Retrieve AI insights categorized under 'structural damage.'
+Which ships have an inspection score below 50?
+List all ships with inspection scores under 50.
+List the top three recommendations from AI for reducing repair costs.
+Retrieve all predictive maintenance insights generated for drones.
+List all current stages of ongoing workflows.
+What are the current stages of all ongoing workflows?
+Retrieve the next stages of all repair workflows in progress.
+What are the next stages for all ongoing repair workflows?
+How many repair workflows were completed last month?
+Retrieve the count of repair workflows completed in the last month.
+List all tasks assigned to 'John Doe' and their statuses.
+What is the average time taken to complete a repair workflow?
+List all workflows that started but have no assigned end date.
+Retrieve details of tasks that were reassigned mid-workflow.
+List all employees who completed training in the last 6 months.
+Which employees are certified in 'Drone Maintenance'?
+Retrieve the certifications of employees in the 'Repair' department.
+How many employees have certifications in more than three categories?
+List all employees with pending certifications.
+Retrieve the names of employees who attended the most training sessions this year.
+Which certifications are most commonly held by employees?
+What are the upcoming training sessions planned for the 'AI' department?
+List all inspections conducted for ship 'Poseidon.'
+Retrieve the remarks of inspections conducted last month.
+Which employees conducted inspections this year?
+List all ships with inspection scores below 60.
+How many inspections are scheduled for the next 30 days?
+Retrieve the inspection costs for all cradles.
+List inspection details for all lifts in 'operational' status.
+How many inspections have been conducted for drones?
+List all inspections conducted for the ship 'Neptune.'
+Show me all inspections for ships built before 2010.
+Which inspections have a status of 'Pending'?
+List all operational ships with inspection scores above 80.
+How many inspections were conducted on cradles this year?
+Retrieve details of inspections conducted on drones with low battery status.
+Show inspection remarks for all AI cameras on the ship 'Titanic.'
+List the inspection ratings for all ships without AI integration.
+List all ships inspected by employees certified in 'Structural Analysis.'
+What is the total cost of inspections conducted in the last quarter?
+Retrieve the inspection schedules for all trolleys.
+Show the inspection dates and statuses for all sensors on the ship 'Endeavour.'
